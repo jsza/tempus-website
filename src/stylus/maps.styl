@@ -1,27 +1,80 @@
+.map-list
+    display flex
+    flex-direction row
+    flex-wrap wrap
+    // justify-content center
+    align-content flex-start
+    align-items flex-start
+    // border-left 1px solid rgba(0,0,0, 0.1)
+    // border-right 1px solid rgba(0,0,0, 0.1)
+    // box-shadow 0 0 12px rgba(50, 0, 50, 0.5)
+    // background white
+
 .map-list-item
+    background-color white
     width 320px
     height 180px
     display inline-block
-    margin-right 5px
-    margin-bottom 1px
+    margin 2px
     position relative
-    // border-radius 4px
+    // border-radius 3px
     // border 1px solid black
-    box-shadow 0px 0px 2px black
-    font-family 'Montserrat'
+    box-shadow 0px 0px 1px rgba(0, 0, 0, 0.8)
+    border 1px solid rgb(40, 40, 40)
+    font-size 12px
+    // font-family 'Montserrat'
+    transition box-shadow 0.1s
 
-.map-name, .map-info
-    position absolute
+    &:hover
+        box-shadow 0px 0px 4px rgba(0, 0, 0, 0.8)
+        opacity 1.0
+        cursor pointer
+
+    &:hover > .map-list-item-overlay
+        background none
+
+.map-list-item-overlay
+    padding 6px
+    display block
+    height 100%
+    background rgba(0, 0, 0, 0.1)
+    transition background 0.1s
+
+.map-list-item-inner
+    position relative
+    height 100%
+    display block
+
+.map-list-item-inner .map-name, .map-tiers, .map-zones, .map-author
     color white
     background-color rgba(0, 0, 0, 0.7)
     padding 4px
     border-radius 3px
     box-shadow 0px 0px 2px black
 
-.map-name
-    top 6px
-    left 6px
+.map-tiers, .map-zones, .map-author, .map-name-container
+    position absolute
 
-.map-info
-    top 6px
-    right 6px
+.map-name-container
+    top 0
+    left 0
+
+    & > span
+        display inline-block
+
+.map-name, .map-tiers
+    position relative
+
+.map-name
+    font-size 14px
+
+.map-tiers
+    margin-top 0.5em
+
+.map-author
+    bottom 0
+    left 0
+
+.map-zones
+    bottom 0
+    right 0

@@ -1,6 +1,9 @@
 import React from 'react'
-import {loadMaps} from '../redux/maps'
+import {loadMaps, resetMaps} from '../redux/maps'
 import {connect} from 'react-redux'
+import DocumentTitle from 'react-document-title'
+import MapListItem from '../components/MapListItem'
+import Throbber from '../components/Throbber'
 
 
 class MapsApp extends React.Component {
@@ -8,35 +11,33 @@ class MapsApp extends React.Component {
     this.props.loadMaps()
   }
 
-  render() {
-    if (!this.props.data) {
-      return <div>Loading...</div>
-    }
+  componentWillUnmount() {
+    this.props.resetMaps()
+  }
 
-    const items = this.props.data.map((item) => {
-      const name = item.get('name')
-      const styles =
-        { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
-        }
-      return (
-        <span className="map-list-item" style={styles}>
-          <span className="map-name">
-            <strong>{item.get('name')}</strong>
-            <br />
-            <i>1 course</i>
-          </span>
-          <span className="map-info">
-            <i className="fa fa-rocket" /> 6  <i className="fa fa-bomb" /> 5
-          </span>
-        </span>
-      )
-    }).toJS()
-    return (
-      <div className="maps-app">
+  render() {
+    let content
+    if (this.props.fetching || !this.props.data) {
+      content = <Throbber />
+    }
+    else if (this.props.error) {
+      content = <div>{this.props.error}</div>
+    }
+    else {
+      const items = this.props.data.map((item) => <MapListItem key={item.get('id')} data={item} />)
+      content = (
         <div className="map-list">
           {items}
         </div>
-      </div>
+      )
+    }
+
+    return (
+      <DocumentTitle title={'Tempus - Maps'}>
+        <div className="container maps-app">
+          {content}
+        </div>
+      </DocumentTitle>
     )
   }
 }
@@ -51,5 +52,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {loadMaps}
+  {loadMaps, resetMaps}
 )(MapsApp)

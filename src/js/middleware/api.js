@@ -12,7 +12,7 @@ export default function apiMiddleware(api) {
     }
 
     let {endpoint} = callAPI
-    const {method, params, data, types} = callAPI
+    const {method, params, data} = callAPI
 
     function actionWith(data) {
       const finalAction = Object.assign({}, action, data)
@@ -20,8 +20,21 @@ export default function apiMiddleware(api) {
       return finalAction
     }
 
-    const [requestType, successType, failureType] = types
-    next(actionWith({type: requestType}))
+    const {started, success, failure} = callAPI
+
+    function runActions(actions, extra) {
+      for (let a of actions) {
+        if (typeof a === 'string') {
+          const thing = Object.assign({}, extra, {type: a})
+          next(actionWith(thing))
+        }
+        else {
+          store.dispatch(a())
+        }
+      }
+    }
+
+    runActions(started)
 
     let request
     switch (method) {
@@ -41,21 +54,12 @@ export default function apiMiddleware(api) {
 
     return request.end((err, res) => {
       if (res === undefined) {
-        next(actionWith({
-          type: failureType,
-          error: 'Server unreachable'
-        }))
+        runActions(failure, {error: 'Server unreachable'})
       }
       else if (res.ok) {
-        next(actionWith({
-          type: successType,
-          data: res.body
-        }))
+        runActions(success, {data: res.body})
       } else {
-        next(actionWith({
-          type: failureType,
-          error: res.statusText
-        }))
+        runActions(failure, {error: res.status + ' ' + res.statusText})
       }
     })
   }

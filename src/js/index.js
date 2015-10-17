@@ -1,4 +1,3 @@
-console.log('yes')
 import 'babel-core/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -9,12 +8,14 @@ import {ReduxRouter} from 'redux-router'
 import APIUtils from './utils/APIUtils'
 
 import MapsApp from './containers/MapsApp'
+import MapOverviewApp from './containers/MapOverviewApp'
 import App from './containers/App'
 
 
 const routes = (
   <Route path="/" component={App}>
     <Route path="maps" component={MapsApp} />
+    <Route path="maps/:name" component={MapOverviewApp} />
   </Route>
 )
 

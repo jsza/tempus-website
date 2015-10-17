@@ -1,0 +1,139 @@
+
+.map-overview-bg
+    position fixed
+    top 0
+    left -8px
+    right -8px
+    display block
+    z-index -1
+    height 1000px
+    background-position top
+    background-repeat no-repeat
+    background-size cover
+    filter blur(1px)
+    // opacity 0.9
+
+.map-content-container
+    text-shadow 0 0 5px black
+    margin-bottom 15px
+    width 100%
+    background rgba(0, 0, 0, 0.7)
+    color white
+    padding 20px 40px 40px 40px
+    // font-family 'Montserrat'
+    width 100%
+
+.map-overview-header-container
+    // padding 0
+
+.map-overview-header
+    // padding 20px 40px 40px 40px
+    position relative
+    text-shadow 0 0 5px black
+    z-index 100
+
+    h1 small
+        color rgb(180, 180, 180)
+
+.map-video-buttons
+    display block
+    position absolute
+    right 15px
+    bottom 0
+
+    .fa-youtube
+        font-size 32px
+        vertical-align middle
+
+    .video-button
+        cursor pointer
+
+        &.disabled
+            opacity 0.3
+            cursor not-allowed
+
+.map-leaderboard-header
+    text-align center
+
+.map-leaderboard-list
+    list-style none
+    padding-left 0
+
+    & li:not(:last-child)
+        margin-bottom 8px
+
+    & li
+        clear both
+        border-radius 4px
+        padding 4px 8px
+        box-shadow 0 0 4px rgba(0, 0, 0, 0.5)
+        background rgba(0, 0, 0, 0.5)
+
+        text-shadow 0 0 3px black
+
+    & li:first-child
+        font-size 125%
+        box-shadow 0 0 4px rgba(255, 215, 0, 0.4)
+        background rgba(255, 215, 0, 0.4)
+        border 1px solid rgb(255, 215, 0)
+
+        .steamavatar
+            height 42px
+            width 42px
+
+        .leaderboard-rank
+            color rgb(255, 215, 0)
+            font-size 34px
+
+.leaderboard-avatar
+    float left
+    margin-right 8px
+
+.leaderboard-rank
+    float right
+    font-size 24px
+
+.map-video-panel
+    position relative
+    padding 16px
+
+.map-video-close
+    position absolute
+    top -12px
+    right -12px
+    font-size 24px
+    color rgba(255, 255, 255, 0.8)
+    border-radius 32px
+    text-align center
+    text-shadow 0 0 5px white
+    padding -4px
+    text-shadow 0 0 4px black
+
+    &:hover
+        cursor pointer
+        color rgba(255, 255, 255, 1)
+
+.leaderboard-zone-dropdown
+    z-index 1000
+    position absolute
+    top 100%
+    left 0
+    min-width 160px
+    padding-left 0
+    background rgba(0, 0, 0, 0.9)
+    border-radius 4px
+    list-style none
+    text-align left
+    padding 5px 0
+    box-shadow 0 0 4px rgba(0, 0, 0, 0.6)
+    & > li
+        padding 3px 20px
+
+        &:hover
+            cursor pointer
+            // background rgba(50, 50, 50, 0.5)
+            background #00b4dc
+
+    & > hr
+        margin 9px 0
+        border-color rgb(100, 100, 100)
