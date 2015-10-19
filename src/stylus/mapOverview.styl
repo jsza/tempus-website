@@ -10,11 +10,11 @@
     background-position top
     background-repeat no-repeat
     background-size cover
-    filter blur(1px)
+    // filter blur(1px)
     // opacity 0.9
 
 .map-content-container
-    text-shadow 0 0 5px black
+    text-shadow 0 0 2px black
     margin-bottom 15px
     width 100%
     background rgba(0, 0, 0, 0.7)
@@ -53,45 +53,54 @@
             cursor not-allowed
 
 .map-leaderboard-header
+    vertical-align middle
     text-align center
 
 .map-leaderboard-list
     list-style none
     padding-left 0
 
-    & li:not(:last-child)
-        margin-bottom 8px
+    thead
+        & tr
+            th
+                border-bottom 1px solid rgb(40, 40, 40)
+                padding 8px
+            background rgba(255, 255, 255,  0.2)
 
-    & li
-        clear both
-        border-radius 4px
-        padding 4px 8px
-        box-shadow 0 0 4px rgba(0, 0, 0, 0.5)
-        background rgba(0, 0, 0, 0.5)
+    tbody
+        & tr:not(:last-child)
+            margin-bottom 8px
 
-        text-shadow 0 0 3px black
+        & tr
+            td
+                padding 8px
 
-    & li:first-child
-        font-size 125%
-        box-shadow 0 0 4px rgba(255, 215, 0, 0.4)
-        background rgba(255, 215, 0, 0.4)
-        border 1px solid rgb(255, 215, 0)
+            .steamavatar
+                margin-right 4px
 
-        .steamavatar
-            height 42px
-            width 42px
+            .lb-rank
+                font-size 125%
+                text-align right
 
-        .leaderboard-rank
-            color rgb(255, 215, 0)
-            font-size 34px
+            &:hover
+                background rgba(255, 255, 255, 0.2)
+
+        & tr:first-child
+            .lb-rank
+                // color gold
+                content 'WR'
+
+
+.lb-container
+    background rgba(255, 255, 255,  0.1)
+    // padding 0 16px
 
 .leaderboard-avatar
     float left
-    margin-right 8px
+    // margin-right 8px
 
 .leaderboard-rank
     float right
-    font-size 24px
 
 .map-video-panel
     position relative

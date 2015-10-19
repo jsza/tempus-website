@@ -1,5 +1,6 @@
 import React from 'react'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, OverlayTrigger, Tooltip} from 'react-bootstrap'
+import TimeAgo from 'react-timeago'
 import SteamAvatarContainer from '../containers/SteamAvatarContainer'
 
 
@@ -20,20 +21,38 @@ export default class MapOverviewLeaderboard extends React.Component {
 
   renderRecords(playerClass) {
     const {leaderboard} = this.props
+    const results = leaderboard.data.getIn(['results', playerClass])
+    if (results.size === 0) {
+      return <span style={{padding: '4px'}}>No records found.</span>
+    }
     return leaderboard.data.getIn(['results', playerClass]).map((r, idx) => {
       const pi = r.get('player_info')
       return (
-        <li>
-          <span className="leaderboard-avatar">
-            <SteamAvatarContainer steamID={pi.get('steamid')} size="small" />
-          </span>
-          <span className="leaderboard-rank">
-            #{idx+1}
-          </span>
-          <strong>{pi.get('name')}</strong>
-          <br/>
-          <i className="fa fa-clock-o" /> {formatTime(r.get('duration') * 1000)}
-        </li>
+        <tr>
+          <td className="lb-rank">
+            <strong>
+              {idx+1 === 1
+               ? 'WR'
+               : idx+1
+              }
+            </strong>
+          </td>
+          <td>
+            <span>
+              <SteamAvatarContainer steamID={pi.get('steamid')} size="small" /> {pi.get('name')}
+            </span>
+          </td>
+          <td>
+            <span style={{fontSize: '125%'}}>
+              {formatTime(r.get('duration') * 1000)}
+            </span>
+          </td>
+          <OverlayTrigger placement="bottom" overlay={<Tooltip><TimeAgo date={r.get('date') * 1000} /></Tooltip>}>
+            <td style={{textAlign: 'center'}}>
+              <i className="fa fa-fw fa-info-circle" />
+            </td>
+          </OverlayTrigger>
+        </tr>
       )
     })
   }
@@ -54,17 +73,25 @@ export default class MapOverviewLeaderboard extends React.Component {
           <h4 className="map-leaderboard-header">
             <span style={{verticalAlign: 'middle'}} className="tf-icon soldier sm" /> Soldier <small>Very Easy (T1)</small>
           </h4>
-          <ul className="map-leaderboard-list">
-            {this.renderRecords('soldier')}
-          </ul>
+          <div className="lb-container">
+            <table className="map-leaderboard-list" style={{width: '100%'}}>
+              <tbody>
+                {this.renderRecords('soldier')}
+              </tbody>
+            </table>
+          </div>
         </Col>
         <Col className="leaderboards-demoman" lg={6}>
           <h4 className="map-leaderboard-header">
             <span style={{verticalAlign: 'middle'}} className="tf-icon demoman sm" /> Demoman <small>Insane (T6)</small>
           </h4>
-          <ul className="map-leaderboard-list">
-            {this.renderRecords('demoman')}
-          </ul>
+          <div className="lb-container">
+            <table className="map-leaderboard-list" style={{width: '100%'}}>
+              <tbody>
+                {this.renderRecords('demoman')}
+              </tbody>
+            </table>
+          </div>
         </Col>
       </Row>
     )
@@ -133,12 +160,12 @@ export default class MapOverviewLeaderboard extends React.Component {
 
 function pad(num, size) {
   var s = '0000' + num
-  return s.substr(s.length - size)
+  return s.substring(s.length - size)
 }
 
 
 function formatTime(time) {
-  let h, m, s, ms
+  let h, m, s, ms = 0
   var newTime = ''
 
   h = Math.floor( time / (60 * 60 * 1000) )
@@ -146,9 +173,9 @@ function formatTime(time) {
   m = Math.floor( time / (60 * 1000) )
   time = time % (60 * 1000)
   s = Math.floor( time / 1000 )
-  ms = time % 1000
+  ms = time % 1000 % 1
 
-  newTime = pad(m, 2) + ':' + pad(s, 2) + '.' + pad(ms, 2)
+  newTime = pad(m, 2) + ':' + pad(s, 2) + '.' + (ms.toString() + '00').substring(2, 4)
   if (h !== 0) {
     newTime = pad(h, 2) + ':' + newTime
   }
