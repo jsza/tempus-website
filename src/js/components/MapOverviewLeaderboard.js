@@ -44,7 +44,7 @@ export default class MapOverviewLeaderboard extends React.Component {
           </td>
           <td>
             <span style={{fontSize: '125%'}}>
-              {formatTime(r.get('duration') * 1000)}
+              {formatTime(r.get('duration'))}
             </span>
           </td>
           <OverlayTrigger placement="bottom" overlay={<Tooltip><TimeAgo date={r.get('date') * 1000} /></Tooltip>}>
@@ -168,12 +168,12 @@ function formatTime(time) {
   let h, m, s, ms = 0
   var newTime = ''
 
-  h = Math.floor( time / (60 * 60 * 1000) )
-  time = time % (60 * 60 * 1000)
-  m = Math.floor( time / (60 * 1000) )
-  time = time % (60 * 1000)
-  s = Math.floor( time / 1000 )
-  ms = time % 1000 % 1
+  h = Math.floor( time / (60 * 60) )
+  time = time % (60 * 60)
+  m = Math.floor( time / (60) )
+  time = time % (60)
+  s = Math.floor( time )
+  ms = time % 1
 
   newTime = pad(m, 2) + ':' + pad(s, 2) + '.' + (ms.toString() + '00').substring(2, 4)
   if (h !== 0) {
