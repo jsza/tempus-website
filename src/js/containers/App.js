@@ -2,26 +2,8 @@ import React from 'react'
 import {Link} from 'react-router'
 import {Navbar, Nav, NavItem, NavBrand, Input} from 'react-bootstrap'
 import {LinkContainer, MenuItemLink} from 'react-router-bootstrap'
+import AppSearch from '../components/AppSearch'
 
-
-        // <nav className="navbar navbar-inverse navbar-static">
-          // <div className="container">
-            // <div className="navbar-header">
-              // <Link to="/" className="navbar-brand">
-                // <i className="fa fa-rocket" /> Tempus Jump <small>beta</small>
-              // </Link>
-            // </div>
-            // <div className="navbar-collapse collapse">>
-              // <ul className="nav navbar-nav">
-                // <li>
-                  // <Link to="/maps">
-                    // Maps
-                  // </Link>
-                // </li>
-              // </ul>
-            // </div>
-          // </div>
-        // </nav>
 
 export default class App extends React.Component {
   render() {
@@ -33,6 +15,12 @@ export default class App extends React.Component {
               Tempus Jump
             </Link>
           </NavBrand>
+
+          <div className="pull-right">
+            <AppSearch results={this.props.searchResults}
+                       onSearch={this.props.onSearch} />
+          </div>
+
           <Nav navbar eventKey={0}>
             <LinkContainer to="/maps">
               <NavItem>Maps</NavItem>

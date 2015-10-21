@@ -1,0 +1,78 @@
+body
+    padding-top 70px
+    // background rgb(50, 50, 50)
+//     background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
+//     background-position center
+//     background-repeat no-repeat
+
+.tf-icon
+    background-size cover
+    display inline-block
+    vertical-align middle
+    &.sm
+        width 32px
+        height 32px
+
+    &.mini
+        width 24px
+        height 24px
+
+    &.demoman
+        background-image url('/static/img/icons/demoman.png')
+
+    &.soldier
+        background-image url('/static/img/icons/soldier.png')
+
+footer
+    box-shadow 0 0 4px black
+    background-color rgba(0, 0, 0, 0.4)
+    .container
+        background-color: #ededed
+        min-height 300px
+        background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
+        background-repeat no-repeat
+        background-position center top
+
+// .app-container
+//     font-family 'Montserrat'
+
+#navbar-main
+    background #222
+    // border-bottom 0
+    .navbar-brand
+        font-family 'Montserrat'
+        color rgb(0, 180, 220)
+        &:hover
+            color #fff
+
+.app-search-container
+    position relative
+
+    .app-search-input
+        width 180px
+        display inline-block
+        padding 15px
+        background rgb(15, 15, 15)
+        outline 0
+        border 0
+        color #9d9d9d
+        &:focus
+            color rgb(240, 240, 240)
+
+    .list-group
+        min-width 240px
+        // box-shadow 0 1px 4px black
+        li
+            // box-shadow inset 0 1px 0 rgba(255,255,255,.1)
+            // border-color grey
+            // color white
+            // background rgba(0, 0, 0, 1.0)
+            min-width 80px
+            &:hover
+                // background-color rgba(25, 25, 25, 1.0)
+        & li:first-child
+            border-top-left-radius 0
+            border-top-right-radius 0
+        position absolute
+        top calc(100% + 1px)
+        right 0

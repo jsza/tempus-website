@@ -27,6 +27,7 @@ export default class MapOverviewLeaderboard extends React.Component {
     }
     return leaderboard.data.getIn(['results', playerClass]).map((r, idx) => {
       const pi = r.get('player_info')
+      console.log(pi.get('steamid'))
       return (
         <tr>
           <td className="lb-rank">

@@ -5,6 +5,7 @@ import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import DocumentTitle from 'react-document-title'
 
 import MapVideo from '../components/MapVideo'
+import Throbber from '../components/Throbber'
 import MapOverviewLeaderboard from '../components/MapOverviewLeaderboard'
 
 
@@ -111,11 +112,15 @@ class MapOverviewApp extends React.Component {
   render() {
     const data = this.props.data
     if (this.props.fetching || !data) {
-      return <div>Loading...</div>
+      return (
+        <div className="container">
+          <Throbber />
+        </div>
+      )
     }
     const {leaderboard} = this.props
     const mapName = data.getIn(['map_info', 'name'])
-    const bgStyle = { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg)`
+    const bgStyle = { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_720p.jpeg)`
                     }
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>

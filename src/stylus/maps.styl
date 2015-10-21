@@ -11,70 +11,78 @@
     // background white
 
 .map-list-item
-    background-color white
-    width 320px
-    height 180px
-    display inline-block
-    margin 2px
     position relative
-    // border-radius 3px
-    // border 1px solid black
-    box-shadow 0px 0px 1px rgba(0, 0, 0, 0.8)
-    border 1px solid rgb(40, 40, 40)
+    display inline-block
+    height 90px
+    flex 1 1 320px
+    margin 1px
+    background-color white
+    background-position center
+    background-size cover
     font-size 12px
-    // font-family 'Montserrat'
-    transition box-shadow 0.1s
+    transition background-size 0.2s box-shadow 0.2s height 0.2s
 
     &:hover
-        box-shadow 0px 0px 4px rgba(0, 0, 0, 0.8)
+        background-size 102.5%
         opacity 1.0
         cursor pointer
 
     &:hover > .map-list-item-overlay
-        background none
+        background rgba(0, 0, 0, 0.3)
+
+        .map-zones, .map-author, .map-tiers
+            opacity 1
 
 .map-list-item-overlay
     padding 6px
     display block
     height 100%
-    background rgba(0, 0, 0, 0.1)
-    transition background 0.1s
+    background rgba(0, 0, 0, 0)
+    transition background 0.2s
+
+    .map-zones, .map-author, .map-tiers
+        opacity 1
 
 .map-list-item-inner
     position relative
     height 100%
     display block
 
-.map-list-item-inner .map-name, .map-tiers, .map-zones, .map-author
-    color white
+.map-name-container
     background-color rgba(0, 0, 0, 0.7)
-    padding 4px
-    border-radius 3px
-    box-shadow 0px 0px 2px black
+    border-radius 8px
+    padding 4px 8px
 
-.map-tiers, .map-zones, .map-author, .map-name-container
-    position absolute
+.map-list-item-inner
+    color white
+    font-size 14px
+    font-weight bold
 
 .map-name-container
+    position absolute
     top 0
     left 0
 
-    & > span
-        display inline-block
-
-.map-name, .map-tiers
-    position relative
-
-.map-name
-    font-size 14px
-
 .map-tiers
-    margin-top 0.5em
-
-.map-author
+    position absolute
     bottom 0
     left 0
 
-.map-zones
-    bottom 0
-    right 0
+    .tier-0
+        color rgb(255,75,75)
+
+    .tf-icon
+        position relative
+        height 28px
+        width 28px
+
+    .map-tier-inner
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black
+
+
+.map-author
+    margin-top 0.5em

@@ -27,17 +27,26 @@ export default class MapListItem extends React.Component {
 
   renderTiers() {
     const item = this.props.data
+    const soldierTier = item.getIn(['tier_info', '3'])
+    const demomanTier = item.getIn(['tier_info', '4'])
     return (
       <span className="map-tiers">
         <OverlayTrigger placement="bottom" overlay={<Tooltip>Soldier map tier</Tooltip>}>
           <span>
-            <span className="tf-icon soldier mini" /> T{item.getIn(['tier_info', '3'])}
+            <span className="tf-icon soldier sm">
+              <span className={'map-tier-inner tier-' + soldierTier}>
+                {soldierTier}
+              </span>
+            </span>
           </span>
         </OverlayTrigger>
-        <span> | </span>
         <OverlayTrigger placement="bottom" overlay={<Tooltip>Demoman map tier</Tooltip>}>
           <span>
-            <span className="tf-icon demoman mini" /> T{item.getIn(['tier_info', '4'])}
+            <span className="tf-icon demoman sm">
+              <span className={'map-tier-inner tier-' + demomanTier}>
+                {demomanTier}
+              </span>
+            </span>
           </span>
         </OverlayTrigger>
       </span>
@@ -113,11 +122,8 @@ export default class MapListItem extends React.Component {
           <span className="map-list-item-inner">
             <span className="map-name-container">
               {this.renderName()}
-              <br />
-              {this.renderTiers()}
             </span>
-            {this.renderZones()}
-            {this.renderAuthor()}
+            {this.renderTiers()}
           </span>
         </span>
       </Link>
