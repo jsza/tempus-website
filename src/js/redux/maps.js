@@ -6,12 +6,17 @@ const LOAD_REQUEST = 'MAPS_LOAD_REQUEST'
 const LOAD_SUCCESS = 'MAPS_LOAD_SUCCESS'
 const LOAD_FAILURE = 'MAPS_LOAD_FAILURE'
 const RESET = 'MAPS_RESET'
+const SET_FILTER = 'MAP_SET_FILTER'
 
 
 let initialState = Immutable.Record(
   { fetching: false
   , error: null
   , data: null
+  , filters: Immutable.fromJS(
+    { 'soldier': null
+    , 'demoman': null
+    })
   })
 initialState = new initialState()
 
@@ -31,6 +36,13 @@ export default function reducer(state=initialState, action) {
         { fetching: false
         , error: action.error
         })
+    case SET_FILTER:
+      const other = action.playerClass === 'soldier' ? 'demoman' : 'soldier'
+      return state.mergeIn(['filters'],
+        { [action.playerClass]: action.filter
+        , [other]: null
+        }
+        )
     default:
       return state
   }
@@ -52,8 +64,8 @@ function fetch() {
 
 export function loadMaps() {
   return (dispatch, getState) => {
-    const fetching = getState().maps.fetching
-    if (fetching) {
+    const {fetching, data} = getState().maps
+    if (fetching || data) {
       return null
     }
     return dispatch(fetch())
@@ -62,5 +74,15 @@ export function loadMaps() {
 
 
 export function resetMaps() {
-  return {type: RESET}
+  return {type: 'no'}
+}
+
+
+export function setFilter(playerClass, filter) {
+  return (
+    { type: SET_FILTER
+    , playerClass
+    , filter
+    }
+  )
 }

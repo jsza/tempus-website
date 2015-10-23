@@ -1,11 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {Navbar, Nav, NavItem, NavBrand, Input} from 'react-bootstrap'
 import {LinkContainer, MenuItemLink} from 'react-router-bootstrap'
 import AppSearch from '../components/AppSearch'
+import {searchPlayersAndMaps} from '../redux/search'
 
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -17,8 +19,8 @@ export default class App extends React.Component {
           </NavBrand>
 
           <div className="pull-right">
-            <AppSearch results={this.props.searchResults}
-                       onSearch={this.props.onSearch} />
+            <AppSearch search={this.props.searchPlayersAndMaps}
+                       searchData={this.props.searchData} />
           </div>
 
           <Nav navbar eventKey={0}>
@@ -34,3 +36,15 @@ export default class App extends React.Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  const {search} = state
+  return {searchData: search}
+}
+
+
+export default connect(
+  mapStateToProps,
+  {searchPlayersAndMaps}
+)(App)

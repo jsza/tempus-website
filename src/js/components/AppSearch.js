@@ -1,6 +1,8 @@
 import React from 'react'
 import SteamAvatarContainer from '../containers/SteamAvatarContainer'
 import {Link} from 'react-router'
+import AppSearchInput from './AppSearchInput'
+import AppSearchResults from './AppSearchResults'
 
 
 export default class AppSearch extends React.Component {
@@ -20,33 +22,33 @@ export default class AppSearch extends React.Component {
   onDocumentClick(event) {
     if (!this.refs.searchContainer.contains(event.target)) {
       this.setState({shown: false})
-      console.log('hide')
     }
+  }
+
+  onClickDismiss(event) {
+    this.setState({shown: false})
   }
 
   onFocus(event) {
     if (!this.state.shown) {
       this.setState({shown: true})
-      console.log('show')
     }
   }
 
   render() {
+    const {data, fetching, error} = this.props.searchData
     return (
       <div ref="searchContainer"
-           className="app-search-container"
+           className="app-search-container hidden-xs"
            onFocus={this.onFocus.bind(this)}
         >
-        <input type="text"
-               className="app-search-input"
-               placeholder="Search"
+        <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
+        <AppSearchResults data={data}
+                          fetching={fetching}
+                          error={error}
+                          shown={this.state.shown}
+                          dismiss={this.onClickDismiss.bind(this)}
           />
-        <ul hidden={!this.state.shown} className="list-group app-search-results">
-          <li className="list-group-item">
-            <i>Enter player or map name</i>
-          </li>
-
-        </ul>
       </div>
     )
   }

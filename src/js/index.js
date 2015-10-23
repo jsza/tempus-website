@@ -12,10 +12,24 @@ import MapOverviewApp from './containers/MapOverviewApp'
 import App from './containers/App'
 
 
+class NotFound extends React.Component {
+  render() {
+    return (
+      <div className="container">
+        <div style={{textAlign: 'center'}}>
+          <img src="http://i.imgur.com/BCCVLXx.png" />
+        </div>
+      </div>
+    )
+  }
+}
+
+
 const routes = (
   <Route path="/" component={App}>
     <Route path="maps" component={MapsApp} />
     <Route path="maps/:name" component={MapOverviewApp} />
+    <Route path="*" component={NotFound} />
   </Route>
 )
 

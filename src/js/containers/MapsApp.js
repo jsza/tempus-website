@@ -1,9 +1,10 @@
 import React from 'react'
-import {loadMaps, resetMaps} from '../redux/maps'
+import {loadMaps, resetMaps, setFilter} from '../redux/maps'
 import {connect} from 'react-redux'
 import DocumentTitle from 'react-document-title'
 import MapListItem from '../components/MapListItem'
 import Throbber from '../components/Throbber'
+import MapListFilters from '../components/MapListFilters'
 
 
 class MapsApp extends React.Component {
@@ -16,7 +17,7 @@ class MapsApp extends React.Component {
   }
 
   render() {
-    let content
+    let content, items
     if (this.props.fetching || !this.props.data) {
       content = <Throbber />
     }
@@ -24,18 +25,47 @@ class MapsApp extends React.Component {
       content = <div>{this.props.error}</div>
     }
     else {
-      const items = this.props.data.map((item) => <MapListItem key={item.get('id')} data={item} />)
+      items = this.props.data
+        .filter((i) => {
+          const sFilt = this.props.filters.get('soldier')
+          const dFilt = this.props.filters.get('demoman')
+          if (sFilt !== null) {
+            return i.getIn(['tier_info', '3']) === sFilt
+          }
+          else if (dFilt !== null) {
+            return i.getIn(['tier_info', '4']) === dFilt
+          }
+          return true
+        })
+        .map((item) => <MapListItem key={item.get('id')} data={item} />)
       content = (
-        <div className="map-list">
-          {items}
+        <div>
+          <div className="map-list">
+            {items}
+          </div>
         </div>
       )
     }
 
     return (
       <DocumentTitle title={'Tempus - Maps'}>
-        <div className="container maps-app">
-          {content}
+        <div className="container">
+          <span className="clearfix">
+            <MapListFilters className="pull-right"
+                            setFilter={this.props.setFilter}
+                            filters={this.props.filters}
+              />
+            <h1 style={{marginTop: 0, display: 'inline-block'}}>
+              Maps
+            </h1>
+            <div>
+              <span hidden={!items} className="pull-right text-muted">{items ? items.size : 0} result(s)</span>
+              <p>These are all available to play on Tempus servers.</p>
+            </div>
+          </span>
+          <div className="maps-app">
+            {content}
+          </div>
         </div>
       </DocumentTitle>
     )
@@ -45,12 +75,12 @@ class MapsApp extends React.Component {
 
 function mapStateToProps(state) {
   const {maps} = state
-  const {fetching, error, data} = maps
-  return {fetching, error, data}
+  const {fetching, error, data, filters} = maps
+  return {fetching, error, data, filters}
 }
 
 
 export default connect(
   mapStateToProps,
-  {loadMaps, resetMaps}
+  {loadMaps, resetMaps, setFilter}
 )(MapsApp)

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router'
+import Difficulties from '../constants/Difficulties'
 
 
 export default class MapListItem extends React.Component {
@@ -31,27 +32,23 @@ export default class MapListItem extends React.Component {
     const demomanTier = item.getIn(['tier_info', '4'])
     return (
       <span className="map-tiers">
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Soldier) Tier {soldierTier} - {difficultyStrings[soldierTier.toString()]}</Tooltip>}>
-          <span>
-            <span className="tf-icon soldier sm">
-              <span className={'map-tier-inner tier-' + soldierTier}>
-                {soldierTier === 0
-                 ? <i className="fa fa-ban" />
-                 : soldierTier
-                 }
-              </span>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Soldier) Tier {soldierTier} - {Difficulties[soldierTier.toString()]}</Tooltip>}>
+          <span className="tf-icon soldier sm">
+            <span className={'map-tier-inner tier-' + soldierTier}>
+              {soldierTier === 0
+               ? <i className="fa fa-ban" />
+               : soldierTier
+               }
             </span>
           </span>
         </OverlayTrigger>
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Demoman) Tier {demomanTier} - {difficultyStrings[demomanTier.toString()]}</Tooltip>}>
-          <span>
-            <span className="tf-icon demoman sm">
-              <span className={'map-tier-inner tier-' + demomanTier}>
-                {demomanTier === 0
-                 ? <i className="fa fa-ban" />
-                 : demomanTier
-                 }
-              </span>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Demoman) Tier {demomanTier} - {Difficulties[demomanTier.toString()]}</Tooltip>}>
+          <span className="tf-icon demoman sm">
+            <span className={'map-tier-inner tier-' + demomanTier}>
+              {demomanTier === 0
+               ? <i className="fa fa-ban" />
+               : demomanTier
+               }
             </span>
           </span>
         </OverlayTrigger>
@@ -65,8 +62,11 @@ export default class MapListItem extends React.Component {
 
     let authorItem
     if (authorNames.size === 0) {
-      authorItem = <span style={{borderBottom: '1px dotted white'}}
-                         title="Unknown author">N/A</span>
+      authorItem =
+        <span style={{borderBottom: '1px dotted white'}}
+              title="Unknown author">
+          N/A <i className="fa fa-question" />
+        </span>
     }
     else if (authorNames.size === 1) {
       authorItem = authorNames.get(0)
@@ -84,7 +84,7 @@ export default class MapListItem extends React.Component {
       authorItem = (
         <OverlayTrigger placement="bottom" overlay={tooltip}>
           <span style={{borderBottom: '1px dotted white'}}>
-            Multiple Authors
+            Multiple Authors <i className="fa fa-info-circle" />
           </span>
         </OverlayTrigger>
       )
@@ -117,15 +117,3 @@ export default class MapListItem extends React.Component {
     )
   }
 }
-
-
-const difficultyStrings =
-  { '-1': 'Not Set'
-  , '0': 'Impossible'
-  , '1': 'Very Easy'
-  , '2': 'Easy'
-  , '3': 'Medium'
-  , '4': 'Hard'
-  , '5': 'Very Hard'
-  , '6': 'Insane'
-  }

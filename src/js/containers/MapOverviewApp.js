@@ -14,6 +14,12 @@ class MapOverviewApp extends React.Component {
     this.props.loadMapOverview()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.name !== this.props.params.name) {
+      this.props.loadMapOverview()
+    }
+  }
+
   renderAuthor() {
     const authors = this.props.data.get('authors')
     const authorNames = authors.map((a) => a.get('name'))
@@ -120,7 +126,7 @@ class MapOverviewApp extends React.Component {
     }
     const {leaderboard} = this.props
     const mapName = data.getIn(['map_info', 'name'])
-    const bgStyle = { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_720p.jpeg)`
+    const bgStyle = { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg)`
                     }
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>
