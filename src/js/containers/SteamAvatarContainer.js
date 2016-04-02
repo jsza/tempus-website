@@ -13,6 +13,7 @@ const defaultAvatars = {
   'mini': '/static/img/avatar_32x32.jpg',
   'small': '/static/img/avatar_32x32.jpg',
   'medium': '/static/img/avatar_64x64.jpg',
+  'mediumlarge': '/static/img/avatar_64x64.jpg',
   'large': '/static/img/avatar_184x184.jpg'
 }
 
@@ -41,6 +42,9 @@ class SteamAvatar extends React.Component {
     if (steamInfo) {
       if (this.props.size === 'mini') {
         return steamInfo.avatar['small']
+      }
+      if (this.props.size === 'mediumlarge') {
+        return steamInfo.avatar['large']
       }
       return steamInfo.avatar[this.props.size]
     }
@@ -71,6 +75,7 @@ class SteamAvatar extends React.Component {
       , 'mini': this.props.size === 'mini'
       , 'small': this.props.size === 'small'
       , 'medium': this.props.size === 'medium'
+      , 'mediumlarge': this.props.size === 'mediumlarge'
       , 'large': this.props.size === 'large'
       })
     return (
@@ -84,7 +89,7 @@ class SteamAvatar extends React.Component {
 
 SteamAvatar.propTypes =
 { steamID: P.string.isRequired
-, size: P.oneOf(['mini', 'small', 'medium', 'large'])
+, size: P.oneOf(['mini', 'small', 'medium', 'mediumlarge', 'large'])
 , queueAvatar: P.func.isRequired
 }
 

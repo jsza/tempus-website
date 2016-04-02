@@ -5,7 +5,8 @@ const GET = 'GET'
 const POST = 'POST'
 const DELETE = 'DELETE'
 
-const BASE_URL = 'https://tempus.xyz/api/jump/'
+// const BASE_URL = 'https://tempus.xyz/api/jump/'
+const BASE_URL = 'http://localhost:24380/jump/'
 
 
 export function logError(error) {

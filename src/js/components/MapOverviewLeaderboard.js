@@ -2,6 +2,7 @@ import React from 'react'
 import {Row, Col, OverlayTrigger, Tooltip} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
 import SteamAvatarContainer from '../containers/SteamAvatarContainer'
+import {Link} from 'react-router'
 
 
 const zoneIcons =
@@ -39,7 +40,7 @@ export default class MapOverviewLeaderboard extends React.Component {
           </td>
           <td>
             <span>
-              <SteamAvatarContainer steamID={pi.get('steamid')} size="small" /> {pi.get('name')}
+              <SteamAvatarContainer steamID={pi.get('steamid')} size="small" /> <Link to={`/players/${pi.get('id')}`}>{pi.get('name')}</Link>
             </span>
           </td>
           <td>

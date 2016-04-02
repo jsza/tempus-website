@@ -23,9 +23,6 @@ export default class AppSearchResults extends React.Component {
       result.push(
         <span>
           <span>
-            <span className="pull-right text-muted">
-              Player
-            </span>
             <SteamAvatarContainer steamID={p.get('steamid')} size="mini" />
             <span> </span>
             <Link to={`/players/${p.get('id')}`} onClick={this.props.dismiss}>
