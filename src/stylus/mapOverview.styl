@@ -17,11 +17,32 @@
     text-shadow 0 0 2px black
     margin-bottom 15px
     width 100%
-    background rgba(0, 0, 0, 0.7)
+    background rgba(0, 0, 0, 0.8)
     color white
     padding 20px 40px 40px 40px
     // font-family 'Montserrat'
     width 100%
+
+
+.map-leaderboard-title
+    display block
+    position relative
+    margin-top 5px
+    margin-bottom 15px
+    // border 1px solid black
+    // background rgba(0, 0, 0, 0.8)
+    text-shadow 0 0 8px black, 0 0 8px black, 0 0 8px black
+    text-align center
+    color white
+
+    h2
+        margin 0
+
+.leaderboard-container
+    padding 4px
+    color rgb(220, 220, 220)
+    background rgba(0, 0, 0, 0.8)
+    margin-bottom 15px
 
 .map-overview-header-container
     // padding 0
@@ -29,7 +50,6 @@
 .map-overview-header
     // padding 20px 40px 40px 40px
     position relative
-    text-shadow 0 0 5px black
     z-index 100
 
     h1 small
@@ -75,6 +95,11 @@
             td
                 padding 8px
 
+                a
+                    font-size 16px
+                    color rgb(0, 180, 240)
+
+
             .steamavatar
                 margin-right 4px
 
@@ -83,7 +108,7 @@
                 text-align right
 
             &:hover
-                background rgba(255, 255, 255, 0.2)
+                background rgba(255, 255, 255, 0.1)
 
         & tr:first-child
             .lb-rank
@@ -125,8 +150,9 @@
 .leaderboard-zone-dropdown
     z-index 1000
     position absolute
-    top 100%
-    left 0
+    top calc(100% + 10px)
+    left 50%
+    transform translateX(-50%)
     min-width 160px
     padding-left 0
     background rgba(0, 0, 0, 0.9)
@@ -141,7 +167,7 @@
         &:hover
             cursor pointer
             // background rgba(50, 50, 50, 0.5)
-            background #00b4dc
+            background rgb(0, 120, 170)
 
     & > hr
         margin 9px 0

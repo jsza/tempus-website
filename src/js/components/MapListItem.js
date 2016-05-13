@@ -108,9 +108,8 @@ export default class MapListItem extends React.Component {
           <span className="map-list-item-inner">
             <span className="map-name-container">
               {this.renderName()}
+              {this.renderTiers()}
             </span>
-            {this.renderTiers()}
-            {this.renderAuthor()}
           </span>
         </span>
       </Link>

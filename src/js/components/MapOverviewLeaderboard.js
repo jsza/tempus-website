@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, OverlayTrigger, Tooltip} from 'react-bootstrap'
+import {Row, Col, OverlayTrigger, Tooltip, Button, ButtonGroup} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
 import SteamAvatarContainer from '../containers/SteamAvatarContainer'
 import {Link} from 'react-router'
@@ -71,27 +71,31 @@ export default class MapOverviewLeaderboard extends React.Component {
     return (
       <Row>
         <Col className="leaderboards-soldier" lg={6}>
-          <h4 className="map-leaderboard-header">
-            <span style={{verticalAlign: 'middle'}} className="tf-icon soldier sm" /> Soldier <small>Very Easy (T1)</small>
-          </h4>
-          <div className="lb-container">
-            <table className="map-leaderboard-list" style={{width: '100%'}}>
-              <tbody>
-                {this.renderRecords('soldier')}
-              </tbody>
-            </table>
+          <div className="leaderboard-container clearfix">
+            <h4 className="map-leaderboard-header">
+              <span style={{verticalAlign: 'middle'}} className="tf-icon soldier sm" /> Soldier <small>Very Easy (T1)</small>
+            </h4>
+            <div className="lb-container">
+              <table className="map-leaderboard-list" style={{width: '100%'}}>
+                <tbody>
+                  {this.renderRecords('soldier')}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Col>
         <Col className="leaderboards-demoman" lg={6}>
-          <h4 className="map-leaderboard-header">
-            <span style={{verticalAlign: 'middle'}} className="tf-icon demoman sm" /> Demoman <small>Insane (T6)</small>
-          </h4>
-          <div className="lb-container">
-            <table className="map-leaderboard-list" style={{width: '100%'}}>
-              <tbody>
-                {this.renderRecords('demoman')}
-              </tbody>
-            </table>
+          <div className="leaderboard-container">
+            <h4 className="map-leaderboard-header">
+              <span style={{verticalAlign: 'middle'}} className="tf-icon demoman sm" /> Demoman <small>Insane (T6)</small>
+            </h4>
+            <div className="lb-container">
+              <table className="map-leaderboard-list" style={{width: '100%'}}>
+                <tbody>
+                  {this.renderRecords('demoman')}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Col>
       </Row>
@@ -135,7 +139,7 @@ export default class MapOverviewLeaderboard extends React.Component {
       }
     })
     return (
-      <div style={{textAlign: 'center', display: 'block'}}>
+      <div className="map-leaderboard-title">
         <div style={{position: 'relative', display: 'inline-block'}}>
           <h2 onClick={(event) => this.onClickDropdown(event)} style={{cursor: 'pointer'}}>
             <i className={'fa fa-fw fa-' + zoneIcons[zoneType]} /> {zoneName} <i className="fa fa-chevron-down" />
@@ -150,7 +154,7 @@ export default class MapOverviewLeaderboard extends React.Component {
 
   render() {
     return (
-      <div className="map-content-container">
+      <div>
         {this.renderTitle()}
         {this.renderLeaderboards()}
       </div>

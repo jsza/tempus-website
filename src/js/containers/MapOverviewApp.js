@@ -128,6 +128,7 @@ class MapOverviewApp extends React.Component {
     const mapName = data.getIn(['map_info', 'name'])
     const bgStyle = { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg)`
                     }
+    // const bgStyle = {}
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>
         <div>

@@ -1,9 +1,14 @@
 body
     padding-top 70px
+    background-color #F9F9F9
+    // font-family Droid Sans
     // background rgb(240, 240, 240)
 //     background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
 //     background-position center
 //     background-repeat no-repeat
+
+// h1, h2, h3, h4, h5, h6
+//     font-family Droid Sans
 
 table
     td.shrink
@@ -16,12 +21,16 @@ table
     display inline-block
     vertical-align middle
     &.sm
-        width 32px
-        height 32px
+        width 28px
+        height 28px
 
     &.mini
         width 24px
         height 24px
+
+    &.large
+        width 48px
+        height 48px
 
     &.demoman
         background-image url('/static/img/icons/demoman.png')
@@ -44,7 +53,8 @@ footer
 
 #navbar-main
     background #222
-    // border-bottom 0
+    box-shadow 0 0 5px black
+    border-bottom 0
     .navbar-brand
         font-family 'Montserrat'
         color rgb(0, 180, 220)
