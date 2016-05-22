@@ -34,6 +34,20 @@ export default class MapListFilters extends React.Component {
                           onChange={(f) => this.props.setFilter('demoman', f)}
             />
         </ButtonGroup>
+        <ButtonGroup>
+          <Button
+            className={!this.props.simple ? 'active' : null}
+            onClick={() => this.props.setSimple(false)}
+            >
+            <i className="fa fa-picture-o" />
+          </Button>
+          <Button
+            className={this.props.simple ? 'active' : null}
+            onClick={() => this.props.setSimple(true)}
+            >
+            <i className="fa fa-list" />
+          </Button>
+        </ButtonGroup>
       </ButtonToolbar>
     )
   }
@@ -51,7 +65,8 @@ class FilterDropdown extends React.Component {
 
     const title =
       <span>
-        <span className={classes} /> {this.props.selected ? `(T${this.props.selected})` : null} {D.get(this.props.selected, 'Any')}
+        <span className={classes} />
+        {this.props.selected !== null ? ` (T${this.props.selected})` : null} {D.get(this.props.selected, 'Any')}
       </span>
 
     return (
@@ -61,7 +76,7 @@ class FilterDropdown extends React.Component {
             let [value, s] = o
             return (
             <MenuItem onSelect={() => this.props.onChange(value)} active={value === this.props.selected}>
-              {value !== null ? `(T${value}) ` : null}{s}
+              {value !== null ? ` (T${value}) ` : null}{s}
             </MenuItem>
             )
           })

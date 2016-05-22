@@ -1,10 +1,13 @@
 import React from 'react'
-import {loadMaps, resetMaps, setFilter} from '../redux/maps'
+import {loadMaps, resetMaps, setFilter, setSimple, selectMapSort} from '../redux/maps'
 import {connect} from 'react-redux'
+import classnames from 'classnames'
+
 import DocumentTitle from 'react-document-title'
-import MapListItem from '../components/MapListItem'
 import Throbber from '../components/Throbber'
 import MapListFilters from '../components/MapListFilters'
+import MapListFancy from '../components/MapListFancy'
+import MapListSimple from '../components/MapListSimple'
 
 
 class MapsApp extends React.Component {
@@ -17,7 +20,7 @@ class MapsApp extends React.Component {
   }
 
   render() {
-    let content, items
+    let content, data
     if (this.props.fetching || !this.props.data) {
       content = <Throbber />
     }
@@ -25,25 +28,26 @@ class MapsApp extends React.Component {
       content = <div>{this.props.error}</div>
     }
     else {
-      items = this.props.data
-        .filter((i) => {
-          const sFilt = this.props.filters.get('soldier')
-          const dFilt = this.props.filters.get('demoman')
-          if (sFilt !== null) {
-            return i.getIn(['tier_info', '3']) === sFilt
-          }
-          else if (dFilt !== null) {
-            return i.getIn(['tier_info', '4']) === dFilt
-          }
-          return true
-        })
-        .map((item) => <MapListItem key={item.get('id')} data={item} />)
+      data = this.props.data.filter((i) => {
+        const sFilt = this.props.filters.get('soldier')
+        const dFilt = this.props.filters.get('demoman')
+        if (sFilt !== null) {
+          return i.getIn(['tier_info', '3']) === sFilt
+        }
+        else if (dFilt !== null) {
+          return i.getIn(['tier_info', '4']) === dFilt
+        }
+        return true
+      })
       content = (
-        <div>
-          <div className="map-list">
-            {items}
-          </div>
-        </div>
+        this.props.simple ?
+        <MapListSimple
+          data={data}
+          filters={this.props.filters}
+          sort={this.props.sort}
+          selectMapSort={this.props.selectMapSort}
+          /> :
+        <MapListFancy data={data} filters={this.props.filters} />
       )
     }
 
@@ -52,14 +56,16 @@ class MapsApp extends React.Component {
         <div className="container">
           <span className="clearfix">
             <MapListFilters className="pull-right"
+                            simple={this.props.simple}
                             setFilter={this.props.setFilter}
                             filters={this.props.filters}
+                            setSimple={this.props.setSimple}
               />
             <h1 style={{marginTop: 0, display: 'inline-block'}}>
               Maps
             </h1>
             <div>
-              <span hidden={!items} className="pull-right text-muted">{items ? items.size : 0} result(s)</span>
+              <span hidden={!data} className="pull-right text-muted">{data ? data.size : 0} result(s)</span>
               <p>These are all available to play on Tempus servers.</p>
             </div>
           </span>
@@ -75,12 +81,12 @@ class MapsApp extends React.Component {
 
 function mapStateToProps(state) {
   const {maps} = state
-  const {fetching, error, data, filters} = maps
-  return {fetching, error, data, filters}
+  const {fetching, error, data, filters, simple, sort} = maps
+  return {fetching, error, data, filters, simple, sort}
 }
 
 
 export default connect(
   mapStateToProps,
-  {loadMaps, resetMaps, setFilter}
+  {loadMaps, resetMaps, setFilter, setSimple, selectMapSort}
 )(MapsApp)

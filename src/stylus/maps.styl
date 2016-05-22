@@ -1,3 +1,11 @@
+$tier-1-color := rgb(220, 220, 220)
+$tier-2-color := rgb(130, 240, 240)
+$tier-3-color := rgb(100, 230, 100)
+$tier-4-color := rgb(235, 235, 40)
+$tier-5-color := rgb(255, 160, 0)
+$tier-6-color := rgb(255, 125, 125)
+
+
 .map-list
     display flex
     flex-direction row
@@ -5,100 +13,126 @@
     align-content flex-start
     align-items flex-start
 
-.map-list-item
-    position relative
-    display inline-block
-    height 90px
-    min-width 320px
-    max-width 33%
-    flex 1 1 auto
-    margin 1px
-    background-color white
-    background-position center
-    background-size cover
-    font-size 18px
-    // transition background-size 0.2s box-shadow 0.2s height 0.2s size 1s
-    transition font-size .1s ease-out
-    box-shadow inset 0 0 16px black
+.map-list.fancy
+    .map-list-item
+        position relative
+        display inline-block
+        height 90px
+        min-width 320px
+        max-width 33%
+        flex 1 1 auto
+        margin 1px
+        background-color white
+        background-position center
+        background-size cover
+        font-size 18px
+        // transition background-size 0.2s box-shadow 0.2s height 0.2s size 1s
+        transition font-size .1s ease-out
+        box-shadow inset 0 0 16px black
 
-    &:hover
-        // z-index 999
-        // transform scale(1.2)
-        // background-size 102.5%
-        opacity 1.0
-        cursor pointer
+        &:hover
+            // z-index 999
+            // transform scale(1.2)
+            // background-size 102.5%
+            opacity 1.0
+            cursor pointer
 
-    &:hover > .map-list-item-overlay
-        background rgba(0, 0, 0, 0.4)
+        &:hover > .map-list-item-overlay
+            background rgba(0, 0, 0, 0.4)
+
+            .map-zones, .map-author, .map-tiers
+                transition opacity 0.2s
+                opacity 1
+
+    .map-list-item-overlay
+        padding 6px
+        display block
+        height 100%
+        background rgba(0, 0, 0, 0.2)
+        transition background 0.2s
 
         .map-zones, .map-author, .map-tiers
-            transition opacity 0.2s
-            opacity 1
+            opacity 0
 
-.map-list-item-overlay
-    padding 6px
-    display block
-    height 100%
-    background rgba(0, 0, 0, 0.2)
-    transition background 0.2s
-
-    .map-zones, .map-author, .map-tiers
-        opacity 0
-
-.map-list-item-inner
-    position relative
-    height 100%
-    display block
-    color white
-    font-weight bold
-
-.map-name-container
-    // font-family Montserrat
-    position absolute
-    top 40%
-    left 50%
-    transform translate(-50%, -50%)
-    // background-color rgba(0, 0, 0, 0.7)
-    padding 4px 8px
-    text-align center
-    text-shadow 0 0 4px black, 0 0 4px black
-
-.map-tiers
-    // display none
-    position absolute
-    bottom 0
-    right 0
-    margin-top 4px
-    opacity 0
-    font-size 14px
-    vertical-align middle
-
-    .tier
-        box-shadow 0 0px 2px black
-        text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black
-        vertical-align middle
-        font-family tahoma
-        background rgba(255, 255, 255, 0.2)
-        padding 2px 4px 7px 4px
-        border-radius 6px
-
-        .tf-icon
-            height 24px
-            width 24px
-            margin-right 4px
-            vertical-align middle
-
-    .tier-0
-        color rgb(255,75,75)
-
-    .tf-icon
+    .map-list-item-inner
         position relative
-        height 28px
-        width 28px
+        height 100%
+        display block
+        color white
+        font-weight bold
 
-        .map-tier-inner
-            position absolute
-            top 50%
-            left 50%
-            transform translate(-50%, -50%)
-            text-shadow 0 0 3px black, 0 0 3px black
+    .map-name-container
+        // font-family Montserrat
+        position absolute
+        top 40%
+        left 50%
+        transform translate(-50%, -50%)
+        // background-color rgba(0, 0, 0, 0.7)
+        padding 4px 8px
+        text-align center
+        text-shadow 0 0 4px black, 0 0 4px black
+
+    .map-tiers
+        // display none
+        position absolute
+        bottom 4px
+        right 0
+        margin-top 4px
+        opacity 0
+        font-size 12px
+
+        .tier
+            box-shadow 0 0px 2px black
+            text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black
+            font-family tahoma
+            background rgba(255, 255, 255, 0.2)
+            padding 1px 6px 5px 6px
+            border-radius 8px
+            vertica
+
+            .map-tier-inner
+                vertical-align middle
+
+            .tf-icon
+                height 18px
+                width 18px
+                margin-right 4px
+
+        .tier-0
+            color rgb(255,75,75)
+
+.map-list.simple
+    .map-list-item
+        display block
+
+    td
+
+        .tier-container
+            font-family tahoma
+            font-size 12px
+            padding 0 4px 2px 4px
+            color black
+            border-radius 6px
+            border 1px solid rgb(125, 125, 125)
+
+            &.tier-0
+                border none
+                text-decoration line-through
+            &.tier-1
+                background-color $tier-1-color
+                border-color darken($tier-1-color, 20%)
+            &.tier-2
+                background-color $tier-2-color
+                border-color darken($tier-2-color, 20%)
+            &.tier-3
+                background-color $tier-3-color
+                border-color darken($tier-3-color, 20%)
+            &.tier-4
+                background-color $tier-4-color
+                border-color darken($tier-4-color, 20%)
+            &.tier-5
+                background-color $tier-5-color
+                border-color darken($tier-5-color, 20%)
+            &.tier-6
+                background-color $tier-6-color
+                border-color darken($tier-6-color, 20%)
