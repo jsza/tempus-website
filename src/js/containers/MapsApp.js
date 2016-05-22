@@ -1,5 +1,5 @@
 import React from 'react'
-import {loadMaps, resetMaps, setFilter, setSimple, selectMapSort} from '../redux/maps'
+import {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort} from '../redux/maps'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
 
@@ -59,7 +59,7 @@ class MapsApp extends React.Component {
                             simple={this.props.simple}
                             setFilter={this.props.setFilter}
                             filters={this.props.filters}
-                            setSimple={this.props.setSimple}
+                            toggleSimple={this.props.toggleSimple}
               />
             <h1 style={{marginTop: 0, display: 'inline-block'}}>
               Maps
@@ -88,5 +88,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {loadMaps, resetMaps, setFilter, setSimple, selectMapSort}
+  {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort}
 )(MapsApp)

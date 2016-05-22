@@ -54,7 +54,7 @@ export default function reducer(state=initialState, action) {
         }
         )
     case SET_SIMPLE:
-      return state.set('simple', action.value)
+      return state.set('simple', !state.get('simple'))
     case SELECT_SORT:
       return state.update('sort', (value) => {
         if (value.get('sortBy') === action.sortBy) {
@@ -110,7 +110,7 @@ export function setFilter(playerClass, filter) {
 }
 
 
-export function setSimple(value) {
+export function toggleSimple(value) {
   return (
     { type: SET_SIMPLE
     , value: value

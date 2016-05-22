@@ -28,19 +28,25 @@ export default class MapOverviewLeaderboard extends React.Component {
     }
     return leaderboard.data.getIn(['results', playerClass]).map((r, idx) => {
       const pi = r.get('player_info')
+      const rank = idx + 1
+      let rankIcon = '#' + rank
+      if (rank <= 3) {
+        rankIcon = <i className="fa fa-trophy" />
+      }
+      let avatarSize = 'small'
+      if (rank === 1) {
+        avatarSize = 'medium'
+      }
       return (
-        <tr>
+        <tr className={'lb-row lb-rank-' + rank}>
           <td className="lb-rank">
             <strong>
-              {idx+1 === 1
-               ? 'WR'
-               : idx+1
-              }
+              {rankIcon}
             </strong>
           </td>
           <td>
             <span>
-              <SteamAvatarContainer steamID={pi.get('steamid')} size="small" /> <Link to={`/players/${pi.get('id')}`}>{pi.get('name')}</Link>
+              <SteamAvatarContainer steamID={pi.get('steamid')} size={avatarSize} /> <Link to={`/players/${pi.get('id')}`}>{pi.get('name')}</Link>
             </span>
           </td>
           <td>
@@ -82,10 +88,18 @@ export default class MapOverviewLeaderboard extends React.Component {
                 </tbody>
               </table>
             </div>
+            <div className="leaderboard-pager">
+              <button className="lb-pager-btn prev">
+                <i className="fa fa-arrow-circle-left" /> Prev
+              </button>
+              <button className="lb-pager-btn next">
+                Next <i className="fa fa-arrow-circle-right" />
+              </button>
+            </div>
           </div>
         </Col>
         <Col className="leaderboards-demoman" lg={6}>
-          <div className="leaderboard-container">
+          <div className="leaderboard-container clearfix">
             <h4 className="map-leaderboard-header">
               <span style={{verticalAlign: 'middle'}} className="tf-icon demoman sm" /> Demoman <small>Insane (T6)</small>
             </h4>
@@ -95,6 +109,14 @@ export default class MapOverviewLeaderboard extends React.Component {
                   {this.renderRecords('demoman')}
                 </tbody>
               </table>
+            </div>
+            <div className="leaderboard-pager">
+              <button className="lb-pager-btn prev">
+                <i className="fa fa-arrow-circle-left" /> Prev
+              </button>
+              <button className="lb-pager-btn next">
+                Next <i className="fa fa-arrow-circle-right" />
+              </button>
             </div>
           </div>
         </Col>

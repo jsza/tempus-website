@@ -36,14 +36,8 @@ export default class MapListFilters extends React.Component {
         </ButtonGroup>
         <ButtonGroup>
           <Button
-            className={!this.props.simple ? 'active' : null}
-            onClick={() => this.props.setSimple(false)}
-            >
-            <i className="fa fa-picture-o" />
-          </Button>
-          <Button
             className={this.props.simple ? 'active' : null}
-            onClick={() => this.props.setSimple(true)}
+            onClick={() => this.props.toggleSimple()}
             >
             <i className="fa fa-list" />
           </Button>
