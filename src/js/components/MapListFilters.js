@@ -51,7 +51,7 @@ class FilterDropdown extends React.Component {
 
     const title =
       <span>
-        <span className={classes} /> {D.get(this.props.selected, 'Any')}
+        <span className={classes} /> {this.props.selected ? `(T${this.props.selected})` : null} {D.get(this.props.selected, 'Any')}
       </span>
 
     return (
@@ -61,7 +61,7 @@ class FilterDropdown extends React.Component {
             let [value, s] = o
             return (
             <MenuItem onSelect={() => this.props.onChange(value)} active={value === this.props.selected}>
-              {s}{value !== null ? ` (${value})` : null}
+              {value !== null ? `(T${value}) ` : null}{s}
             </MenuItem>
             )
           })

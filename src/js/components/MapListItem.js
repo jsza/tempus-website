@@ -32,26 +32,27 @@ export default class MapListItem extends React.Component {
     const demomanTier = item.getIn(['tier_info', '4'])
     return (
       <span className="map-tiers">
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Soldier) Tier {soldierTier} - {Difficulties[soldierTier.toString()]}</Tooltip>}>
-          <span className="tf-icon soldier sm">
-            <span className={'map-tier-inner tier-' + soldierTier}>
-              {soldierTier === 0
-               ? <i className="fa fa-ban" />
-               : soldierTier
-               }
-            </span>
+        <span className="tier">
+          <span className="tf-icon soldier mini">
           </span>
-        </OverlayTrigger>
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>(Demoman) Tier {demomanTier} - {Difficulties[demomanTier.toString()]}</Tooltip>}>
-          <span className="tf-icon demoman sm">
-            <span className={'map-tier-inner tier-' + demomanTier}>
-              {demomanTier === 0
-               ? <i className="fa fa-ban" />
-               : demomanTier
-               }
-            </span>
+          <span className={'map-tier-inner tier-' + soldierTier}>
+            {soldierTier === 0
+             ? <i className="fa fa-ban" />
+             : 'T' + soldierTier
+             }
           </span>
-        </OverlayTrigger>
+        </span>
+        <span> </span>
+        <span className="tier">
+          <span className="tf-icon demoman mini">
+          </span>
+          <span className={'map-tier-inner tier-' + demomanTier}>
+            {demomanTier === 0
+             ? <i className="fa fa-ban" />
+             : 'T' + demomanTier
+             }
+          </span>
+        </span>
       </span>
     )
   }
@@ -108,8 +109,8 @@ export default class MapListItem extends React.Component {
           <span className="map-list-item-inner">
             <span className="map-name-container">
               {this.renderName()}
-              {this.renderTiers()}
             </span>
+            {this.renderTiers()}
           </span>
         </span>
       </Link>
