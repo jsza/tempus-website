@@ -99,9 +99,12 @@ export default class MapListItem extends React.Component {
 
   render() {
     const name = this.props.data.get('name')
-    const styles =
+    let styles =
       { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
       }
+    if (this.props.style) {
+      styles = Object.assign(styles, this.props.style)
+    }
     const url = '/maps/' + this.props.data.get('name')
     return (
       <Link to={url} className="map-list-item" style={styles}>

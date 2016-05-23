@@ -21,6 +21,9 @@ const defaultAvatars = {
 class SteamAvatar extends React.Component {
   constructor(props) {
     super(props)
+    this.state =
+      { loaded: false
+      }
   }
 
   componentDidMount() {
@@ -80,7 +83,14 @@ class SteamAvatar extends React.Component {
       })
     return (
       <a href={this.makeURL()} onClick={this.onClick}>
-        <img className={classes} src={this.getAvatarURL()} />
+        <img
+          style={{display: !this.state.loaded ? 'none' : 'inline-block'}}
+          onLoad={() => this.setState({loaded: true})}
+          className={classes} src={this.getAvatarURL()} />
+        <img
+          style={{display: this.state.loaded ? 'none' : 'inline-block'}}
+          className={classes}
+          src={defaultAvatars[this.props.size]} />
       </a>
     )
   }

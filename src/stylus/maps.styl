@@ -40,9 +40,14 @@ $tier-6-color := rgb(255, 125, 125)
         &:hover > .map-list-item-overlay
             background rgba(0, 0, 0, 0.4)
 
-            .map-zones, .map-author, .map-tiers
-                transition opacity 0.2s
+            .map-tiers
                 opacity 1
+
+            .map-name-container
+                top 32%
+
+            .map-tiers
+                bottom 18px
 
     .map-list-item-overlay
         padding 6px
@@ -50,9 +55,6 @@ $tier-6-color := rgb(255, 125, 125)
         height 100%
         background rgba(0, 0, 0, 0.2)
         transition background 0.2s
-
-        .map-zones, .map-author, .map-tiers
-            opacity 0
 
     .map-list-item-inner
         position relative
@@ -62,9 +64,10 @@ $tier-6-color := rgb(255, 125, 125)
         font-weight bold
 
     .map-name-container
+        transition top 0.2s ease
         // font-family Montserrat
         position absolute
-        top 40%
+        top 46%
         left 50%
         transform translate(-50%, -50%)
         // background-color rgba(0, 0, 0, 0.7)
@@ -73,10 +76,11 @@ $tier-6-color := rgb(255, 125, 125)
         text-shadow 0 0 4px black, 0 0 4px black
 
     .map-tiers
-        // display none
         position absolute
-        bottom 4px
-        right 0
+        bottom 0
+        left 50%
+        transform translateX(-50%)
+        transition bottom 0.2s ease, opacity 0.2s ease
         margin-top 4px
         opacity 0
         font-size 12px

@@ -28,8 +28,8 @@ export default class MapOverviewLeaderboard extends React.Component {
     }
     return leaderboard.data.getIn(['results', playerClass]).map((r, idx) => {
       const pi = r.get('player_info')
-      const rank = idx + 1
-      let rankIcon = '#' + rank
+      const rank = r.get('rank')
+      let rankIcon = rank
       if (rank <= 3) {
         rankIcon = <i className="fa fa-trophy" />
       }
