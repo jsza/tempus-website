@@ -30,9 +30,10 @@ export default class PlayerOverviewStats extends React.Component {
 
   render() {
     console.log(this.props)
-    const {leaderboardURL, leaderboardTitle} = this.props
+    const {leaderboardURL, leaderboardTitle, data} = this.props
     const ri = this.props.rankInfo
     const pi = this.props.playerInfo
+    const cri = data.country_rank_info
     // const playerClassName = CLASSINDEX_TO_NAME[this.props.playerClass]
     return (
       <Col lg={4}>
@@ -48,7 +49,7 @@ export default class PlayerOverviewStats extends React.Component {
                 <i className="fa fa-fw fa-trophy fa-lg text-muted" /> {`${Math.floor(ri.points)} Points`}
               </li>
               <li>
-                <i className="fa fa-fw fa-map-marker fa-lg text-muted" /> {`Rank ${ri.rank} in`} <a>{pi.country}</a>
+                <i className="fa fa-fw fa-map-marker fa-lg text-muted" /> {`Rank ${cri.rank} in`} <a>{pi.country}</a>
               </li>
               {this.renderPercentCompletion()}
             </ul>

@@ -9,6 +9,7 @@ export default class PlayerOverviewClassStats extends React.Component {
   render() {
     const {data, playerClass} = this.props
     const cri = data.class_rank_info[playerClass]
+    const ccri = data.country_class_rank_info[playerClass]
     const playerClassName = CLASSINDEX_TO_NAME[this.props.playerClass]
     const classes = cx(
       { 'player-overview-class-container': true
@@ -25,7 +26,7 @@ export default class PlayerOverviewClassStats extends React.Component {
                 <i className="fa fa-fw fa-trophy fa-lg" /> {`${Math.floor(cri.points)} Points`}
               </li>
               <li>
-                <i className="fa fa-fw fa-map-marker fa-lg" /> {`Rank ${cri.rank} in`} <a>{data.player_info.country}</a>
+                <i className="fa fa-fw fa-map-marker fa-lg" /> {`Rank ${ccri.rank} in`} <a>{data.player_info.country}</a>
               </li>
             </ul>
           </div>
