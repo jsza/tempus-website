@@ -28,19 +28,23 @@ class Root extends React.Component {
 }
 
 
-function main() {
-  const api = new APIUtils()
-  const store = configureStore(api)
-  const history = syncHistoryWithStore(browserHistory, store)
+const api = new APIUtils()
+const store = configureStore(api)
+const history = syncHistoryWithStore(browserHistory, store)
+function render(routes) {
+  console.log('render')
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
         <Router history={history}>
-          {makeRoutes()}
+          {routes}
         </Router>
       </Provider>
     </AppContainer>,
     document.getElementById('app')
   )
 }
-main()
+
+render(makeRoutes())
+if (module.hot)
+  module.hot.accept('./routes', () => render(makeRoutes()))

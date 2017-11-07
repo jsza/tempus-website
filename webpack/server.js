@@ -4,12 +4,12 @@ var config = require('./dev.config');
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true,
-  stats: {
-    colors: true
-  },
-  headers: { 'Access-Control-Allow-Origin': '*' }
+  // hot: true,
+  // historyApiFallback: true,
+  // stats: {
+  //   colors: true
+  // },
+  // headers: { 'Access-Control-Allow-Origin': '*' }
 }).listen(3001, null, function (err) {
   if (err) {
     console.log(err);
