@@ -1,17 +1,24 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports =
 { devtool: 'source-map'
 , entry:
-  { 'main': './js/index'
+  { main: path.join(__dirname, '..', 'src', 'index.js')
   }
 , output:
-  { path: path.join(__dirname, '..', '..', '..', 'build', 'website')
+  { path: path.join(__dirname, '..', 'build')
   , filename: 'bundle.js'
   }
+, resolve:
+  { alias:
+    { root: path.join(__dirname, '..', 'src')
+    }
+  }
 , plugins:
-  [ new webpack.IgnorePlugin(/\.\/dev/, /\/config$/)
+  [ new webpack.optimize.ModuleConcatenationPlugin()
+  // , new webpack.IgnorePlugin(/\.\/dev/, /\/config$/)
   , new webpack.DefinePlugin(
     { 'process.env':
       { NODE_ENV: JSON.stringify('production')
@@ -21,7 +28,8 @@ module.exports =
     { __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
     , __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
     })
-  , new webpack.optimize.ModuleConcatenationPlugin()
+  , new webpack.optimize.UglifyJsPlugin()
+  , new ExtractTextPlugin('build/styles.css')
   ]
 , module:
   { rules:
@@ -35,12 +43,12 @@ module.exports =
             }
           }]
       }
-    , { test: /\.json$/
-      , use: ['json-loader?paths=/src/js/']
-      }
     , { test: /\.styl$/
-      , use: ['style-loader', 'css-loader', 'stylus-loader']
       , exclude: /node_modules/
+      , use: ExtractTextPlugin.extract(
+        { use: ['css-loader', 'stylus-loader']
+        , fallback: 'style-loader'
+        })
       }
     ]
   }

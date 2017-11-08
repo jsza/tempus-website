@@ -4,11 +4,8 @@
   "description": "Tempus Jump Network website client.",
   "main": "index.js",
   "scripts": {
-    "watch": "npm run watch-js",
-    "build": "npm run build-js && npm run build-styl",
-    "build-js": "BUILD_DEV=0 webpack -p --progress --colors --display-error-details --config js/webpack/prod.config.js",
-    "watch-js": "webpack-dev-server --config webpack/dev.config.js",
-    "build-styl": "stylus -c -u autoprefixer-stylus stylus/index.styl -o ../build/website/styles.css"
+    "watch": "webpack-dev-server --config webpack/dev.config.js",
+    "build": "NODE_ENV=production BUILD_DEV=0 webpack --progress --colors --display-error-details --config webpack/prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +31,7 @@
     "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "history": "^4.7.2",
     "immutable": "^3.7.5",
     "json-loader": "^0.5.3",
