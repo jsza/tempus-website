@@ -8,7 +8,6 @@ import search from '../scenes/App/services/appsearch/reducer'
 import activity from '../scenes/Home/services/activity/reducer'
 import playerOverview from '../scenes/PlayerOverview/services/playerOverview/reducer'
 import playerRanks from './playerRanks'
-import extraMaps from './extraMaps'
 
 
 export default combineReducers(
@@ -20,5 +19,4 @@ export default combineReducers(
   , activity
   , playerOverview
   , playerRanks
-  , extraMaps
   })

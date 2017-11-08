@@ -8,7 +8,6 @@ import Maps from './scenes/Maps'
 import MapOverviewApp from './containers/MapOverviewApp'
 import PlayerOverview from './scenes/PlayerOverview'
 import PlayerRanksApp from './containers/PlayerRanksApp'
-import ExtraMapsApp from './containers/ExtraMapsApp'
 
 
 class NotFound extends React.Component {
@@ -32,9 +31,6 @@ const routes =
     , { path: 'ranks/overall', component: PlayerRanksApp, rankType: 'overall' }
     , { path: 'ranks/soldier', component: PlayerRanksApp, rankType: 'soldier' }
     , { path: 'ranks/demoman', component: PlayerRanksApp, rankType: 'demoman' }
-    ]
-  , 'extramaps':
-    [ { path: 'extramaps', component: ExtraMapsApp}
     ]
   }
 
