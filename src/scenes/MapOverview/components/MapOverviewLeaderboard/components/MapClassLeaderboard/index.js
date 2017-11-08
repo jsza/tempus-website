@@ -1,8 +1,8 @@
 import React from 'react'
-import {CLASSINDEX_TO_NAME} from '../../constants/TFClasses'
+import {CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import {Col} from 'react-bootstrap'
-import LeaderboardItem from './LeaderboardItem'
+import MapLeaderboardItem from './components/MapLeaderboardItem'
 
 
 export default class ClassLeaderboard extends React.Component {
@@ -20,7 +20,7 @@ export default class ClassLeaderboard extends React.Component {
       <table className="map-leaderboard-list">
         <tbody>
           {data.map((data, idx) =>
-            <LeaderboardItem
+            <MapLeaderboardItem
               data={data}
               firstPlace={firstPlace}
               />

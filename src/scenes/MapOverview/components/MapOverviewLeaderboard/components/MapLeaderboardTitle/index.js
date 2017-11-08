@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {prettyZoneName} from '../../utils/TempusUtils'
+import {prettyZoneName} from 'root/utils/TempusUtils'
 
 
 const zoneIcons =

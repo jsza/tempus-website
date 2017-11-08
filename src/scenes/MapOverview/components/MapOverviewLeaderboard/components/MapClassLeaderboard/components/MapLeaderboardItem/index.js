@@ -1,5 +1,5 @@
 import React from 'react'
-import {formatTime} from '../../utils/TempusUtils'
+import {formatTime} from 'root/utils/TempusUtils'
 
 import {Link} from 'react-router'
 import {OverlayTrigger, Tooltip} from 'react-bootstrap'

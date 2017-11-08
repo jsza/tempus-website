@@ -5,9 +5,9 @@ import {Route, IndexRoute} from 'react-router'
 import App from './scenes/App'
 import Home from './scenes/Home'
 import Maps from './scenes/Maps'
-import MapOverviewApp from './containers/MapOverviewApp'
+import MapOverview from './scenes/MapOverview'
 import PlayerOverview from './scenes/PlayerOverview'
-import PlayerRanksApp from './containers/PlayerRanksApp'
+import PlayerLeaderboards from './scenes/PlayerLeaderboards'
 
 
 class NotFound extends React.Component {
@@ -26,11 +26,11 @@ class NotFound extends React.Component {
 const routes =
   { 'public':
     [ { path: 'maps', component: Maps }
-    , { path: 'maps/:name', component: MapOverviewApp }
+    , { path: 'maps/:name', component: MapOverview }
     , { path: 'players/:id', component: PlayerOverview }
-    , { path: 'ranks/overall', component: PlayerRanksApp, rankType: 'overall' }
-    , { path: 'ranks/soldier', component: PlayerRanksApp, rankType: 'soldier' }
-    , { path: 'ranks/demoman', component: PlayerRanksApp, rankType: 'demoman' }
+    , { path: 'ranks/overall', component: PlayerLeaderboards, rankType: 'overall' }
+    , { path: 'ranks/soldier', component: PlayerLeaderboards, rankType: 'soldier' }
+    , { path: 'ranks/demoman', component: PlayerLeaderboards, rankType: 'demoman' }
     ]
   }
 

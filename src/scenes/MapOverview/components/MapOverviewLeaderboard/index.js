@@ -1,9 +1,9 @@
 import React from 'react'
-import {JUMP_CLASSES, CLASSINDEX_TO_NAME} from '../constants/TFClasses'
+import {JUMP_CLASSES, CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import {Row} from 'react-bootstrap'
-import LeaderboardTitle from './mapleaderboard/LeaderboardTitle'
-import ClassLeaderboard from './mapleaderboard/ClassLeaderboard'
+import MapLeaderboardTitle from './components/MapLeaderboardTitle'
+import MapClassLeaderboard from './components/MapClassLeaderboard'
 
 
 export default class MapOverviewLeaderboard extends React.Component {
@@ -27,7 +27,7 @@ export default class MapOverviewLeaderboard extends React.Component {
     return (
       <Row>
         {JUMP_CLASSES.map((playerClass) =>
-          <ClassLeaderboard
+          <MapClassLeaderboard
             data={leaderboard.data.getIn(
               ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
             playerClass={playerClass} />
@@ -39,7 +39,7 @@ export default class MapOverviewLeaderboard extends React.Component {
   render() {
     return (
       <div>
-        <LeaderboardTitle
+        <MapLeaderboardTitle
           data={this.props.data}
           leaderboard={this.props.leaderboard}
           fetchLeaderboard={this.props.fetchLeaderboard} />

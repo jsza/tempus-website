@@ -1,15 +1,18 @@
 import React from 'react'
 import P from 'prop-types'
 import {connect} from 'react-redux'
-import {loadRanks} from '../redux/playerRanks'
+import {loadRanks} from './services/playerLeaderboards/actions'
 
 import {Link} from 'react-router'
 import {Table} from 'react-bootstrap'
 import SteamAvatar from 'root/components/SteamAvatar'
-import Throbber from '../components/Throbber'
+import Throbber from 'root/components/Throbber'
 
 
-class PlayerRanksApp extends React.Component {
+import './styles.styl'
+
+
+class PlayerLeaderboards extends React.Component {
   componentDidMount() {
     this.loadRanks()
   }
@@ -107,13 +110,13 @@ class PlayerRanksApp extends React.Component {
 }
 
 
-PlayerRanksApp.propTypes =
+PlayerLeaderboards.propTypes =
   { rankType: P.string.isRequired
   }
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data} = state.playerRanks
+  const {fetching, error, data} = state.playerLeaderboards
   return {fetching, error, data}
 }
 
@@ -121,4 +124,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {loadRanks}
-)(PlayerRanksApp)
+)(PlayerLeaderboards)

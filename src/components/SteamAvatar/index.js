@@ -6,6 +6,8 @@ import steam from 'steamidconvert'
 
 import {queueAvatar} from 'root/services/steamAvatars/actions'
 
+import './styles.styl'
+
 
 const Steam = steam()
 

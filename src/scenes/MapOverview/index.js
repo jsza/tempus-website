@@ -1,15 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {loadMapOverview, selectVideo, fetchLeaderboard} from '../redux/mapOverview'
+import {loadMapOverview, selectVideo,
+        fetchLeaderboard} from './services/mapOverview/actions'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import DocumentTitle from 'react-document-title'
 
-import MapVideo from '../components/MapVideo'
-import Throbber from '../components/Throbber'
-import MapOverviewLeaderboard from '../components/MapOverviewLeaderboard'
+import MapVideo from './components/MapVideo'
+import Throbber from 'root/components/Throbber'
+import MapOverviewLeaderboard from './components/MapOverviewLeaderboard'
+
+import './styles.styl'
 
 
-class MapOverviewApp extends React.Component {
+class MapOverview extends React.Component {
   componentDidMount() {
     this.props.loadMapOverview(this.props.params.name)
   }
@@ -174,4 +177,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {loadMapOverview, selectVideo, fetchLeaderboard}
-)(MapOverviewApp)
+)(MapOverview)
