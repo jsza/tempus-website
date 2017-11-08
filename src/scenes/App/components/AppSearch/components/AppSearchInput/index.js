@@ -32,7 +32,7 @@ export default class AppSearchInput extends React.Component {
     this.startTimeout()
   }
 
-  onInputClick(event) {
+  onInputFocus(event) {
     event.target.select()
   }
 
@@ -50,7 +50,7 @@ export default class AppSearchInput extends React.Component {
              placeholder="Search"
              onChange={this.onInputChange.bind(this)}
              onKeyPress={this.onKeyPress.bind(this)}
-             onClick={this.onInputClick}
+             onFocus={this.onInputFocus}
         />
     )
   }
