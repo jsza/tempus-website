@@ -1,8 +1,8 @@
 import React from 'react'
-import SteamAvatarContainer from '../containers/SteamAvatarContainer'
+import SteamAvatarContainer from '../../../../containers/SteamAvatarContainer'
 import {Link} from 'react-router'
-import AppSearchInput from './AppSearchInput'
-import AppSearchResults from './AppSearchResults'
+import AppSearchInput from './components/AppSearchInput'
+import AppSearchResults from './components/AppSearchResults'
 
 
 export default class AppSearch extends React.Component {

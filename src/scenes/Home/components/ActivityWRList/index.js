@@ -1,10 +1,10 @@
 import React from 'react'
 import cx from 'classnames'
-import {mapScreenshot, formatTime, prettyZoneName} from '../utils/TempusUtils'
+import {mapScreenshot, formatTime, prettyZoneName} from '../../../../utils/TempusUtils'
 import {Link} from 'react-router'
 import {Table, OverlayTrigger} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
-import SteamAvatarContainer from '../containers/SteamAvatarContainer'
+import SteamAvatarContainer from '../../../../containers/SteamAvatarContainer'
 import {Scrollbars} from 'react-custom-scrollbars'
 
 

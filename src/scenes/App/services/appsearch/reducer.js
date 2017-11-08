@@ -1,10 +1,6 @@
 import Immutable from 'immutable'
-import {CALL_API, GET, POST, DELETE} from '../middleware/api'
 
-
-const LOAD_REQUEST = 'SEARCH_LOAD_REQUEST'
-const LOAD_SUCCESS = 'SEARCH_LOAD_SUCCESS'
-const LOAD_FAILURE = 'SEARCH_LOAD_FAILURE'
+import {LOAD_REQUEST, LOAD_SUCCESS, LOAD_FAILURE} from './actions'
 
 
 let initialState = Immutable.Record(
@@ -37,29 +33,5 @@ export default function reducer(state=initialState, action) {
         })
     default:
       return state
-  }
-}
-
-
-function fetch(s) {
-  return (
-    { [CALL_API]:
-      { method: GET
-      , started: [LOAD_REQUEST]
-      , success: [LOAD_SUCCESS]
-      , failure: [LOAD_FAILURE]
-      , endpoint: `search/playersAndMaps/${s}`
-      }
-    })
-}
-
-
-export function searchPlayersAndMaps(s) {
-  return (dispatch, getState) => {
-    const fetching = getState().search.fetching
-    if (fetching) {
-      return null
-    }
-    return dispatch(fetch(s))
   }
 }

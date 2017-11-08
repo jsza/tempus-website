@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
-import SteamAvatarContainer from '../containers/SteamAvatarContainer'
+import SteamAvatarContainer from '../../../../../../containers/SteamAvatarContainer'
 
 
 export default class AppSearchResults extends React.Component {

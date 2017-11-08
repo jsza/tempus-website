@@ -2,8 +2,8 @@ import React from 'react'
 import {PERMISSIONS} from './utils/loginData'
 
 import {Route, IndexRoute} from 'react-router'
-import App from './containers/App'
-import OverviewApp from './containers/OverviewApp'
+import App from './scenes/App'
+import Home from './scenes/Home'
 import MapsApp from './containers/MapsApp'
 import MapOverviewApp from './containers/MapOverviewApp'
 import PlayerOverviewApp from './containers/PlayerOverviewApp'
@@ -50,7 +50,7 @@ export function makeRoutes() {
   return (
     // workaround for warning from react-redux
     <Route component={App} path="/" childRoutes={childRoutes}>
-      <IndexRoute component={OverviewApp} />
+      <IndexRoute component={Home} />
     </Route>
   )
 }

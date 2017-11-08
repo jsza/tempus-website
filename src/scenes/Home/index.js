@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Row, Col, Tabs, Tab} from 'react-bootstrap'
-import Throbber from '../components/Throbber'
-import ActivityWRList from '../components/ActivityWRList'
-import ActivityTopList from '../components/ActivityTopList'
-import {loadActivity} from '../redux/activity'
+import Throbber from '../../components/Throbber'
+import ActivityWRList from './components/ActivityWRList'
+import ActivityTopList from './components/ActivityTopList'
+import {loadActivity} from './services/activity/actions'
+
+import './styles.styl'
 
 
 export class OverviewApp extends React.Component {

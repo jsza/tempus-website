@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, browserHistory} from 'react-router'
-import configureStore from './store/configureStore'
+import configureStore from './store'
 import {Provider} from 'react-redux'
 import {syncHistoryWithStore} from 'react-router-redux'
 import APIUtils from './utils/APIUtils'

@@ -7,12 +7,12 @@ import {AppContainer} from 'react-hot-loader'
 // workaround for issue:
 // https://github.com/react-bootstrap/react-router-bootstrap/issues/169
 const LinkContainer = LC
-import AppSearch from '../components/AppSearch'
-import {searchPlayersAndMaps} from '../redux/search'
+import AppSearch from './components/AppSearch'
+import {searchPlayersAndMaps} from './services/appsearch/actions'
 import {withRouter} from 'react-router'
 
-import SteamAvatarContainer from './SteamAvatarContainer'
-import {USERNAME, PLAYERNAME, STEAMID, PERMISSIONS} from '../utils/loginData'
+import SteamAvatarContainer from '../../containers/SteamAvatarContainer'
+import {USERNAME, PLAYERNAME, STEAMID, PERMISSIONS} from '../../utils/loginData'
 
 
 class App extends React.Component {
