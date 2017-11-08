@@ -4,7 +4,7 @@ import {PERMISSIONS} from './utils/loginData'
 import {Route, IndexRoute} from 'react-router'
 import App from './scenes/App'
 import Home from './scenes/Home'
-import MapsApp from './containers/MapsApp'
+import Maps from './scenes/Maps'
 import MapOverviewApp from './containers/MapOverviewApp'
 import PlayerOverviewApp from './containers/PlayerOverviewApp'
 import PlayerRanksApp from './containers/PlayerRanksApp'
@@ -26,7 +26,7 @@ class NotFound extends React.Component {
 
 const routes =
   { 'public':
-    [ { path: 'maps', component: MapsApp }
+    [ { path: 'maps', component: Maps }
     , { path: 'maps/:name', component: MapOverviewApp }
     , { path: 'players/:id', component: PlayerOverviewApp }
     , { path: 'ranks/overall', component: PlayerRanksApp, rankType: 'overall' }

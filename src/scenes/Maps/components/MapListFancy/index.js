@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MapListItem from './MapListItem'
+import MapListItem from './components/MapListItem'
 
 
 export default class MapListFancy extends React.Component {

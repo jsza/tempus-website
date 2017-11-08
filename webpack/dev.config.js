@@ -12,7 +12,7 @@ module.exports =
 , output:
   { path: path.join(__dirname, 'dist')
   , filename: 'bundle.js'
-  , publicPath: '/'
+  , publicPath: 'http://localhost:3001/'
   }
 , resolve:
   { alias:
@@ -52,6 +52,7 @@ module.exports =
 , devServer:
   { host: 'localhost'
   , port: 3001
+  , headers: { 'Access-Control-Allow-Origin': '*' }
   , hot: true
   // , inline: true
   , historyApiFallback: true

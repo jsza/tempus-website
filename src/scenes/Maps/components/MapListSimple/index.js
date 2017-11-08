@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import Difficulties from '../constants/Difficulties'
+import Difficulties from 'root/constants/Difficulties'
 import {Link} from 'react-router'
 import LazyLoad from 'react-lazyload'
 

@@ -9,7 +9,7 @@ import {loadActivity} from './services/activity/actions'
 import './styles.styl'
 
 
-export class OverviewApp extends React.Component {
+export class Home extends React.Component {
   componentDidMount() {
     this.props.loadActivity('map')
   }
@@ -86,4 +86,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {loadActivity}
-)(OverviewApp)
+)(Home)

@@ -2,7 +2,7 @@ import React from 'react'
 import P from 'prop-types'
 import cx from 'classnames'
 import {MenuItem, ButtonToolbar, ButtonGroup, DropdownButton, Button} from 'react-bootstrap'
-import D from '../constants/Difficulties'
+import D from 'root/constants/Difficulties'
 
 
 const OPTIONS =

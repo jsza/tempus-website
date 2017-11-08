@@ -1,7 +1,7 @@
 import React from 'react'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router'
-import Difficulties from '../constants/Difficulties'
+import Difficulties from 'root/constants/Difficulties'
 
 
 export default class MapListItem extends React.Component {

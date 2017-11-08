@@ -1,16 +1,18 @@
 import React from 'react'
-import {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort} from '../redux/maps'
+import {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort} from './services/maps/actions'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
 
 import DocumentTitle from 'react-document-title'
-import Throbber from '../components/Throbber'
-import MapListFilters from '../components/MapListFilters'
-import MapListFancy from '../components/MapListFancy'
-import MapListSimple from '../components/MapListSimple'
+import Throbber from 'root/components/Throbber'
+import MapListFilters from './components/MapListFilters'
+import MapListFancy from './components/MapListFancy'
+import MapListSimple from './components/MapListSimple'
+
+import './styles.styl'
 
 
-class MapsApp extends React.Component {
+class Maps extends React.Component {
   componentDidMount() {
     this.props.loadMaps()
   }
@@ -89,4 +91,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort}
-)(MapsApp)
+)(Maps)

@@ -1,14 +1,7 @@
 import Immutable from 'immutable'
-import {CALL_API, GET, POST, DELETE} from '../middleware/api'
 
-
-const LOAD_REQUEST = 'MAPS_LOAD_REQUEST'
-const LOAD_SUCCESS = 'MAPS_LOAD_SUCCESS'
-const LOAD_FAILURE = 'MAPS_LOAD_FAILURE'
-const RESET = 'MAPS_RESET'
-const SET_FILTER = 'MAPS_SET_FILTER'
-const SET_SIMPLE = 'MAPS_SET_SIMPLE'
-const SELECT_SORT = 'MAPS_SELECT_SORT'
+import {LOAD_REQUEST, LOAD_SUCCESS, LOAD_FAILURE, RESET, SET_FILTER,
+        SET_SIMPLE, SELECT_SORT} from './actions'
 
 
 let sortState = Immutable.Record(
@@ -68,59 +61,4 @@ export default function reducer(state=initialState, action) {
     default:
       return state
   }
-}
-
-
-function fetch() {
-  return (
-    { [CALL_API]:
-      { method: GET
-      , started: [LOAD_REQUEST]
-      , success: [LOAD_SUCCESS]
-      , failure: [LOAD_FAILURE]
-      , endpoint: 'maps/detailedList'
-      }
-    })
-}
-
-
-export function loadMaps() {
-  return (dispatch, getState) => {
-    const {fetching, data} = getState().maps
-    if (fetching || data) {
-      return null
-    }
-    return dispatch(fetch())
-  }
-}
-
-
-export function resetMaps() {
-  return {type: 'no'}
-}
-
-
-export function setFilter(playerClass, filter) {
-  return (
-    { type: SET_FILTER
-    , playerClass
-    , filter
-    }
-  )
-}
-
-
-export function toggleSimple(value) {
-  return (
-    { type: SET_SIMPLE
-    , value: value
-    })
-}
-
-
-export function selectMapSort(sortBy) {
-  return (
-    { type: SELECT_SORT
-    , sortBy: sortBy
-    })
 }

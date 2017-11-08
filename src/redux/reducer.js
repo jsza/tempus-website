@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
-import maps from './maps'
+import maps from '../scenes/Maps/services/maps/reducer'
 import mapOverview from './mapOverview'
 import steamAvatars from '../services/steamAvatars/reducer'
 import search from '../scenes/App/services/appsearch/reducer'
