@@ -7,6 +7,20 @@ import './styles.styl'
 
 
 export default class MapListItem extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {showImage: false}
+    this.imageUrl = `http://tempus.site.nfoservers.com/web/screenshots/raw/${this.props.data.get('name')}_320p.jpeg`
+    this.image = new Image()
+    this.image.onload = this.onImageLoaded.bind(this)
+    this.image.src = this.imageUrl
+  }
+
+  onImageLoaded() {
+    this.setState({showImage: true})
+  }
+
   renderName() {
     const item = this.props.data
     const isLinear = (item.getIn(['zone_counts', 'linear']) === 1)
@@ -101,21 +115,24 @@ export default class MapListItem extends React.Component {
 
   render() {
     const name = this.props.data.get('name')
-    let styles =
-      { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
+    let bgStyles =
+      { backgroundImage: `url(${this.imageUrl})`
+      , opacity: this.state.showImage ? 100 : 0
       }
-    if (this.props.style) {
-      styles = Object.assign(styles, this.props.style)
-    }
+      // { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
     const url = '/maps/' + this.props.data.get('name')
     return (
-      <Link to={url} className="Maps-MapListFancy-MapListItem" style={styles}>
-        <span className="item-overlay">
-          <span className="item-inner">
-            <span className="name-container">
-              {this.renderName()}
+      <Link to={url} className="Maps-MapListFancy-MapListItem">
+        <span>
+          <div className="item-background"
+               style={bgStyles} />
+          <span className="item-overlay">
+            <span className="item-inner">
+              <span className="name-container">
+                {this.renderName()}
+              </span>
+              {this.renderTiers()}
             </span>
-            {this.renderTiers()}
           </span>
         </span>
       </Link>
