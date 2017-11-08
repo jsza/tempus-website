@@ -7,7 +7,7 @@ import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
 
 
-export default class LeaderboardItem extends React.Component {
+export default class MapLeaderboardItem extends React.Component {
   renderDuration() {
     const {data, firstPlace} = this.props
     const rank = data.get('rank')

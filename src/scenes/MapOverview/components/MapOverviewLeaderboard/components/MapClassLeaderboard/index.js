@@ -5,7 +5,7 @@ import {Col} from 'react-bootstrap'
 import MapLeaderboardItem from './components/MapLeaderboardItem'
 
 
-export default class ClassLeaderboard extends React.Component {
+export default class MapClassLeaderboard extends React.Component {
   renderLeaderboard() {
     const {data} = this.props
     if (data.size === 0) {
