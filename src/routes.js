@@ -6,7 +6,7 @@ import App from './scenes/App'
 import Home from './scenes/Home'
 import Maps from './scenes/Maps'
 import MapOverviewApp from './containers/MapOverviewApp'
-import PlayerOverviewApp from './containers/PlayerOverviewApp'
+import PlayerOverview from './scenes/PlayerOverview'
 import PlayerRanksApp from './containers/PlayerRanksApp'
 import ExtraMapsApp from './containers/ExtraMapsApp'
 
@@ -28,7 +28,7 @@ const routes =
   { 'public':
     [ { path: 'maps', component: Maps }
     , { path: 'maps/:name', component: MapOverviewApp }
-    , { path: 'players/:id', component: PlayerOverviewApp }
+    , { path: 'players/:id', component: PlayerOverview }
     , { path: 'ranks/overall', component: PlayerRanksApp, rankType: 'overall' }
     , { path: 'ranks/soldier', component: PlayerRanksApp, rankType: 'soldier' }
     , { path: 'ranks/demoman', component: PlayerRanksApp, rankType: 'demoman' }

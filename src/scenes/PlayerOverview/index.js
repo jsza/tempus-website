@@ -1,18 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
-import {loadPlayer} from '../redux/playerOverview'
-import {JUMP_CLASSES} from '../constants/TFClasses'
-import {CLASSINDEX_TO_NAME} from '../constants/TFClasses'
+import {loadPlayer} from './services/playerOverview/actions'
+import {CLASSINDEX_TO_NAME, JUMP_CLASSES} from 'root/constants/TFClasses'
 
 import TimeAgo from 'react-timeago'
 import DocumentTitle from 'react-document-title'
 import {Row, Col, Tabs, Tab, Table} from 'react-bootstrap'
 import SteamAvatar from 'root/components/SteamAvatar'
-import Throbber from '../components/Throbber'
-import PlayerOverviewClassStats from '../components/PlayerOverviewClassStats'
-import PlayerOverviewStats from '../components/PlayerOverviewStats'
+import Throbber from 'root/components/Throbber'
+import PlayerOverviewStats from './components/PlayerOverviewStats'
 
+import './styles.styl'
 
 
 function getFormattedDate(date) {
@@ -25,7 +24,7 @@ function getFormattedDate(date) {
 }
 
 
-export class PlayerOverviewApp extends React.Component {
+export class PlayerOverview extends React.Component {
   componentDidMount() {
     this.props.loadPlayer(this.props.params.id)
   }
@@ -176,4 +175,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   {loadPlayer}
-)(PlayerOverviewApp)
+)(PlayerOverview)
