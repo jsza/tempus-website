@@ -1,4 +1,4 @@
-import {CALL_API, GET} from '../../../../middleware/api'
+import {CALL_API, GET} from 'root/middleware/api'
 
 
 export const LOAD_REQUEST = 'ACTIVITY_LOAD_REQUEST'

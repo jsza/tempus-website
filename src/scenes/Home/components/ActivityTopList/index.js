@@ -1,10 +1,10 @@
 import React from 'react'
 import cx from 'classnames'
-import {mapScreenshot, formatTime, prettyZoneName} from '../../../../utils/TempusUtils'
+import {mapScreenshot, formatTime, prettyZoneName} from 'root/utils/TempusUtils'
 import {Link} from 'react-router'
 import {Table, OverlayTrigger} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
-import SteamAvatarContainer from '../../../../containers/SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 
 
 export default class ActivityTopList extends React.Component {
@@ -44,7 +44,7 @@ export default class ActivityTopList extends React.Component {
           <td className="shrink">
             <span className="activity-player-container">
               <span style={{marginRight: '6px'}}>
-                <SteamAvatarContainer steamID={pi.get('steamid')} size="mini" />
+                <SteamAvatar steamID={pi.get('steamid')} size="mini" />
               </span>
               <Link to={`/players/${pi.get('id')}`}>
                 {pi.get('name')}

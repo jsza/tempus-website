@@ -3,7 +3,7 @@ import {routerReducer} from 'react-router-redux'
 
 import maps from './maps'
 import mapOverview from './mapOverview'
-import avatars from './avatars'
+import steamAvatars from '../services/steamAvatars/reducer'
 import search from '../scenes/App/services/appsearch/reducer'
 import activity from '../scenes/Home/services/activity/reducer'
 import playerOverview from './playerOverview'
@@ -15,7 +15,7 @@ export default combineReducers(
   { routing: routerReducer
   , maps
   , mapOverview
-  , avatars
+  , steamAvatars
   , search
   , activity
   , playerOverview

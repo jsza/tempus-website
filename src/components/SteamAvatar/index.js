@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import cx from 'classnames'
 import steam from 'steamidconvert'
 
-import {queueAvatar} from '../redux/avatars'
+import {queueAvatar} from 'root/services/steamAvatars/actions'
 
 
 const Steam = steam()
@@ -103,8 +103,8 @@ SteamAvatar.propTypes =
 
 
 function mapStateToProps(state) {
-  const {avatars} = state
-  const {data} = avatars.toJS()
+  const {steamAvatars} = state
+  const {data} = steamAvatars.toJS()
   return {avatars: data}
 }
 

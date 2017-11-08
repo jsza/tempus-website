@@ -4,7 +4,7 @@ import {formatTime} from '../../utils/TempusUtils'
 import {Link} from 'react-router'
 import {OverlayTrigger, Tooltip} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
-import SteamAvatarContainer from '../../containers/SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 
 
 export default class LeaderboardItem extends React.Component {
@@ -58,7 +58,7 @@ export default class LeaderboardItem extends React.Component {
         </td>
         <td className="lb-avatar shrink">
           <span className="pull-right">
-            <SteamAvatarContainer steamID={pi.get('steamid')} size={avatarSize} />
+            <SteamAvatar steamID={pi.get('steamid')} size={avatarSize} />
           </span>
         </td>
         <td className="lb-name shrink">

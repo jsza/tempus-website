@@ -14,6 +14,11 @@ module.exports =
   , filename: 'bundle.js'
   , publicPath: '/'
   }
+, resolve:
+  { alias:
+    { root: path.join(__dirname, '..', 'src')
+    }
+  }
 , plugins:
   [ new webpack.HotModuleReplacementPlugin()
   , new webpack.NamedModulesPlugin()
@@ -30,10 +35,8 @@ module.exports =
       , include: path.join(__dirname, '..')
       , use:
         [ { loader: 'babel-loader'
-          }]
-      }
-    , { test: /\.json$/
-      , loader: 'json-loader?paths=/src/'
+          }
+        ]
       }
     , { test: /\.styl$/
       , exclude: /node_modules/
@@ -54,7 +57,7 @@ module.exports =
   , historyApiFallback: true
   , proxy:
     { '/api':
-      { target: 'http://tempus.xyz/'
+      { target: 'https://tempus.xyz/'
       , secure: true
       , changeOrigin: true
       , logLevel: 'debug'

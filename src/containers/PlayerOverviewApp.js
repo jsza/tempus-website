@@ -8,7 +8,7 @@ import {CLASSINDEX_TO_NAME} from '../constants/TFClasses'
 import TimeAgo from 'react-timeago'
 import DocumentTitle from 'react-document-title'
 import {Row, Col, Tabs, Tab, Table} from 'react-bootstrap'
-import SteamAvatarContainer from './SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from '../components/Throbber'
 import PlayerOverviewClassStats from '../components/PlayerOverviewClassStats'
 import PlayerOverviewStats from '../components/PlayerOverviewStats'
@@ -97,7 +97,7 @@ export class PlayerOverviewApp extends React.Component {
             <div>
               <div className="player-overview-header clearfix">
                 <div className="player-overview-avatar">
-                  <SteamAvatarContainer steamID={pi.steamid} size="mediumlarge" />
+                  <SteamAvatar steamID={pi.steamid} size="mediumlarge" />
                 </div>
                 <span className="pull-right text-muted" style={{textAlign: 'right', padding: '5px', fontSize: '12px'}}>
                   Online <TimeAgo date={pi.last_seen * 1000} />

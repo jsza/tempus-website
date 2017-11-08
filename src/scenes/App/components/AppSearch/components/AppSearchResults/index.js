@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
-import SteamAvatarContainer from '../../../../../../containers/SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 
 
 export default class AppSearchResults extends React.Component {
@@ -23,7 +23,7 @@ export default class AppSearchResults extends React.Component {
       result.push(
         <span>
           <span>
-            <SteamAvatarContainer steamID={p.get('steamid')} size="mini" />
+            <SteamAvatar steamID={p.get('steamid')} size="mini" />
             <span> </span>
             <Link to={`/players/${p.get('id')}`} onClick={this.props.dismiss}>
               {p.get('name')}

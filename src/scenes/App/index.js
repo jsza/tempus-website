@@ -11,7 +11,7 @@ import AppSearch from './components/AppSearch'
 import {searchPlayersAndMaps} from './services/appsearch/actions'
 import {withRouter} from 'react-router'
 
-import SteamAvatarContainer from '../../containers/SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 import {USERNAME, PLAYERNAME, STEAMID, PERMISSIONS} from '../../utils/loginData'
 
 
@@ -19,7 +19,7 @@ class App extends React.Component {
   renderAvatar() {
     const title = (
       <span className="avatar-container">
-        <SteamAvatarContainer steamID64={STEAMID} size="small" noLink />
+        <SteamAvatar steamID64={STEAMID} size="small" noLink />
         <span className="playername">
           {PLAYERNAME}
         </span>

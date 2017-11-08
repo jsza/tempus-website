@@ -1,4 +1,4 @@
-import {CALL_API, GET, POST, DELETE} from '../../../../middleware/api'
+import {CALL_API, GET, POST, DELETE} from 'root/middleware/api'
 
 
 export const LOAD_REQUEST = 'SEARCH_LOAD_REQUEST'

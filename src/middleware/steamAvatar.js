@@ -1,5 +1,5 @@
-import {QUEUE_AVATAR} from '../redux/avatars'
-import {loadAvatars} from '../redux/avatars'
+import {QUEUE_AVATAR} from 'root/services/steamAvatars/actions'
+import {loadAvatars} from 'root/services/steamAvatars/actions'
 
 
 class AvatarQueue {

@@ -1,5 +1,5 @@
 import React from 'react'
-import SteamAvatarContainer from '../../../../containers/SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 import {Link} from 'react-router'
 import AppSearchInput from './components/AppSearchInput'
 import AppSearchResults from './components/AppSearchResults'

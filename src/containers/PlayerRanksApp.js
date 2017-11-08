@@ -5,7 +5,7 @@ import {loadRanks} from '../redux/playerRanks'
 
 import {Link} from 'react-router'
 import {Table} from 'react-bootstrap'
-import SteamAvatarContainer from './SteamAvatarContainer'
+import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from '../components/Throbber'
 
 
@@ -78,7 +78,7 @@ class PlayerRanksApp extends React.Component {
                       </strong>
                     </td>
                     <td>
-                      <SteamAvatarContainer steamID={p.get('steamid')} size="tiny" />
+                      <SteamAvatar steamID={p.get('steamid')} size="tiny" />
                       <span> </span>
                       <Link to={`/players/${p.get('id')}`}>
                         {p.get('name')}
