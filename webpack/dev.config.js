@@ -2,12 +2,12 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports =
-{ devtool: '#cheap-module-eval-source-map'
+{ devtool: 'cheap-module-eval-source-map'
 , entry:
   [ 'react-hot-loader/patch'
   , 'webpack-dev-server/client?http://localhost:3001'
   , 'webpack/hot/only-dev-server'
-  , path.join(__dirname, '..', 'js', 'index.js')
+  , path.join(__dirname, '..', 'src', 'index.js')
   ]
 , output:
   { path: path.join(__dirname, 'dist')
@@ -17,6 +17,7 @@ module.exports =
 , plugins:
   [ new webpack.HotModuleReplacementPlugin()
   , new webpack.NamedModulesPlugin()
+  , new webpack.NoEmitOnErrorsPlugin()
   , new webpack.DefinePlugin(
     { __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
     , __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
@@ -32,7 +33,7 @@ module.exports =
           }]
       }
     , { test: /\.json$/
-      , loader: 'json-loader?paths=/js/'
+      , loader: 'json-loader?paths=/src/'
       }
     , { test: /\.styl$/
       , exclude: /node_modules/

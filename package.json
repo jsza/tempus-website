@@ -7,7 +7,7 @@
     "watch": "npm run watch-js",
     "build": "npm run build-js && npm run build-styl",
     "build-js": "BUILD_DEV=0 webpack -p --progress --colors --display-error-details --config js/webpack/prod.config.js",
-    "watch-js": "webpack-dev-server --open --config webpack/dev.config.js",
+    "watch-js": "webpack-dev-server --config webpack/dev.config.js",
     "build-styl": "stylus -c -u autoprefixer-stylus stylus/index.styl -o ../build/website/styles.css"
   },
   "repository": {
