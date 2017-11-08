@@ -2,6 +2,8 @@ import React from 'react'
 
 import MapListItem from './components/MapListItem'
 
+import './styles.styl'
+
 
 export default class MapListFancy extends React.Component {
   render() {
@@ -9,7 +11,7 @@ export default class MapListFancy extends React.Component {
       <MapListItem key={item.get('id')} data={item} />
     )
     return (
-      <div className="map-list fancy">
+      <div className="Maps-MapListFancy">
         {items}
       </div>
     )

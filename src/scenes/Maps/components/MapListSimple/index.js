@@ -4,6 +4,8 @@ import Difficulties from 'root/constants/Difficulties'
 import {Link} from 'react-router'
 import LazyLoad from 'react-lazyload'
 
+import './styles.styl'
+
 
 class MapListHeadings extends React.Component {
   render() {
@@ -96,7 +98,7 @@ export default class MapListSimple extends React.Component {
       data = data.reverse()
     }
     return (
-      <div className="map-list simple">
+      <div className="Maps-MapListSimple">
         <table className="table table-condensed">
           <MapListHeadings sort={sort} selectMapSort={this.props.selectMapSort} />
           <tbody>

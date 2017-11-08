@@ -1,0 +1,40 @@
+$tier-1-color := rgb(220, 220, 220)
+$tier-2-color := rgb(130, 240, 240)
+$tier-3-color := rgb(100, 230, 100)
+$tier-4-color := rgb(235, 235, 40)
+$tier-5-color := rgb(255, 160, 0)
+$tier-6-color := rgb(255, 125, 125)
+
+
+.Maps-MapListSimple
+    td
+
+        .tier-container
+            font-family tahoma
+            font-size 12px
+            padding 0 4px 2px 4px
+            color black
+            border-radius 6px
+            border 1px solid rgb(125, 125, 125)
+
+            &.tier-0
+                border none
+                text-decoration line-through
+            &.tier-1
+                background-color $tier-1-color
+                border-color darken($tier-1-color, 20%)
+            &.tier-2
+                background-color $tier-2-color
+                border-color darken($tier-2-color, 20%)
+            &.tier-3
+                background-color $tier-3-color
+                border-color darken($tier-3-color, 20%)
+            &.tier-4
+                background-color $tier-4-color
+                border-color darken($tier-4-color, 20%)
+            &.tier-5
+                background-color $tier-5-color
+                border-color darken($tier-5-color, 20%)
+            &.tier-6
+                background-color $tier-6-color
+                border-color darken($tier-6-color, 20%)

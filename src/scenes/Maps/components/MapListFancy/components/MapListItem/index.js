@@ -3,6 +3,8 @@ import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router'
 import Difficulties from 'root/constants/Difficulties'
 
+import './styles.styl'
+
 
 export default class MapListItem extends React.Component {
   renderName() {
@@ -19,7 +21,7 @@ export default class MapListItem extends React.Component {
     // }
 
     return (
-      <span className="map-name">
+      <span className="name">
         <strong style={{marginBottom: '8px'}}>{displayName}</strong>
         <br />
       </span>
@@ -31,11 +33,11 @@ export default class MapListItem extends React.Component {
     const soldierTier = item.getIn(['tier_info', '3'])
     const demomanTier = item.getIn(['tier_info', '4'])
     return (
-      <span className="map-tiers">
+      <span className="tiers">
         <span className="tier">
           <span className="tf-icon soldier mini">
           </span>
-          <span className={'map-tier-inner tier-' + soldierTier}>
+          <span className={'tier-inner tier-' + soldierTier}>
             {soldierTier === 0
              ? <i className="fa fa-ban" />
              : 'T' + soldierTier
@@ -46,7 +48,7 @@ export default class MapListItem extends React.Component {
         <span className="tier">
           <span className="tf-icon demoman mini">
           </span>
-          <span className={'map-tier-inner tier-' + demomanTier}>
+          <span className={'tier-inner tier-' + demomanTier}>
             {demomanTier === 0
              ? <i className="fa fa-ban" />
              : 'T' + demomanTier
@@ -91,7 +93,7 @@ export default class MapListItem extends React.Component {
       )
     }
     return (
-      <span className="map-author">
+      <span className="author">
         <span><span>{authorItem}</span></span>
       </span>
     )
@@ -107,10 +109,10 @@ export default class MapListItem extends React.Component {
     }
     const url = '/maps/' + this.props.data.get('name')
     return (
-      <Link to={url} className="map-list-item" style={styles}>
-        <span className="map-list-item-overlay">
-          <span className="map-list-item-inner">
-            <span className="map-name-container">
+      <Link to={url} className="Maps-MapListFancy-MapListItem" style={styles}>
+        <span className="item-overlay">
+          <span className="item-inner">
+            <span className="name-container">
               {this.renderName()}
             </span>
             {this.renderTiers()}

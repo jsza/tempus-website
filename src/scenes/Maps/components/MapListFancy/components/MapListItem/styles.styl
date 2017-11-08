@@ -1,0 +1,90 @@
+.Maps-MapListFancy-MapListItem
+    position relative
+    display inline-block
+    height 90px
+    min-width 320px
+    max-width 33%
+    flex 1 1 auto
+    margin 1px
+    background-color white
+    background-position center
+    background-size cover
+    font-size 18px
+    // transition background-size 0.2s box-shadow 0.2s height 0.2s size 1s
+    transition font-size .1s ease-out
+    box-shadow inset 0 0 16px black
+
+    &:hover
+        // z-index 999
+        // transform scale(1.2)
+        // background-size 102.5%
+        opacity 1.0
+        cursor pointer
+
+    .item-overlay
+        padding 6px
+        display block
+        height 100%
+        background rgba(0, 0, 0, 0.2)
+        transition background 0.2s
+
+    .item-inner
+        position relative
+        height 100%
+        display block
+        color white
+        font-weight bold
+
+        .name-container
+            transition top 0.2s ease
+            // font-family Montserrat
+            position absolute
+            top 46%
+            left 50%
+            transform translate(-50%, -50%)
+            // background-color rgba(0, 0, 0, 0.7)
+            padding 4px 8px
+            text-align center
+            text-shadow 0 0 4px black, 0 0 4px black
+
+        .tiers
+            position absolute
+            bottom 0
+            left 50%
+            transform translateX(-50%)
+            transition bottom 0.2s ease, opacity 0.2s ease
+            margin-top 4px
+            opacity 0
+            font-size 12px
+
+            .tier
+                box-shadow 0 0px 2px black
+                text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black
+                font-family tahoma
+                background rgba(255, 255, 255, 0.2)
+                padding 1px 6px 5px 6px
+                border-radius 8px
+                vertica
+
+                .tier-inner
+                    vertical-align middle
+
+                .tf-icon
+                    height 18px
+                    width 18px
+                    margin-right 4px
+
+            .tier-0
+                color rgb(255,75,75)
+
+    &:hover > .item-overlay
+        background rgba(0, 0, 0, 0.4)
+
+        .tiers
+            opacity 1
+
+        .name-container
+            top 32%
+
+        .tiers
+            bottom 18px

@@ -71,7 +71,7 @@ class Maps extends React.Component {
               <p>These are all available to play on our servers.</p>
             </div>
           </span>
-          <div className="maps-app">
+          <div className="Maps-container">
             {content}
           </div>
         </div>
