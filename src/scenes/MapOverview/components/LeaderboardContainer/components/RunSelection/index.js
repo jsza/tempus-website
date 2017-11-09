@@ -2,6 +2,8 @@ import React from 'react'
 
 import {prettyZoneName} from 'root/utils/TempusUtils'
 
+import './styles.styl'
+
 
 const zoneIcons =
   { 'map': 'globe'
@@ -10,7 +12,7 @@ const zoneIcons =
   }
 
 
-export default class LeaderboardTitle extends React.Component {
+export default class RunSelection extends React.Component {
   constructor(props) {
     super(props)
     this.state =
@@ -55,12 +57,12 @@ export default class LeaderboardTitle extends React.Component {
       }
     })
     return (
-      <div className="map-leaderboard-title">
-        <div style={{position: 'relative', display: 'inline-block'}}>
+      <div className="MapOverview-RunSelection">
+        <div className="MapOverview-RunSelection-inner">
           <h2 onClick={(event) => this.onClickDropdown(event)} style={{cursor: 'pointer'}}>
             <i className={'fa fa-fw fa-' + zoneIcons[zoneType]} /> {zoneName} <i className="fa fa-caret-down" />
           </h2>
-          <ul className="leaderboard-zone-dropdown" hidden={!this.state.showDropdown}>
+          <ul className="MapOverview-RunSelection-dropdown" hidden={!this.state.showDropdown}>
             {zoneItems}
           </ul>
         </div>

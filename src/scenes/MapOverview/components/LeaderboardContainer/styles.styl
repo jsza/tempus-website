@@ -1,0 +1,35 @@
+.duration-compared-tooltip
+    font-family Droid Sans Mono
+
+.leaderboard-pager
+    background rgb(10, 10, 10)
+    padding 4px
+
+    .lb-pager-btn
+        background none
+        border none
+        border-radius 2px
+        padding 4px 16px
+
+        &:focus
+            border none
+            outline none
+
+        &:hover, &:focus
+            // background rgba(255, 255, 255, 0.2)
+            background rgb(40, 40, 40)
+            text-shadow 0 1px 0 black
+            box-shadow 0 1px 0 rgb(60, 60, 60)
+
+        &:active
+            box-shadow 0 0 2px black inset
+            background rgb(30, 30, 30)
+            padding 5px 16px 3px 16px
+            transform translateY(1px)
+
+
+        &.prev
+            float left
+
+        &.next
+            float right

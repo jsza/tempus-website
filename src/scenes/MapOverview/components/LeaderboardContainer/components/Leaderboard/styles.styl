@@ -1,0 +1,63 @@
+$tier-1-color := rgb(220, 220, 220)
+$tier-2-color := rgb(130, 240, 240)
+$tier-3-color := rgb(100, 230, 100)
+$tier-4-color := rgb(235, 235, 40)
+$tier-5-color := rgb(255, 160, 0)
+$tier-6-color := rgb(255, 125, 125)
+
+.MapOverview-LeaderboardContainer-Leaderboard
+    padding 0
+    color rgb(220, 220, 220)
+    margin-bottom 15px
+    // box-shadow 0 1px 2px black
+
+    > header
+        padding 4px 16px
+        background linear-gradient(
+            rgba(10, 10, 10, 0.7),
+            rgba(10, 10, 10, 0.9),
+            rgba(10, 10, 10, 1.0))
+        // text-align center
+        border-bottom 0
+        position relative
+
+        h4
+            .tier
+                &.tier-0
+                    border none
+                    text-decoration line-through
+                &.tier-1
+                    color $tier-1-color
+                &.tier-2
+                    color $tier-2-color
+                &.tier-3
+                    color $tier-3-color
+                &.tier-4
+                    color $tier-4-color
+                &.tier-5
+                    color $tier-5-color
+                &.tier-6
+                    color $tier-6-color
+
+    > main
+        min-height 419px
+        background rgba(0, 0, 0, 0.6)
+
+        .no-records
+            padding 8px 16px
+            font-size 16px
+
+        > table
+            list-style none
+            padding-left 0
+
+            tbody
+                & MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem:not(:last-child)
+                    margin-bottom 8px
+                    // border-bottom 1px solid rgba(255, 255, 255, 0.05)
+
+                & MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem:nth-child(2n+1)
+                    background rgba(30, 30, 30, 0.7)
+
+                    &:hover
+                        background rgba(50, 50, 50, 0.75)

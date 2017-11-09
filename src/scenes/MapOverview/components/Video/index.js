@@ -1,6 +1,8 @@
 import React from 'react'
 import P from 'prop-types'
 
+import './styles.styl'
+
 
 class ResizingYoutubePlayer extends React.Component {
   constructor(props) {
@@ -26,15 +28,15 @@ class ResizingYoutubePlayer extends React.Component {
 }
 
 
-export default class MapVideo extends React.Component {
+export default class Video extends React.Component {
   render() {
     if (!this.props.selectedVideo) {
       return null
     }
     return (
-      <div className="map-content-container map-video-panel">
+      <div className="MapOverview-Video">
         <ResizingYoutubePlayer src={'https://www.youtube.com/embed/' + this.props.selectedVideo} />
-        <span className="map-video-close" onClick={this.props.onClickCloseVideo}>
+        <span className="close-button" onClick={this.props.onClickCloseVideo}>
           <i className="fa fa-fw fa-close" />
         </span>
       </div>
@@ -43,6 +45,6 @@ export default class MapVideo extends React.Component {
 }
 
 
-MapVideo.propTypes = (
+Video.propTypes = (
   { selectedVideo: P.string
   })

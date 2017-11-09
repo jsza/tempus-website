@@ -6,8 +6,10 @@ import {OverlayTrigger, Tooltip} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
 
+import './styles.styl'
 
-export default class MapLeaderboardItem extends React.Component {
+
+export default class LeaderboardItem extends React.Component {
   renderDuration() {
     const {data, firstPlace} = this.props
     const rank = data.get('rank')
@@ -52,19 +54,19 @@ export default class MapLeaderboardItem extends React.Component {
     let avatarSize = 'tiny'
 
     return (
-      <tr className={'lb-row lb-rank-' + rank}>
-        <td className="lb-rank shrink">
+      <tr className={'MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem rank-' + rank}>
+        <td className="rank shrink">
           {rankIcon}
         </td>
-        <td className="lb-avatar shrink">
+        <td className="avatar shrink">
           <span className="pull-right">
             <SteamAvatar steamID={pi.get('steamid')} size={avatarSize} />
           </span>
         </td>
-        <td className="lb-name shrink">
+        <td className="name shrink">
           <Link to={`/players/${pi.get('id')}`}>{pi.get('name')}</Link>
         </td>
-        <td className="lb-duration expand">
+        <td className="duration expand">
           {this.renderDuration()}
         </td>
       </tr>

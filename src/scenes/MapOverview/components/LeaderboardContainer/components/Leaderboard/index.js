@@ -2,10 +2,12 @@ import React from 'react'
 import {CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import {Col} from 'react-bootstrap'
-import MapLeaderboardItem from './components/MapLeaderboardItem'
+import LeaderboardItem from './components/LeaderboardItem'
+
+import './styles.styl'
 
 
-export default class MapClassLeaderboard extends React.Component {
+export default class Leaderboard extends React.Component {
   renderLeaderboard() {
     const {data} = this.props
     if (data.size === 0) {
@@ -17,10 +19,10 @@ export default class MapClassLeaderboard extends React.Component {
     }
     const firstPlace = data.get(0)
     return (
-      <table className="map-leaderboard-list">
+      <table>
         <tbody>
           {data.map((data, idx) =>
-            <MapLeaderboardItem
+            <LeaderboardItem
               data={data}
               firstPlace={firstPlace}
               />
@@ -31,21 +33,24 @@ export default class MapClassLeaderboard extends React.Component {
   }
 
   render() {
-    const {playerClass} = this.props
+    const {playerClass, tier} = this.props
     const tfClass = CLASSINDEX_TO_NAME[playerClass]
     const tfClassLower = tfClass.toLowerCase()
+    // console.log(this.props)
 
     return (
-      <Col className={'leaderboards-' + tfClassLower} lg={6}>
-        <div className="leaderboard-container clearfix">
-          <div className="leaderboard-header">
-            <h4 className="map-leaderboard-header">
-              <span className={'tf-icon sm ' + tfClassLower} /> {tfClass} <small>Very Easy (T1)</small>
+      <Col lg={6}>
+        <div className="MapOverview-LeaderboardContainer-Leaderboard">
+          <header className="clearfix">
+            <h4>
+              <span className={'tf-icon sm  ' + tfClassLower} /> {tfClass}
+              <span> | </span>
+              <span className={'tier tier-' + tier}>Tier {tier}</span>
             </h4>
-          </div>
-          <div className="leaderboard-body">
+          </header>
+          <main>
             {this.renderLeaderboard()}
-          </div>
+          </main>
           <div className="leaderboard-pager clearfix">
             <button className="lb-pager-btn prev">
               <i className="fa fa-arrow-circle-left" /> Prev

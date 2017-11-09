@@ -1,12 +1,13 @@
-.map-overview-container
+.MapOverview
     padding-top 16px
     padding-left 0
     padding-right 0
     box-shadow 0 0 2px black
     position relative
     background rgba(255, 255, 255, 0.2)
+    // background black
 
-.map-overview-bg
+.MapOverview-background
     position fixed
     top 0
     left -8px
@@ -18,254 +19,39 @@
     background-repeat no-repeat
     background-size cover
 
-.map-overview-body
-    padding-left 15px
-    padding-right 15px
-
-.map-content-container
+.MapOverview-header
     margin-bottom 15px
     width 100%
     background rgba(10, 10, 10, 0.8)
     color white
-    padding 20px 40px 40px 40px
     width 100%
-
-.map-overview-header
-    position relative
     z-index 100
+    padding 20px 40px 40px 40px
 
     h1 small
         color rgb(180, 180, 180)
 
-.map-video-buttons
-    display block
-    position absolute
-    right 0
-    bottom 0
+    .MapOverview-header-inner
+        position relative
 
-    .fa-youtube
-        font-size 32px
-        vertical-align middle
+    .MapOverview-header-video-buttons
+        display block
+        position absolute
+        right 0
+        bottom 0
 
-    .video-button
-        cursor pointer
+        .fa-youtube
+            font-size 32px
+            vertical-align middle
 
-        &.disabled
-            opacity 0.3
-            cursor not-allowed
-
-.map-video-panel
-    position relative
-    padding 16px
-
-.map-video-close
-    position absolute
-    top -12px
-    right -12px
-    font-size 24px
-    color rgba(255, 255, 255, 0.8)
-    border-radius 32px
-    text-align center
-    text-shadow 0 0 5px white
-    padding -4px
-    text-shadow 0 0 4px black
-
-    :hover
-        cursor pointer
-        color rgba(255, 255, 255, 1)
-
-.map-leaderboard-title
-    display block
-    position relative
-    margin-bottom 15px
-    text-shadow 0 0 4px black
-    text-align center
-    color rgb(230, 230, 230)
-    margin-top 0
-
-
-    h2
-        // background linear-gradient(
-        //     rgba(10, 10, 10, 0.6),
-        //     rgba(10, 10, 10, 0.7))
-        background linear-gradient(
-            rgb(40, 40, 40),
-            rgb(30, 30, 30))
-        &:hover
-            color rgb(255, 255, 255)
-            // background rgb(40, 40, 40)
-        margin 0
-        padding 8px 16px
-        border-radius 8px
-        box-shadow 0 1px 2px rgb(30, 30, 30)
-        // border 1px solid rgb(20, 20, 20)
-        font-size 20px
-
-
-
-.leaderboard-container
-    padding 0
-    color rgb(220, 220, 220)
-    margin-bottom 15px
-    // box-shadow 0 1px 2px black
-
-    .leaderboard-header
-        padding 4px 8px
-        background linear-gradient(
-            rgba(10, 10, 10, 0.7),
-            rgba(10, 10, 10, 0.9),
-            rgba(10, 10, 10, 1.0))
-        text-align center
-        border-bottom 0
-
-    .leaderboard-body
-        min-height 419px
-        background rgba(0, 0, 0, 0.6)
-
-        .no-records
-            padding 8px 16px
-            font-size 16px
-
-.map-leaderboard-list
-    list-style none
-    padding-left 0
-
-    tbody
-        & tr:not(:last-child)
-            margin-bottom 8px
-            // border-bottom 1px solid rgba(255, 255, 255, 0.05)
-
-        & tr:nth-child(2n+1)
-            background rgba(30, 30, 30, 0.7)
-
-            &:hover
-                background rgba(50, 50, 50, 0.75)
-
-        & tr
-            background rgba(20, 20, 20, 0.7)
-            &:hover
-                background rgba(50, 50, 50, 0.75)
-
-            td
-                padding 8px
-
-            .lb-rank
-                font-size 125%
-                text-align right
-
-            .lb-avatar
-                padding-right 0
-
-            .lb-name
-                padding-right 32px
-                a
-                    font-size 16px
-                    color rgb(0, 180, 240)
-
-            .lb-duration
-                font-family Droid Sans Mono
-                font-size 16px
-                span
-                    border-bottom 1px dotted rgb(100, 100, 100)
-                    cursor help
-
-            &.lb-rank-1
-                line-height 24px
-                color gold
-                background darken(rgba(255, 215, 0, 0.6), 80%)
-                border 1px solid darken(rgb(255, 215, 0), 50%)
-                border-left 0
-                border-right 0
-                position relative
-
-                &:before
-                    content
-
-                &:hover
-                    background darken(rgba(255, 215, 0, 0.65), 70%)
-
-                .steamavatar
-                    width 32px
-                    height 32px
-                    border-width 1px
-
-                .lb-name a
-                    color gold
-
-                .lb-duration span
-                    border-bottom-color rgb(127, 107, 0)
-
-            &.lb-rank-1, &.lb-rank-2, &.lb-rank-3
-                .lb-rank
-                    text-shadow -1px 0 0 black
-
-            &.lb-rank-2 .lb-rank
-                color rgb(190, 190, 190)
-
-            &.lb-rank-3 .lb-rank
-                color #B87333
-
-.duration-compared-tooltip
-    font-family Droid Sans Mono
-
-.leaderboard-zone-dropdown
-    z-index 1000
-    position absolute
-    top calc(100% + 10px)
-    float left
-    min-width 170px
-    padding-left 0
-    // background rgba(0, 0, 0, 0.9)
-    background linear-gradient(
-        rgba(80, 80, 80, 0.8),
-        rgba(80, 80, 80, 0.6))
-    border-radius 4px
-    list-style none
-    text-align left
-    padding 5px 0
-    box-shadow 0 0 4px rgba(0, 0, 0, 0.6)
-    text-shadow 0 0 4px black, 0 0 4px black
-    & > li
-        padding 3px 20px
-
-        &:hover
+        .video-button
             cursor pointer
-            // background rgba(0, 120, 170, 0.5)
-            background rgba(0, 0, 0, 0.4)
 
-    & > hr
-        margin 9px 0
-        border-color rgb(100, 100, 100)
+            &.disabled
+                opacity 0.3
+                cursor not-allowed
+    // .map-overview-header
 
-.leaderboard-pager
-    background rgb(10, 10, 10)
-    padding 4px
-
-    .lb-pager-btn
-        background none
-        border none
-        border-radius 2px
-        padding 4px 16px
-
-        &:focus
-            border none
-            outline none
-
-        &:hover, &:focus
-            // background rgba(255, 255, 255, 0.2)
-            background rgb(40, 40, 40)
-            text-shadow 0 1px 0 black
-            box-shadow 0 1px 0 rgb(60, 60, 60)
-
-        &:active
-            box-shadow 0 0 2px black inset
-            background rgb(30, 30, 30)
-            padding 5px 16px 3px 16px
-            transform translateY(1px)
-
-
-        &.prev
-            float left
-
-        &.next
-            float right
+.MapOverview-body
+    padding-left 15px
+    padding-right 15px

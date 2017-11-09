@@ -1,0 +1,63 @@
+.MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
+    background rgba(20, 20, 20, 0.7)
+    &:hover
+        background rgba(50, 50, 50, 0.75)
+
+    td
+        padding 8px
+
+    .rank
+        font-size 125%
+        text-align right
+
+    .avatar
+        padding-right 0
+
+    .name
+        padding-right 32px
+        a
+            font-size 16px
+            color rgb(0, 180, 240)
+
+    .duration
+        font-family Droid Sans Mono
+        font-size 16px
+        span
+            border-bottom 1px dotted rgb(100, 100, 100)
+            cursor help
+
+    &.rank-1
+        line-height 24px
+        color gold
+        background darken(rgba(255, 215, 0, 0.6), 80%)
+        border 1px solid darken(rgb(255, 215, 0), 50%)
+        border-left 0
+        border-right 0
+        position relative
+
+        &:before
+            content
+
+        &:hover
+            background darken(rgba(255, 215, 0, 0.65), 70%)
+
+        .steamavatar
+            width 32px
+            height 32px
+            border-width 1px
+
+        .name a
+            color gold
+
+        .duration span
+            border-bottom-color rgb(127, 107, 0)
+
+    &.rank-1, &.rank-2, &.rank-3
+        .rank
+            text-shadow -1px 0 0 black
+
+    &.rank-2 .rank
+        color rgb(190, 190, 190)
+
+    &.rank-3 .rank
+        color #B87333

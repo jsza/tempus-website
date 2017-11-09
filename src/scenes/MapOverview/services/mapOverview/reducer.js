@@ -51,6 +51,7 @@ export default function reducer(state=initialState, action) {
         , index: action.index
         })
     case LOAD_LEADERBOARD_SUCCESS:
+      // console.log(action.data)
       return state.mergeIn(['leaderboard'],
         { fetching: false
         , data: action.data

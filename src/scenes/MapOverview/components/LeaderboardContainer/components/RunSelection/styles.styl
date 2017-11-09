@@ -1,0 +1,66 @@
+.MapOverview-RunSelection
+    display block
+    position relative
+    margin-bottom 15px
+    text-align center
+    margin-top 0
+    color rgb(240, 240, 240)
+
+    .MapOverview-RunSelection-inner
+        position relative
+        display inline-block
+
+    h2
+        .fa-globe, .fa-flag, .fa-star
+            display none
+        font-family Noto Sans
+        font-weight bold
+        font-size 30px
+        text-shadow 0 0 12px black, 0 0 12px black
+        // background linear-gradient(
+        //     rgba(10, 10, 10, 0.6),
+        //     rgba(10, 10, 10, 0.7))
+        // background linear-gradient(
+        //     rgb(40, 40, 40),
+        //     rgb(30, 30, 30))
+        &:hover
+            color rgb(255, 255, 255)
+            // background rgb(40, 40, 40)
+        margin 0
+        padding 8px 16px
+        border-radius 8px
+        // box-shadow 0 1px 2px rgb(30, 30, 30)
+        // border 1px solid rgb(20, 20, 20)
+        user-select none
+
+    .MapOverview-RunSelection-dropdown
+        z-index 1000
+        position absolute
+        top calc(100% + 10px)
+        float left
+        left calc(50% - 25%)
+        min-width 170px
+        padding-left 0
+        // background rgba(0, 0, 0, 0.9)
+        // background linear-gradient(
+        //     rgba(80, 80, 80, 0.8),
+        //     rgba(80, 80, 80, 0.6))
+        background rgba(10, 10, 10, 0.95)
+        border 1px solid gray
+        border-radius 4px
+        list-style none
+        text-align left
+        padding 5px 0
+        box-shadow 0 0 4px rgba(0, 0, 0, 0.6)
+        text-shadow 0 0 4px black, 0 0 4px black
+        & > li
+            padding 3px 20px
+
+            &:hover
+                cursor pointer
+                // background rgba(0, 120, 170, 0.5)
+                background rgba(0, 0, 0, 0.4)
+
+        & > hr
+            margin 9px 0
+            border-color rgb(100, 100, 100)

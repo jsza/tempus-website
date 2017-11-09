@@ -5,9 +5,9 @@ import {loadMapOverview, selectVideo,
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import DocumentTitle from 'react-document-title'
 
-import MapVideo from './components/MapVideo'
+import Video from './components/Video'
 import Throbber from 'root/components/Throbber'
-import MapOverviewLeaderboard from './components/MapOverviewLeaderboard'
+import LeaderboardContainer from './components/LeaderboardContainer'
 
 import './styles.styl'
 
@@ -77,7 +77,7 @@ class MapOverview extends React.Component {
       })
     }
     return (
-      <span className="map-video-buttons">
+      <span className="MapOverview-header-video-buttons">
         {content} <i className="fa fa-fw fa-youtube" />
       </span>
     )
@@ -139,11 +139,11 @@ class MapOverview extends React.Component {
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>
         <div className="app-container">
-          <div className="container map-overview-container">
-            <div className="map-overview-bg" style={bgStyle}>
+          <section className="MapOverview container">
+            <div className="MapOverview-background" style={bgStyle}>
             </div>
-            <div className="map-content-container">
-              <div className="map-overview-header">
+            <header className="MapOverview-header">
+              <div className="MapOverview-header-inner">
                 <h1>
                   {data.getIn(['map_info', 'name'])} <br className="hidden-lg hidden-md" /> <small>by {this.renderAuthor()}</small>
                 </h1>
@@ -152,15 +152,15 @@ class MapOverview extends React.Component {
                 </span>
                 {this.renderZoneCounts()}
               </div>
-            </div>
-            <div className="map-overview-body">
-              <MapVideo selectedVideo={this.props.selectedVideo}
-                        onClickCloseVideo={this.onClickCloseVideo.bind(this)} />
-              <MapOverviewLeaderboard data={data}
-                                      leaderboard={leaderboard}
-                                      fetchLeaderboard={this.onFetchLeaderboard.bind(this)} />
-            </div>
-          </div>
+            </header>
+            <section className="MapOverview-body">
+              <Video selectedVideo={this.props.selectedVideo}
+                     onClickCloseVideo={this.onClickCloseVideo.bind(this)} />
+              <LeaderboardContainer data={data}
+                                    leaderboard={leaderboard}
+                                    fetchLeaderboard={this.onFetchLeaderboard.bind(this)} />
+            </section>
+          </section>
         </div>
       </DocumentTitle>
     )

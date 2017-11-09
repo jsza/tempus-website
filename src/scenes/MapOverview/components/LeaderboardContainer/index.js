@@ -2,11 +2,13 @@ import React from 'react'
 import {JUMP_CLASSES, CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import {Row} from 'react-bootstrap'
-import MapLeaderboardTitle from './components/MapLeaderboardTitle'
-import MapClassLeaderboard from './components/MapClassLeaderboard'
+import RunSelection from './components/RunSelection'
+import Leaderboard from './components/Leaderboard'
+
+import './styles.styl'
 
 
-export default class MapOverviewLeaderboard extends React.Component {
+export default class LeaderboardContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state =
@@ -24,13 +26,16 @@ export default class MapOverviewLeaderboard extends React.Component {
         <h4 className="text-danger">{leaderboard.error}</h4>
       )
     }
+    console.log(leaderboard.data.toJS())
     return (
       <Row>
         {JUMP_CLASSES.map((playerClass) =>
-          <MapClassLeaderboard
+          <Leaderboard
             data={leaderboard.data.getIn(
               ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
-            playerClass={playerClass} />
+            tier={leaderboard.data.getIn(['tier_info', playerClass.toString()])}
+            playerClass={playerClass}
+            mapData={this.props.data} />
         )}
       </Row>
     )
@@ -38,8 +43,8 @@ export default class MapOverviewLeaderboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <MapLeaderboardTitle
+      <div className="MapOverview-LeaderboardContainer">
+        <RunSelection
           data={this.props.data}
           leaderboard={this.props.leaderboard}
           fetchLeaderboard={this.props.fetchLeaderboard} />
