@@ -9,10 +9,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import {makeRoutes} from './routes'
 
-// styles are stored separately in production
-if (__DEV__)
-  require('../stylus/index.styl')
-  // require('bootstrap/dist/css/bootstrap.css')
+import '../stylus/index.styl'
 
 
 class Root extends React.Component {
