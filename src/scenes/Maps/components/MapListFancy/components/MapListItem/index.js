@@ -21,27 +21,6 @@ export default class MapListItem extends React.Component {
     this.setState({showImage: true})
   }
 
-  renderName() {
-    const item = this.props.data
-    const isLinear = (item.getIn(['zone_counts', 'linear']) === 1)
-    const name = this.props.data.get('name')
-    const displayName = name
-    // let displayName
-    // if (name.startsWith('jump_')) {
-    //   displayName = name.substring(5)
-    // }
-    // else {
-    //   displayName = name
-    // }
-
-    return (
-      <span className="name">
-        <strong style={{marginBottom: '8px'}}>{displayName}</strong>
-        <br />
-      </span>
-    )
-  }
-
   renderTiers() {
     const item = this.props.data
     const soldierTier = item.getIn(['tier_info', '3'])
@@ -73,46 +52,6 @@ export default class MapListItem extends React.Component {
     )
   }
 
-  renderAuthor() {
-    const authors = this.props.data.get('authors')
-    const authorNames = authors.map((a) => a.get('name'))
-
-    let authorItem
-    if (authorNames.size === 0) {
-      authorItem =
-        <span style={{borderBottom: '1px dotted white'}}
-              title="Unknown author">
-          N/A <i className="fa fa-question" />
-        </span>
-    }
-    else if (authorNames.size === 1) {
-      authorItem = authorNames.get(0)
-    }
-    else {
-      const tooltip = (
-        <Tooltip>
-          {authorNames.map((name) => {
-            return (
-              <span>{name}<br /></span>
-            )
-          })}
-        </Tooltip>
-      )
-      authorItem = (
-        <OverlayTrigger placement="bottom" overlay={tooltip}>
-          <span style={{borderBottom: '1px dotted white'}}>
-            Multiple Authors <i className="fa fa-info-circle" />
-          </span>
-        </OverlayTrigger>
-      )
-    }
-    return (
-      <span className="author">
-        <span><span>{authorItem}</span></span>
-      </span>
-    )
-  }
-
   render() {
     const name = this.props.data.get('name')
     let bgStyles =
@@ -128,8 +67,10 @@ export default class MapListItem extends React.Component {
                style={bgStyles} />
           <span className="item-overlay">
             <span className="item-inner">
-              <span className="name-container">
-                {this.renderName()}
+              <span className="name-container clearfix">
+                <span className="name">
+                  {this.props.data.get('name')}
+                </span>
               </span>
               {this.renderTiers()}
             </span>
