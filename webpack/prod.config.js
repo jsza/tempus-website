@@ -29,7 +29,7 @@ module.exports =
     , __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
     })
   , new webpack.optimize.UglifyJsPlugin()
-  , new ExtractTextPlugin('build/styles.css')
+  , new ExtractTextPlugin('../build/styles.css')
   ]
 , module:
   { rules:
