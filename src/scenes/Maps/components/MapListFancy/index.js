@@ -7,7 +7,7 @@ import './styles.styl'
 
 export default class MapListFancy extends React.Component {
   render() {
-    const items = this.props.data.slice(0, 50).map((item) =>
+    const items = this.props.data.map((item) =>
       <MapListItem key={item.get('id')} data={item} />
     )
     return (

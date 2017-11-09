@@ -2,6 +2,7 @@ import React from 'react'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router'
 import Difficulties from 'root/constants/Difficulties'
+import LazyLoad from 'react-lazy-load';
 
 import './styles.styl'
 
@@ -62,20 +63,22 @@ export default class MapListItem extends React.Component {
     const url = '/maps/' + this.props.data.get('name')
     return (
       <Link to={url} className="Maps-MapListFancy-MapListItem">
-        <span>
-          <div className="item-background"
-               style={bgStyles} />
-          <span className="item-overlay">
-            <span className="item-inner">
-              <span className="name-container clearfix">
-                <span className="name">
-                  {this.props.data.get('name')}
+        <LazyLoad height={90}>
+          <span>
+            <div className="item-background"
+                 style={bgStyles} />
+            <span className="item-overlay">
+              <span className="item-inner">
+                <span className="name-container clearfix">
+                  <span className="name">
+                    {this.props.data.get('name')}
+                  </span>
                 </span>
+                {this.renderTiers()}
               </span>
-              {this.renderTiers()}
             </span>
           </span>
-        </span>
+        </LazyLoad>
       </Link>
     )
   }
