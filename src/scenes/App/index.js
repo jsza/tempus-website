@@ -72,15 +72,6 @@ class App extends React.Component {
                     </MenuItem>
                   </LinkContainer>
                 </NavDropdown>
-                {PERMISSIONS.includes('extramaps')
-                ? <NavDropdown title={<i className="fa fa-coffee" />}>
-                    <LinkContainer to="/extramaps">
-                      <MenuItem>
-                        <i className="fa fa-globe" /> jump.tf Maps
-                      </MenuItem>
-                    </LinkContainer>
-                  </NavDropdown>
-                : null}
               </Nav>
 
               <Nav pullRight>
