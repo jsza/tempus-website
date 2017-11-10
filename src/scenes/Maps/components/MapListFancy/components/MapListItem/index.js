@@ -60,12 +60,10 @@ export default class MapListItem extends React.Component {
   }
 
   render() {
-    const name = this.props.data.get('name')
     let bgStyles =
       { backgroundImage: this.state.visible ? `url(${this.imageUrl})` : false
       , opacity: this.state.showImage ? 100 : 0
       }
-      // { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
     const url = '/maps/' + this.props.data.get('name')
 
     var content
@@ -100,6 +98,7 @@ export default class MapListItem extends React.Component {
       <Link to={url} className="Maps-MapListFancy-MapListItem">
         <VisibilitySensor
           onChange={this.onVisibilityChange.bind(this)}
+          active={!this.state.visible}
           partialVisibility={true}>
           {content}
         </VisibilitySensor>
