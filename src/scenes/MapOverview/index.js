@@ -126,7 +126,7 @@ class MapOverview extends React.Component {
     const data = this.props.data
     if (this.props.fetching || !data) {
       return (
-        <div className="container">
+        <div className="app-container container solid">
           <Throbber />
         </div>
       )
