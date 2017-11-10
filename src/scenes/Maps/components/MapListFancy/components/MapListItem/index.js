@@ -2,7 +2,7 @@ import React from 'react'
 import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router'
 import Difficulties from 'root/constants/Difficulties'
-import LazyLoad from 'react-lazy-load';
+import VisibilitySensor from 'react-visibility-sensor'
 
 import './styles.styl'
 
@@ -11,11 +11,17 @@ export default class MapListItem extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {showImage: false}
+    this.state = {visible: false, showImage: false}
     this.imageUrl = `http://tempus.site.nfoservers.com/web/screenshots/raw/${this.props.data.get('name')}_320p.jpeg`
-    this.image = new Image()
-    this.image.onload = this.onImageLoaded.bind(this)
-    this.image.src = this.imageUrl
+  }
+
+  onVisibilityChange(isVisible) {
+    if (isVisible && !this.state.visible) {
+      this.image = new Image()
+      this.image.onload = this.onImageLoaded.bind(this)
+      this.image.src = this.imageUrl
+      this.setState({visible: true})
+    }
   }
 
   onImageLoaded() {
@@ -56,29 +62,47 @@ export default class MapListItem extends React.Component {
   render() {
     const name = this.props.data.get('name')
     let bgStyles =
-      { backgroundImage: `url(${this.imageUrl})`
+      { backgroundImage: this.state.visible ? `url(${this.imageUrl})` : false
       , opacity: this.state.showImage ? 100 : 0
       }
       // { backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${name}_320p.jpeg)`
     const url = '/maps/' + this.props.data.get('name')
-    return (
-      <Link to={url} className="Maps-MapListFancy-MapListItem">
-        <LazyLoad height={90}>
-          <span>
-            <div className="item-background"
-                 style={bgStyles} />
-            <span className="item-overlay">
-              <span className="item-inner">
-                <span className="name-container clearfix">
-                  <span className="name">
-                    {this.props.data.get('name')}
-                  </span>
-                </span>
-                {this.renderTiers()}
-              </span>
+
+    var content
+    if (!this.state.visible) {
+      content = (
+        <span className="item-inner">
+          <span className="name-container clearfix">
+            <span className="name">
+              {this.props.data.get('name')}
             </span>
           </span>
-        </LazyLoad>
+        </span>
+      )
+    }
+    else {
+      content = (
+        <span>
+          <div className="item-background"
+               style={bgStyles} />
+          <span className="item-inner">
+            <span className="name-container clearfix">
+              <span className="name">
+                {this.props.data.get('name')}
+              </span>
+            </span>
+            {this.renderTiers()}
+          </span>
+        </span>
+      )
+    }
+    return (
+      <Link to={url} className="Maps-MapListFancy-MapListItem">
+        <VisibilitySensor
+          onChange={this.onVisibilityChange.bind(this)}
+          partialVisibility={true}>
+          {content}
+        </VisibilitySensor>
       </Link>
     )
   }

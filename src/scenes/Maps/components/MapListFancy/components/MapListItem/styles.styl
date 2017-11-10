@@ -11,10 +11,14 @@
     // transition background-size 0.2s box-shadow 0.2s height 0.2s size 1s
     transition font-size .1s ease-out
 
-    &:hover
+    color white
+    font-weight bold
+
+    &:hover, &:focus
         // z-index 999
         // transform scale(1.2)
         // background-size 102.5%
+        color white
         opacity 1.0
         cursor pointer
 
@@ -28,74 +32,65 @@
         background-size cover
         transition opacity 1s
 
-    .item-inner
-        // position relative
-        padding 6px
+    .name-container
+        // text-shadow 0 0 8px black
+        width 100%
         height 100%
-        display block
-        color white
-        font-weight bold
-        // box-shadow inset 0 0 16px black
+        position absolute
+        top 0
+        left 0
+        transition top 0.2s ease, height 0.2s ease
+        // font-family Montserrat
+        // transform translate(-50%, -50%)
+        background-color rgba(0, 0, 0, 0.5)
+        // border-radius 16px
+        padding 4px 16px
+        text-align center
 
-        .name-container
-            // text-shadow 0 0 8px black
-            width 100%
-            height 100%
+        .name
             position absolute
-            top 0
-            left 0
-            transition top 0.2s ease, height 0.2s ease
-            // font-family Montserrat
-            // transform translate(-50%, -50%)
-            background-color rgba(0, 0, 0, 0.5)
-            // border-radius 16px
-            padding 4px 16px
-            text-align center
-
-            .name
-                position absolute
-                top 46%
-                left 50%
-                transform translate(-50%, -50%)
-
-        .tiers
-            position absolute
-            bottom 0
+            top 46%
             left 50%
-            transform translateX(-50%)
-            transition bottom 0.2s ease, opacity 0.2s ease
-            margin-top 4px
-            opacity 0
-            font-size 12px
+            transform translate(-50%, -50%)
 
-            .tier
-                // box-shadow 0 0px 2px black
-                // text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black
-                font-family tahoma
-                background rgba(0, 0, 0, 0.5)
-                padding 1px 6px 5px 6px
-                border-radius 8px
-                vertica
+    .tiers
+        position absolute
+        bottom 0
+        left 50%
+        transform translateX(-50%)
+        transition bottom 0.2s ease, opacity 0.2s ease
+        margin-top 4px
+        opacity 0
+        font-size 12px
 
-                .tier-inner
-                    vertical-align middle
+        .tier
+            // box-shadow 0 0px 2px black
+            // text-shadow 0 0 3px black, 0 0 3px black, 0 0 3px black
+            font-family tahoma
+            background rgba(0, 0, 0, 0.5)
+            padding 1px 6px 5px 6px
+            border-radius 8px
+            vertica
 
-                .tf-icon
-                    height 18px
-                    width 18px
-                    margin-right 4px
+            .tier-inner
+                vertical-align middle
 
-            .tier-0
-                color rgb(255,75,75)
+            .tf-icon
+                height 18px
+                width 18px
+                margin-right 4px
 
-    .item-overlay
+        .tier-0
+            color rgb(255,75,75)
+
+    .item-inner
         // position relative
         display block
         height 100%
         // background rgba(0, 0, 0, 0.2)
         transition background 0.2s
 
-    &:hover .item-overlay
+    &:hover .item-inner
         .tiers
             opacity 1
 
