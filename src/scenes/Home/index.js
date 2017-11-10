@@ -17,7 +17,7 @@ export class Home extends React.Component {
   render() {
     if (!this.props.data || this.props.fetching) {
       return (
-        <div className="container">
+        <div className="container app-container solid">
           <Throbber />
         </div>
       )
