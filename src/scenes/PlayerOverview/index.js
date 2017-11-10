@@ -84,7 +84,7 @@ export class PlayerOverview extends React.Component {
 
   render() {
     if (!this.props.data || this.props.fetching) {
-      return <div className="container"><Throbber /></div>
+      return <div className="container app-container solid"><Throbber /></div>
     }
     const data = this.props.data
     const pi = data.player_info
