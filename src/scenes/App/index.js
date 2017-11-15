@@ -1,18 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
-import {Navbar, Nav, NavItem, NavDropdown, NavbarBrand, MenuItem, MenuItemLink} from 'react-bootstrap'
-import {LinkContainer as LC} from 'react-router-bootstrap'
-import {AppContainer} from 'react-hot-loader'
-// workaround for issue:
-// https://github.com/react-bootstrap/react-router-bootstrap/issues/169
-const LinkContainer = LC
+import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import AppSearch from './components/AppSearch'
 import {searchPlayersAndMaps} from './services/appsearch/actions'
-import {withRouter} from 'react-router'
+import {withRouter} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+
+import Home from './scenes/Home'
+import Maps from './scenes/Maps'
+import MapOverview from './scenes/MapOverview'
+import PlayerOverview from './scenes/PlayerOverview'
+import PlayerLeaderboards from './scenes/PlayerLeaderboards'
 
 import SteamAvatar from 'root/components/SteamAvatar'
-import {USERNAME, PLAYERNAME, STEAMID, PERMISSIONS} from '../../utils/loginData'
+import {USERNAME, PLAYERNAME, STEAMID} from '../../utils/loginData'
 
 import './styles.styl'
 
@@ -28,7 +30,11 @@ class App extends React.Component {
       </span>
     )
     return (
-      <NavDropdown className="navbar-login-container" title={title}>
+      <NavDropdown
+        id="navbar-dropdown-logout"
+        className="navbar-login-container"
+        title={title}
+        >
         <MenuItem href="/logout">
           Sign out
         </MenuItem>
@@ -38,8 +44,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <AppContainer>
-        <div>
+      <div className="App">
+        <div className="content">
           <Navbar id="navbar-main" inverse fixedTop>
             <Navbar.Header>
               <Navbar.Brand>
@@ -53,11 +59,14 @@ class App extends React.Component {
             <Navbar.Collapse>
               <Nav navbar className="main-nav-items">
                 <LinkContainer to="/maps">
-                  <NavItem>
+                  <MenuItem>
                     <i className="fa fa-globe" /> Maps
-                  </NavItem>
+                  </MenuItem>
                 </LinkContainer>
-                <NavDropdown title={<span><i className="fa fa-trophy" /> Ranks</span>}>
+                <NavDropdown
+                  id="navbar-dropdown-ranks"
+                  title={<span><i className="fa fa-trophy" /> Ranks</span>}
+                  >
                   <LinkContainer to="/ranks/overall">
                     <MenuItem>
                       <i className="fa fa-users rank-user-icon" /> Overall
@@ -83,7 +92,10 @@ class App extends React.Component {
                 </li>
                 { USERNAME !== 'anonymous'
                 ? this.renderAvatar()
-                : <NavDropdown className="navbar-login-dropdown" title={<span>Sign in</span>}>
+                : <NavDropdown
+                    id="navbar-dropdown-login"
+                    title={<span>Sign in</span>}
+                    >
                     <li>
                       <a className="navbar-login-container" href="/openid/login">
                         <img className="login-button"
@@ -95,20 +107,30 @@ class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          {this.props.children}
-          <footer className="container app-container">
-            Powered by Steam
-          </footer>
+
+          <Route exact path="/" component={Home} />
+          <Route exact path="/maps" component={Maps} />
+          <Route exact path="/maps/:name" component={MapOverview} />
+          <Route exact path="/players/:id" component={PlayerOverview} />
+          <Route exact path="/ranks/overall" component={(props) => <PlayerLeaderboards {...props} rankType="overall"/>} />
+          <Route exact path="/ranks/soldier" component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
+          <Route exact path="/ranks/demoman" component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
+          <Route exact path="/activity" component={Home} />
+          <Route exact path="/servers" component={Home} />
         </div>
-      </AppContainer>
+
+        <footer className="App-footer">
+          <a href="https://steamcommunity.com/">Powered by Steam</a> | &copy; Tempus Network 2017
+        </footer>
+      </div>
     )
   }
 }
 
 
 function mapStateToProps(state) {
-  const {search} = state
-  return {searchData: search}
+  const {search, router} = state
+  return {searchData: search, routerState: router}
 }
 
 

@@ -2,8 +2,9 @@ html, body
     height 100%
 
 body
+
     // background-color #F9F9F9
-    background-color lighten(rgb(55, 70, 80), 0%)
+    background-color rgb(55, 70, 80)
     font-family Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif
 
 h1, h2, h3
@@ -17,6 +18,15 @@ table
         white-space nowrap
     td.expand
         width 99%
+
+.App
+    display flex
+    flex-direction column
+    min-height 100vh
+
+    .content
+        flex 1
+        position relative
 
 .tf-icon
     background-size cover
@@ -40,21 +50,22 @@ table
     &.soldier
         background-image url('https://static.tempus.xyz/website/img/icons/soldier.png')
 
-footer
-    // margin-top 40pxs
-    // box-shadow 0 0 4px black
-    // background-color rgba(0, 0, 0, 0.4)
-    background-color rgb(100, 100, 100)
+.App-footer
+    background-color rgba(2, 2, 2, 0.6)
+    // background-color rgb(60, 60, 60)
     border-top 1px solid rgb(20, 20, 20)
-    padding 50px
-    font-size 12px
-    .container
-        color white
-        // background-color: #ededed
-        // min-height 300px
-        // background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
-        // background-repeat no-repeat
-        // background-position center top
+    border-bottom 0
+    padding 10px 15px
+    text-align center
+    &, a
+        // color rgb(150, 150, 150)
+        color rgba(255, 255, 255, 0.7)
+    // font-size 12px
+    // background-color: #ededed
+    // min-height 300px
+    // background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
+    // background-repeat no-repeat
+    // background-position center top
 
 .app-container
     padding-top 41px
@@ -63,16 +74,15 @@ footer
 
     &.solid
         padding-top 56px
-        box-shadow 0 0 4px black
         // background-color #F9F9F9
         background white
 
 #navbar-main
     background #222
     // background rgb(40, 40, 40)
-    box-shadow 0 0 5px black
-    // border-bottom 0
+    border-bottom 1px solid black
     min-height 40px
+    box-shadow 0 0 4px black
 
     .navbar-brand
         height 40px

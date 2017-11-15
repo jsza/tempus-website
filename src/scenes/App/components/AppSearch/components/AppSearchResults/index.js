@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import SteamAvatar from 'root/components/SteamAvatar'
 
 
@@ -65,7 +65,9 @@ export default class AppSearchResults extends React.Component {
     }
     return (
       <ul hidden={!this.props.shown} className="list-group app-search-results">
-        {items.map((i) => <li className="list-group-item">{i}</li>)}
+        {items.map((i, idx) =>
+          <li key={idx} className="list-group-item">{i}</li>
+        )}
       </ul>
     )
   }

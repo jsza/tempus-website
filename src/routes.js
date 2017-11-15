@@ -1,7 +1,7 @@
 import React from 'react'
 import {PERMISSIONS} from './utils/loginData'
 
-import {Route, IndexRoute} from 'react-router'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import App from './scenes/App'
 import Home from './scenes/Home'
 import Maps from './scenes/Maps'
@@ -48,6 +48,13 @@ export function makeRoutes() {
     // workaround for warning from react-redux
     <Route component={App} path="/" childRoutes={childRoutes}>
       <IndexRoute component={Home} />
+      <Route path="maps" component={Maps} />
+      <Route path="maps/:name" component={MapOverview} />
+      <Route path="players/:id" component={PlayerOverview} />
+      <Route path="ranks/overall" component={PlayerLeaderboards} rankType="overall" />
+      <Route path="ranks/soldier" component={PlayerLeaderboards} rankType="soldier" />
+      <Route path="ranks/demoman" component={PlayerLeaderboards} rankType="demoman" />
+      <Route path="activity" component={Home} />
     </Route>
   )
 }

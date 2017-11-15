@@ -6,21 +6,25 @@ import avatarMiddleware from './middleware/steamAvatar'
 import loggerMiddleware from 'redux-logger'
 
 import {combineReducers} from 'redux'
-import {routerReducer} from 'react-router-redux'
+import {routerReducer, routerMiddleware} from 'react-router-redux'
 
-import maps from './scenes/Maps/services/maps/reducer'
-import mapOverview from './scenes/MapOverview/services/mapOverview/reducer'
+import maps from './scenes/App/scenes/Maps/services/maps/reducer'
+import mapOverview from './scenes/App/scenes/MapOverview/services/mapOverview/reducer'
 import steamAvatars from './services/steamAvatars/reducer'
 import search from './scenes/App/services/appsearch/reducer'
-import activity from './scenes/Home/services/activity/reducer'
-import playerOverview from './scenes/PlayerOverview/services/playerOverview/reducer'
-import playerLeaderboards from './scenes/PlayerLeaderboards/services/playerLeaderboards/reducer'
-import servers from './scenes/Home/scenes/Servers/services/servers/reducer.js'
+import activity from './scenes/App/scenes/Home/scenes/Activity/reducer'
+import playerOverview from './scenes/App/scenes/PlayerOverview/services/playerOverview/reducer'
+import playerLeaderboards from './scenes/App/scenes/PlayerLeaderboards/services/playerLeaderboards/reducer'
+import servers from './scenes/App/scenes/Home/scenes/Servers/services/servers/reducer.js'
 
 
-export default function configureStore(api, initialState) {
+export default function configureStore(api, history, initialState) {
+  const composeEnhancers =
+    process.env.NODE_ENV !== 'production' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
+    compose
   const reducer = combineReducers(
-    { routing: routerReducer
+    { router: routerReducer
     , maps
     , mapOverview
     , steamAvatars
@@ -30,14 +34,17 @@ export default function configureStore(api, initialState) {
     , playerLeaderboards
     , servers
     })
-  const store = compose(
-    applyMiddleware(
+  const store = createStore(
+    reducer,
+    initialState,
+    composeEnhancers(applyMiddleware(
+      routerMiddleware(history),
       thunkMiddleware,
       apiMiddleware(api),
       avatarMiddleware()
       // loggerMiddleware
     )
-  )(createStore)(reducer, initialState)
+  ))
 
   // if (module.hot) {
   //   // Enable Webpack hot module replacement for reducers

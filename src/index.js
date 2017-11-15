@@ -1,47 +1,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Router, browserHistory} from 'react-router'
 import configureStore from './store'
 import {Provider} from 'react-redux'
-import {syncHistoryWithStore} from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
+import {ConnectedRouter} from 'react-router-redux'
 import APIUtils from './utils/APIUtils'
 import { AppContainer } from 'react-hot-loader'
+import App from './scenes/App'
 
-import {makeRoutes} from './routes'
+// import {makeRoutes} from './routes'
 
 import '../stylus/index.styl'
 
 
-class Root extends React.Component {
-  render() {
-    return (
-      <Provider store={this.props.store}>
-        <Router history={browserHistory}>
-          {this.props.routes}
-        </Router>
-      </Provider>
-    )
-  }
-}
+// class Root extends React.Component {
+//   render() {
+//     return (
+//       <Provider store={this.props.store}>
+//         <Router history={browserHistory}>
+//           {this.props.routes}
+//         </Router>
+//       </Provider>
+//     )
+//   }
+// }
 
 
 const api = new APIUtils()
-const store = configureStore(api)
-const history = syncHistoryWithStore(browserHistory, store)
-function render(routes) {
-  console.log('render')
+const history = createHistory()
+const store = configureStore(api, history)
+function render(Component) {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <Router history={history}>
-          {routes}
-        </Router>
+        <ConnectedRouter history={history}>
+          <Component />
+        </ConnectedRouter>
       </Provider>
     </AppContainer>,
     document.getElementById('app')
   )
 }
 
-render(makeRoutes())
-if (module.hot)
-  module.hot.accept('./routes', () => render(makeRoutes()))
+render(App)
+if (module.hot) {
+  module.hot.accept('./scenes/App/index.js', () => {
+    const NextRootContainer = require('./scenes/App/index.js').default
+    render(NextRootContainer)
+  })
+}
