@@ -24,6 +24,7 @@ export default class Home extends React.Component {
         </nav>
         <div className="Home-body container">
           <div className="Home-content">
+            <Route exact path="/" component={Servers} />
             <Route path="/servers" component={Servers} />
             <Route path="/activity" component={Activity} />
           </div>
