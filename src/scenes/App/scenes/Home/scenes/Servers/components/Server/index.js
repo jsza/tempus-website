@@ -19,9 +19,12 @@ export default class Server extends React.Component {
         </td>
         <td>
           <span className="currentmap">
-            <Link to={`/maps/${gameInfo.get('currentMap')}`}>
-              {gameInfo ? gameInfo.get('currentMap') : null}
-            </Link>
+            {gameInfo
+              ? <Link to={`/maps/${gameInfo.get('currentMap')}`}>
+                {gameInfo.get('currentMap')}
+                </Link>
+              : null
+            }
           </span>
         </td>
         <td>
