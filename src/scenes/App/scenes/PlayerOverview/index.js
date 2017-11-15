@@ -25,13 +25,15 @@ function getFormattedDate(date) {
 
 
 export class PlayerOverview extends React.Component {
-  componentDidMount() {
-    this.props.loadPlayer(this.props.params.id)
+  componentWillMount() {
+    console.log(this.props)
+    this.props.loadPlayer(this.props.match.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.id !== this.props.params.id) {
-      this.props.loadPlayer(nextProps.params.id)
+    console.log(this.props)
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.props.loadPlayer(nextProps.match.params.id)
     }
   }
 
