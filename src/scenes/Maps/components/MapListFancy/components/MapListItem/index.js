@@ -61,7 +61,7 @@ export default class MapListItem extends React.Component {
 
   render() {
     let bgStyles =
-      { backgroundImage: this.state.visible ? `url(${this.imageUrl})` : false
+      { backgroundImage: this.state.showImage ? `url(${this.imageUrl})` : false
       , opacity: this.state.showImage ? 100 : 0
       }
     const url = '/maps/' + this.props.data.get('name')

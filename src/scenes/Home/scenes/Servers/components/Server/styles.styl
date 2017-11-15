@@ -1,0 +1,73 @@
+.Home-Servers-Server
+    // font-family Montserrat
+    font-family Montserrat, Helvetica Neue, Helvetica, Arial
+    color white
+    text-shadow 0 0 8px black
+    font-size 13px
+    margin 2px
+    // border-bottom 2px solid black
+    border 1px solid black
+    // border-bottom 0
+    list-style none
+    background-position center
+    background-size cover
+    position relative
+    // box-shadow 0 0 2px black
+
+    // background-color rgb(200, 100, 240)
+
+    // background repeating-linear-gradient(
+    //   45deg,
+    //   rgb(150, 150, 150),
+    //   rgb(150, 150, 150) 10px,
+    //   rgb(220, 220, 220) 10px,
+    //   rgb(220, 220, 220) 20px
+    // );
+
+    .bg-overlay
+        position absolute
+        top 0
+        left 0
+        height 100%
+        width 100%
+        background-position center
+        background-size cover
+
+    .inner
+        position relative
+        background-color rgba(0, 0, 0, 0.6)
+        padding 4px 8px
+
+        .server-header
+            margin-bottom 2px
+
+        .name
+            // font-size 14px
+            font-weight bold
+
+        .status
+            // display none
+            float right
+            // text-transform uppercase
+
+            &.offline
+                color rgb(255, 100, 100)
+
+            &.online
+                color rgb(100,255,100)
+
+            a
+                color inherit
+
+        .currentmap
+            margin-left 4px
+            // font-style italic
+
+        .playercount
+            float right
+
+        .steam-connect
+            float right
+
+            a
+                color rgb(100,255,100)

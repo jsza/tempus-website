@@ -2,7 +2,7 @@ import React from 'react'
 import cx from 'classnames'
 import {mapScreenshot, formatTime, prettyZoneName} from 'root/utils/TempusUtils'
 import {Link} from 'react-router'
-import {Table, OverlayTrigger} from 'react-bootstrap'
+import {Table} from 'react-bootstrap'
 import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
 import {Scrollbars} from 'react-custom-scrollbars'
@@ -21,38 +21,40 @@ export default class ActivityWRList extends React.Component {
         , 'soldier': ri.get('class') === 3
         , 'demoman': ri.get('class') === 4
         })
+      console.log(pi.toJS())
       return (
         <tr>
           <td className="shrink">
-            <span className={iconClasses} />
-            {' '}
-            <OverlayTrigger animation={false} placement="bottom" overlay={<div className="app-tooltip"><img width="160" className="img-thumbnail" src={mapScreenshot(mi.get('name'), '160p')} /></div>}>
-              <Link to={`/maps/${mi.get('name')}`}>
-                {mi.get('name') + (
-                  zi.get('type') !== 'map'
-                  ? '/' + prettyZoneName(zi.get('type'), zi.get('zoneindex'))
-                  : ''
-                )}
-              </Link>
-            </OverlayTrigger>
-          </td>
-          <td className="expand">
-            <span className="text-muted pull-right">
+            <span className="text-muted">
               <TimeAgo date={ri.get('date') * 1000} />
             </span>
+          </td>
+          <td className="expand">
+            <Link to={`/players/${pi.get('id')}`}>
+              <SteamAvatar steamID={pi.get('steamid')} size="tiny" /> {pi.get('name')}
+            </Link>
+            <span> </span>
+            beat the <span className={iconClasses} /> record on
+            <span> </span>
+            <Link to={`/maps/${mi.get('name')}`}>
+              {mi.get('name') + (
+                zi.get('type') !== 'map'
+                ? '/' + prettyZoneName(zi.get('type'), zi.get('zoneindex'))
+                : ''
+              )}
+            </Link>
+            <span> </span>
           </td>
         </tr>
       )
     })
 
     return(
-      <Scrollbars style={{height: 100}}>
-        <Table className="activity-table">
-          <tbody>
-            {items}
-          </tbody>
-        </Table>
-      </Scrollbars>
+      <Table className="activity-table">
+        <tbody>
+          {items}
+        </tbody>
+      </Table>
     )
   }
 }

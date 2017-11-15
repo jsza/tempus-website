@@ -15,6 +15,7 @@ import search from './scenes/App/services/appsearch/reducer'
 import activity from './scenes/Home/services/activity/reducer'
 import playerOverview from './scenes/PlayerOverview/services/playerOverview/reducer'
 import playerLeaderboards from './scenes/PlayerLeaderboards/services/playerLeaderboards/reducer'
+import servers from './scenes/Home/scenes/Servers/services/servers/reducer.js'
 
 
 export default function configureStore(api, initialState) {
@@ -27,6 +28,7 @@ export default function configureStore(api, initialState) {
     , activity
     , playerOverview
     , playerLeaderboards
+    , servers
     })
   const store = compose(
     applyMiddleware(

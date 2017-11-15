@@ -31,6 +31,7 @@ const routes =
     , { path: 'ranks/overall', component: PlayerLeaderboards, rankType: 'overall' }
     , { path: 'ranks/soldier', component: PlayerLeaderboards, rankType: 'soldier' }
     , { path: 'ranks/demoman', component: PlayerLeaderboards, rankType: 'demoman' }
+    , { path: 'activity', component: Home }
     ]
   }
 

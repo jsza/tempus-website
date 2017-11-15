@@ -6,6 +6,8 @@ import ActivityWRList from './components/ActivityWRList'
 import ActivityTopList from './components/ActivityTopList'
 import {loadActivity} from './services/activity/actions'
 
+import Servers from './scenes/Servers'
+
 import './styles.styl'
 
 
@@ -13,64 +15,53 @@ export class Home extends React.Component {
   componentDidMount() {
     this.props.loadActivity('map')
   }
-
   render() {
+    var content
     if (!this.props.data || this.props.fetching) {
-      return (
+      content = (
         <div className="container app-container solid">
           <Throbber />
         </div>
       )
     }
+    else {
+      content = (
+        <div className="Home-body container">
+          <div className="Home-content">
+            <div className="overview-panel">
+              <div className="title">
+              </div>
+              <ActivityWRList data={this.props.data.get('map_wrs')} />
+            </div>
+            <Servers />
+          </div>
+        </div>
+      )
+    }
     return (
-      <div className="app-container">
+      <div className="Home app-container">
         <div className="overview-header-container container">
           <div className="header-image-container">
             <div className="header-image" />
           </div>
-          <div className="or-spacer">
-            <div className="mask" />
-          </div>
+
         </div>
-        <div className="container app-container solid" style={{paddingTop: 0}}>
-          <Row className="overview-body" style={{height: '900px'}}>
-            <Col lg={9}>
-              <div className="site-panel">
-                <h2 style={{marginTop: 0}}>Server 1</h2>
-                placeholder
-              </div>
-              <div className="site-panel">
-                <h2 style={{marginTop: 0}}>Server 2</h2>
-                totally not a placeholder
-              </div>
-              <div className="site-panel">
-                <h2 style={{marginTop: 0}}>Server 3</h2>
-                not sure about this one
-              </div>
-              <p>
-                123 player(s) online
-              </p>
-            </Col>
-            <Col lg={3}>
-              <div className="overview-panel">
-                <div className="title">
-                  Map Records
-                </div>
-                <ActivityWRList data={this.props.data.get('map_wrs')} />
-              </div>
-              <div className="overview-panel">
-                <div className="title">
-                  Course Records
-                </div>
-                <ActivityWRList data={this.props.data.get('course_wrs')} />
-              </div>
-            </Col>
-          </Row>
-        </div>
+        <nav className="Home-nav container">
+          <a className="active" href="/activity">Activity</a>
+          <a href="/servers">Servers</a>
+          <a>About</a>
+        </nav>
+        {content}
       </div>
     )
   }
 }
+          // <div className="overview-panel">
+          //   <div className="title">
+          //     Course Records
+          //   </div>
+          //   <ActivityWRList data={this.props.data.get('course_wrs')} />
+          // </div>
 
 
 // <SteamAvatarContainer steamID="STEAM_0:0:14265062" size="mini" />

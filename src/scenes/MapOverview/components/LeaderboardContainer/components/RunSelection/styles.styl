@@ -34,25 +34,24 @@
         user-select none
 
     .MapOverview-RunSelection-dropdown
-        z-index 1000
         position absolute
         top calc(100% + 10px)
-        float left
-        left calc(50% - 25%)
-        min-width 170px
-        padding-left 0
+        left 50%
+        min-width 200px
+        z-index 1000
+        transform translateX(-50%)
         // background rgba(0, 0, 0, 0.9)
         // background linear-gradient(
         //     rgba(80, 80, 80, 0.8),
         //     rgba(80, 80, 80, 0.6))
-        background rgba(10, 10, 10, 0.95)
-        border 1px solid gray
+        background rgba(30, 30, 30, 0.95)
+        border 1px solid black
         border-radius 4px
         list-style none
         text-align left
-        padding 5px 0
+        padding 10px 0
         box-shadow 0 0 4px rgba(0, 0, 0, 0.6)
-        text-shadow 0 0 4px black, 0 0 4px black
+        text-shadow 0 0 4px black
         & > li
             padding 3px 20px
 
@@ -63,4 +62,4 @@
 
         & > hr
             margin 9px 0
-            border-color rgb(100, 100, 100)
+            border-color black

@@ -1,5 +1,56 @@
-.overview-body
-    padding-top 20px
+.Home
+    .body
+        display flex
+        flex-direction row
+        width 100%
+        margin 0
+
+        .overview-body
+            padding-top 20px
+            flex 0 0 1170px
+
+        .sidebar
+            flex 1 1 500px
+
+.Home-body
+    background white
+    // box
+    // box-shadow 0 0 4px black
+
+.Home-nav
+    display flex
+    // display none
+    flex-flow row
+    align-items center
+    justify-content center
+    background rgb(210, 210, 210)
+    border 1px solid rgb(180, 180, 180)
+    border-left none
+    border-right none
+    // border-top none
+    box-shadow 0 0 4px black
+    z-index 100
+
+    a
+        font-size 1.2em
+        color rgb(120, 120, 120)
+        text-shadow 0 1px 0 rgb(240, 240, 240)
+        flex auto auto 30px
+        padding 10px 15px
+        text-align center
+        // box-shadow 0 0 4px black
+        // border 1px solid grey
+
+        &.active:before
+            content: '> '
+
+        &:hover, &:focus
+            text-decoration none
+            color rgb(100, 100, 100)
+
+.Home-content
+    padding-top 10px
+    padding-bottom 10px
 
 .overview-header-container
     display block
@@ -46,7 +97,7 @@
 .activity-table
     font-family tahoma
     display block
-    font-size 10px
+    font-size 12px
     // max-height 200px
     width 100%
     // overflow-y scroll
@@ -93,7 +144,7 @@
 
 .overview-panel
     font-family Tahoma
-    font-size 10px
+    // font-size 10px
     box-shadow 0 1px 2px rgba(0,0,0,0.1)
     border 1px solid #ddd
     margin-bottom 16px
@@ -101,6 +152,8 @@
 
     table
         margin-bottom 0
+        // height 296px
+        // overflow-y auto
 
     .title
         padding 4px 10px

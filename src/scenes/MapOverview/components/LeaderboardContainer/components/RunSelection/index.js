@@ -52,7 +52,7 @@ export default class RunSelection extends React.Component {
         )
         idx++
       }
-      if (count > 0 && itemIdx !== zoneTypes.length - 1) {
+      if (count > 0 && itemIdx !== zoneTypes.length - 2) {
         zoneItems.push(<hr />)
       }
     })

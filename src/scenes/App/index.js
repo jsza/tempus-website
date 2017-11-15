@@ -14,6 +14,8 @@ import {withRouter} from 'react-router'
 import SteamAvatar from 'root/components/SteamAvatar'
 import {USERNAME, PLAYERNAME, STEAMID, PERMISSIONS} from '../../utils/loginData'
 
+import './styles.styl'
+
 
 class App extends React.Component {
   renderAvatar() {
@@ -81,15 +83,22 @@ class App extends React.Component {
                 </li>
                 { USERNAME !== 'anonymous'
                 ? this.renderAvatar()
-                : <a className="navbar-login-container" href="/openid/login">
-                    <img className="login-button"
-                         src="https://static.tempus.xyz/website/img/sits_small.png" />
-                  </a>
+                : <NavDropdown className="navbar-login-dropdown" title={<span>Sign in</span>}>
+                    <li>
+                      <a className="navbar-login-container" href="/openid/login">
+                        <img className="login-button"
+                             src="https://static.tempus.xyz/website/img/sits_small_new.png" />
+                      </a>
+                    </li>
+                  </NavDropdown>
                 }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           {this.props.children}
+          <footer className="container app-container">
+            Powered by Steam
+          </footer>
         </div>
       </AppContainer>
     )
