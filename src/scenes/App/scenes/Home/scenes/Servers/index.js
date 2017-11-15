@@ -19,19 +19,21 @@ class Servers extends React.Component {
     return (
       <div className="Home-Servers">
         <table className="Home-Servers-list">
-          {this.props.data.map((server, idx) => {
-            if (!server) {
-              return
-            }
-            const serverInfo = server.get('server_info')
-            const gameInfo = server.get('game_info')
-            if (serverInfo.get('hidden')) {
-              return
-            }
-            return (
-              <Server serverInfo={serverInfo} gameInfo={gameInfo} />
-            )
-          })}
+          <tbody>
+            {this.props.data.map((server, idx) => {
+              if (!server) {
+                return
+              }
+              const serverInfo = server.get('server_info')
+              const gameInfo = server.get('game_info')
+              if (serverInfo.get('hidden')) {
+                return
+              }
+              return (
+                <Server key={idx} serverInfo={serverInfo} gameInfo={gameInfo} />
+              )
+            })}
+          </tbody>
         </table>
       </div>
     )
