@@ -41,19 +41,20 @@ export default class AppSearch extends React.Component {
   render() {
     const {data, fetching, error} = this.props.searchData
     return (
-      <FormGroup
-          ref="searchContainer"
-          className="app-search-container hidden-xs hidden-sm"
-          onFocus={this.onFocus.bind(this)}
-        >
-        <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
-        <AppSearchResults data={data}
-                          fetching={fetching}
-                          error={error}
-                          shown={this.state.shown}
-                          dismiss={this.onClickDismiss.bind(this)}
-          />
-      </FormGroup>
+      <div ref="searchContainer">
+        <FormGroup
+            className="app-search-container hidden-xs hidden-sm"
+            onFocus={this.onFocus.bind(this)}
+          >
+          <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
+          <AppSearchResults data={data}
+                            fetching={fetching}
+                            error={error}
+                            shown={this.state.shown}
+                            dismiss={this.onClickDismiss.bind(this)}
+            />
+        </FormGroup>
+      </div>
     )
   }
 }

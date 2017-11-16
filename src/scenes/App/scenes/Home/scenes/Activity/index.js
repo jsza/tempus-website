@@ -2,6 +2,7 @@ import React from 'react'
 import cx from 'classnames'
 import {prettyZoneName} from 'root/utils/TempusUtils'
 import {LinkContainer} from 'react-router-bootstrap'
+import {Redirect} from 'react-router-dom'
 import {DropdownButton, MenuItem} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {loadActivity} from './actions'
@@ -19,26 +20,36 @@ class Activity extends React.Component {
   render() {
     if (!this.props.data || this.props.fetching) {
       return (
-        <div>Loading...</div>
+        <div>
+          {this.props.location.pathname === this.props.match.url
+            ? <Redirect to={'/activity/all'} />
+            : null
+          }
+          Loading...
+        </div>
       )
     }
 
     const buttonTitle =
       <span>
-        All
+        Filters
       </span>
 
     const {match} = this.props
 
     return(
       <div className="App-Home-Activity">
+        {this.props.location.pathname === this.props.match.url
+          ? <Redirect to={'/activity/all'} />
+          : null
+        }
         <header className="clearfix">
           <h3>
             World Records
           </h3>
           <span className="zone-type-selection">
             <DropdownButton pullRight title={buttonTitle} bsStyle="default">
-              <LinkContainer to="/activity">
+              <LinkContainer to="/activity/all">
                 <MenuItem>
                   All
                 </MenuItem>
@@ -62,7 +73,7 @@ class Activity extends React.Component {
           </span>
         </header>
         <div>
-          <Route exact path={`${match.url}`} component={(p)  => <ActivityList {...p} data={this.props.data} zoneType="all" />} />
+          <Route exact path={`${match.url}/all`} component={(p)    => <ActivityList {...p} data={this.props.data} zoneType="all" />} />
           <Route exact path={`${match.url}/map`} component={(p)    => <ActivityList {...p} data={this.props.data} zoneType="map" />} />
           <Route exact path={`${match.url}/course`} component={(p) => <ActivityList {...p} data={this.props.data} zoneType="course" />} />
           <Route exact path={`${match.url}/bonus`} component={(p)  => <ActivityList {...p} data={this.props.data} zoneType="bonus" />} />
