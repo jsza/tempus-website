@@ -1,33 +1,50 @@
 .App-Home-Activity
-    display block
-    width 100%
-    background #fff
-    vertical-align middle
-
-    tr:not(:last-child)
-        border-bottom 1px solid #ddd
-
-    td
-        padding 10px
-        white-space nowrap
-        vertical-align middle !important
-
-        .activity-duration
-            font-family 'Droid Sans Mono'
-
-        .activity-player-container
-            // background rgb(50, 50, 50)
-            // border-left 1px solid #ddd
-            // border-radius 4px
+    header
+        h3
+            margin-top 5px
             display inline-block
-            padding 3px
-            margin-left 12px
-            box-shadow 0 0 2px rgba(0,0,0,.075)
+    table
+        display block
+        width 100%
+        background #fff
+        vertical-align middle
 
-            // a
-            //     font-weight bold
-            //     color rgb(248, 248, 248)
+        tr
+            border-top 1px solid #ddd
 
-        .tf-icon
-            width 18px
-            height 18px
+        td
+            padding 10px
+            white-space nowrap
+            vertical-align middle !important
+
+            .activity-duration
+                font-family 'Droid Sans Mono'
+
+            .activity-player-container
+                // background rgb(50, 50, 50)
+                // border-left 1px solid #ddd
+                // border-radius 4px
+                display inline-block
+                padding 3px
+                margin-left 12px
+                box-shadow 0 0 2px rgba(0,0,0,.075)
+
+                // a
+                //     font-weight bold
+                //     color rgb(248, 248, 248)
+
+            .tf-icon
+                width 18px
+                height 18px
+
+    .zone-type-selection
+        // display block
+        // width 100%
+        padding 0
+        margin-bottom 5px
+        font-size 1.2em
+        float right
+        // display inline-block
+
+        .btn:focus, .btn:hover
+            text-decoration none

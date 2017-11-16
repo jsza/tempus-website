@@ -110,22 +110,22 @@ class App extends React.Component {
 
           <div className="App-container">
             <Route exact path="/" component={Home} />
+            <Route path="/activity" component={Home} />
+            <Route exact path="/servers" component={Home} />
             <Route exact path="/maps" component={Maps} />
             <Route exact path="/maps/:name" component={MapOverview} />
-            <Route exact path="/players/:id" component={PlayerOverview} />
+            <Route path="/players/:id" component={PlayerOverview} />
             <Route exact path="/ranks/overall"
                    component={(props) => <PlayerLeaderboards {...props} rankType="overall"/>} />
             <Route exact path="/ranks/soldier"
                    component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
             <Route exact path="/ranks/demoman"
                    component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
-            <Route exact path="/activity" component={Home} />
-            <Route exact path="/servers" component={Home} />
           </div>
         </div>
 
         <footer className="App-footer">
-          Copyright &copy; 2017 Tempus Network &bull; <a href="https://steamcommunity.com/">Powered by Steam</a>
+          &copy; 2017 Tempus Network &bull; <a href="https://steamcommunity.com/">Powered by Steam</a>
         </footer>
       </div>
     )

@@ -1,14 +1,12 @@
 import React from 'react'
 import cx from 'classnames'
-import {mapScreenshot, formatTime, prettyZoneName} from 'root/utils/TempusUtils'
-import {Link} from 'react-router-dom'
-import {Table} from 'react-bootstrap'
-import TimeAgo from 'react-timeago'
-import SteamAvatar from 'root/components/SteamAvatar'
-import {Scrollbars} from 'react-custom-scrollbars'
-import Throbber from 'root/components/Throbber'
+import {prettyZoneName} from 'root/utils/TempusUtils'
+import {LinkContainer} from 'react-router-bootstrap'
+import {DropdownButton, MenuItem} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {loadActivity} from './actions'
+import ActivityList from './components/ActivityList'
+import {Route, Switch, NavLink} from 'react-router-dom'
 
 import './styles.styl'
 
@@ -24,52 +22,52 @@ class Activity extends React.Component {
         <div>Loading...</div>
       )
     }
-    const items = this.props.data.get('map_wrs').map((i, idx) => {
-      const pi = i.get('player_info')
-      const mi = i.get('map_info')
-      const zi = i.get('zone_info')
-      const ri = i.get('record_info')
-      const iconClasses = cx(
-        { 'tf-icon': true
-        , 'mini': true
-        , 'soldier': ri.get('class') === 3
-        , 'demoman': ri.get('class') === 4
-        })
-      return (
-        <tr key={idx}>
-          <td className="shrink">
-            <span className="text-muted">
-              <TimeAgo date={ri.get('date') * 1000} />
-            </span>
-          </td>
-          <td className="expand">
-            <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
-            <span> </span>
-            <Link to={`/players/${pi.get('id')}`}>
-               {pi.get('name')}
-            </Link>
-            <span> </span>
-            beat the <span className={iconClasses} /> record on
-            <span> </span>
-            <Link to={`/maps/${mi.get('name')}`}>
-              {mi.get('name') + (
-                zi.get('type') !== 'map'
-                ? '/' + prettyZoneName(zi.get('type'), zi.get('zoneindex'))
-                : ''
-              )}
-            </Link>
-            <span> </span>
-          </td>
-        </tr>
-      )
-    })
+
+    const buttonTitle =
+      <span>
+        All
+      </span>
+
+    const {match} = this.props
 
     return(
-      <table className="App-Home-Activity">
-        <tbody>
-          {items}
-        </tbody>
-      </table>
+      <div className="App-Home-Activity">
+        <header className="clearfix">
+          <h3>
+            World Records
+          </h3>
+          <span className="zone-type-selection">
+            <DropdownButton pullRight title={buttonTitle} bsStyle="default">
+              <LinkContainer to="/activity">
+                <MenuItem>
+                  All
+                </MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/activity/map">
+                <MenuItem>
+                  Map
+                </MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/activity/course">
+                <MenuItem>
+                  Course
+                </MenuItem>
+              </LinkContainer>
+              <LinkContainer to="/activity/bonus">
+                <MenuItem>
+                  Bonus
+                </MenuItem>
+              </LinkContainer>
+            </DropdownButton>
+          </span>
+        </header>
+        <div>
+          <Route exact path={`${match.url}`} component={(p)  => <ActivityList {...p} data={this.props.data} zoneType="all" />} />
+          <Route exact path={`${match.url}/map`} component={(p)    => <ActivityList {...p} data={this.props.data} zoneType="map" />} />
+          <Route exact path={`${match.url}/course`} component={(p) => <ActivityList {...p} data={this.props.data} zoneType="course" />} />
+          <Route exact path={`${match.url}/bonus`} component={(p)  => <ActivityList {...p} data={this.props.data} zoneType="bonus" />} />
+        </div>
+      </div>
     )
   }
 }

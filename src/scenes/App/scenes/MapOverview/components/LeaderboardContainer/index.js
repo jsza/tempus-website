@@ -26,7 +26,6 @@ export default class LeaderboardContainer extends React.Component {
         <h4 className="text-danger">{leaderboard.error}</h4>
       )
     }
-    console.log(leaderboard.data.toJS())
     return (
       <Row>
         {JUMP_CLASSES.map((playerClass) =>

@@ -12,6 +12,20 @@ export default class AppSearch extends React.Component {
     this.state = {shown: false}
   }
 
+  componentDidMount() {
+    document.addEventListener('click', this.onDocumentClick.bind(this))
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.onDocumentClick)
+  }
+
+  onDocumentClick(event) {
+    if (!this.refs.searchContainer.contains(event.target)) {
+      this.setState({shown: false})
+    }
+  }
+
   onClickDismiss(event) {
     this.setState({shown: false})
   }
@@ -31,7 +45,6 @@ export default class AppSearch extends React.Component {
           ref="searchContainer"
           className="app-search-container hidden-xs hidden-sm"
           onFocus={this.onFocus.bind(this)}
-          onBlur={this.onBlur.bind(this)}
         >
         <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
         <AppSearchResults data={data}

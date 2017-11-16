@@ -36,7 +36,6 @@ export default class Leaderboard extends React.Component {
     const {playerClass, tier} = this.props
     const tfClass = CLASSINDEX_TO_NAME[playerClass]
     const tfClassLower = tfClass.toLowerCase()
-    // console.log(this.props)
 
     return (
       <Col lg={6}>

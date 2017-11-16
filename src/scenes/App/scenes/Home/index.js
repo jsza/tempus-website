@@ -9,6 +9,7 @@ import './styles.styl'
 
 export default class Home extends React.Component {
   render() {
+    const {match} = this.props
     return (
       <div className="Home container">
         <div className="overview-header-container">
@@ -25,8 +26,8 @@ export default class Home extends React.Component {
         <div className="Home-body">
           <div className="Home-content">
             <Route exact path="/" component={Servers} />
-            <Route path="/servers" component={Servers} />
-            <Route path="/activity" component={Activity} />
+            <Route exact path={`/servers`} component={Servers} />
+            <Route path={`/activity`} component={Activity} />
           </div>
         </div>
       </div>

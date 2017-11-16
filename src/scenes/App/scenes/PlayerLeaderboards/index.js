@@ -8,13 +8,11 @@ import {Table} from 'react-bootstrap'
 import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from 'root/components/Throbber'
 
-
 import './styles.styl'
 
 
 class PlayerLeaderboards extends React.Component {
   componentDidMount() {
-    console.log(this.props)
     this.loadRanks()
   }
 
