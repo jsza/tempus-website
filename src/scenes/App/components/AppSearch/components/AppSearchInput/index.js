@@ -1,5 +1,6 @@
 import React from 'react'
 import P from 'prop-types'
+import {FormControl} from 'react-bootstrap'
 
 
 export default class AppSearchInput extends React.Component {
@@ -45,13 +46,12 @@ export default class AppSearchInput extends React.Component {
 
   render() {
     return (
-      <input type="text"
-             className="app-search-input"
-             placeholder="Search"
-             onChange={this.onInputChange.bind(this)}
-             onKeyPress={this.onKeyPress.bind(this)}
-             onFocus={this.onInputFocus}
-        />
+      <FormControl type="text"
+                   className="app-search-input"
+                   placeholder="Search"
+                   onChange={this.onInputChange.bind(this)}
+                   onKeyPress={this.onKeyPress.bind(this)}
+                   onFocus={this.onInputFocus} />
     )
   }
 }

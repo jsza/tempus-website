@@ -55,7 +55,7 @@ class Maps extends React.Component {
 
     return (
       <DocumentTitle title={'Tempus - Maps'}>
-        <div className="container app-container solid">
+        <div className="Maps container">
           <span className="clearfix">
             <MapListFilters className="pull-right"
                             simple={this.props.simple}

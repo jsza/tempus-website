@@ -1,23 +1,73 @@
-.player-overview-container
+.PlayerOverview
     background white
-    padding-top 15px
+    // padding-top 15px
     padding-left 0
     padding-right 0
-    min-height 1000px
+    // min-height 1000px
     box-shadow 0 0 4px black
 
 .player-overview-header
     position relative
-    padding 8px 15px
-    background rgb(240, 240, 240)
-    border 1px solid #ddd
-    border-left 0
-    border-right 0
+    padding 15px 15px
+    color rgba(255, 255, 255, 0.9)
+    background: repeating-linear-gradient(
+        -45deg,
+        darken(rgb(55, 90, 110), 40%),
+        darken(rgb(55, 90, 110), 40%) 40px,
+        darken(rgb(55, 90, 110), 80%) 40px,
+        darken(rgb(55, 90, 110), 80%) 80px
+    );
+    text-shadow 0 1px 1px black, 0 1px 1px black
+    // background darken(rgb(55, 90, 110), 60%)
+    // background linear-gradient(
+    //     lighten(rgb(55, 70, 80), 95%),
+    //     lighten(rgb(55, 70, 80), 85%)
+    // )
+
+    border-bottom 1px solid darken(rgb(55, 90, 110), 60%)
+    // margin-left -10px
+    // margin-right -10px
+    box-shadow 0 0 16px black
+
+    .steamavatar
+        box-shadow 0 0 2px black
+        // border-color black
+        // border 1px solid black
 
 .player-overview-tabs
     ul
         padding-left 15px
         padding-right 15px
+
+.player-overview-class-selection
+    display flex
+    flex-direction row
+    // margin-top 15px
+    // padding-bottom 15px
+    // border-bottom 1px solid #ddd
+    box-shadow 0 0 2px black
+
+    a
+        flex 1 1 auto
+        padding 5px
+        border-radius 0
+        font-size 20px
+        text-align center
+
+        .tf-icon, .fa
+            opacity 0.8
+
+        &.active, &:hover, &:focus
+            .tf-icon, .fa
+                opacity 1.0
+
+        .fa
+            vertical-align middle
+            font-size 24px
+            // color rgb(100, 100, 100)
+
+        .title
+            display none
 
 .player-overview-body
     margin-top 20px

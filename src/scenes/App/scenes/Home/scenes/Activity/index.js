@@ -10,6 +10,8 @@ import Throbber from 'root/components/Throbber'
 import {connect} from 'react-redux'
 import {loadActivity} from './actions'
 
+import './styles.styl'
+
 
 class Activity extends React.Component {
   componentDidMount() {
@@ -63,7 +65,7 @@ class Activity extends React.Component {
     })
 
     return(
-      <table className="activity-table">
+      <table className="App-Home-Activity">
         <tbody>
           {items}
         </tbody>

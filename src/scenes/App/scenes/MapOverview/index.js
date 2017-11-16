@@ -126,7 +126,7 @@ class MapOverview extends React.Component {
     const data = this.props.data
     if (this.props.fetching || !data) {
       return (
-        <div className="app-container container solid">
+        <div className="container">
           <Throbber />
         </div>
       )
@@ -138,7 +138,7 @@ class MapOverview extends React.Component {
     // const bgStyle = {}
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>
-        <div className="app-container">
+        <div>
           <section className="MapOverview container">
             <div className="MapOverview-background" style={bgStyle}>
             </div>

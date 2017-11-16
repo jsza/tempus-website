@@ -10,19 +10,19 @@ import './styles.styl'
 export default class Home extends React.Component {
   render() {
     return (
-      <div className="Home app-container">
-        <div className="overview-header-container container">
+      <div className="Home container">
+        <div className="overview-header-container">
           <div className="header-image-container">
             <div className="header-image" />
           </div>
-
         </div>
-        <nav className="Home-nav container">
+        <nav className="Home-nav">
+          <a>News</a>
           <NavLink to="/servers">Servers</NavLink>
           <NavLink to="/activity">Activity</NavLink>
           <a>About</a>
         </nav>
-        <div className="Home-body container">
+        <div className="Home-body">
           <div className="Home-content">
             <Route exact path="/" component={Servers} />
             <Route path="/servers" component={Servers} />

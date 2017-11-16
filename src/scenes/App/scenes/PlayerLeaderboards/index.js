@@ -103,7 +103,7 @@ class PlayerLeaderboards extends React.Component {
       )
     }
     return (
-      <div className="container app-container solid">
+      <div className="PlayerLeaderboards container">
         {content}
       </div>
     )

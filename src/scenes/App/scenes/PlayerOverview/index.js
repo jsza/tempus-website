@@ -24,14 +24,18 @@ function getFormattedDate(date) {
 }
 
 
+function capitalize(s)
+{
+  return s && s[0].toUpperCase() + s.slice(1)
+}
+
+
 export class PlayerOverview extends React.Component {
   componentWillMount() {
-    console.log(this.props)
     this.props.loadPlayer(this.props.match.params.id)
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props)
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this.props.loadPlayer(nextProps.match.params.id)
     }
@@ -69,16 +73,16 @@ export class PlayerOverview extends React.Component {
       tfClass = 'demoman'
       rank = demoman.rank
     }
+    return title
     return (
-      <h4 className="page-title">
-        <span className={`tf-icon sm ${tfClass}`}/>
-        <span> </span>
+      <h4>
         <span>
-          {title}
-        </span>
-        <span> </span>
-        <span className="text-muted">
-          (Rank {rank})
+          {data.rank_info.points > 0
+            ? <span>
+                <span className={'tf-icon mini ' + tfClass} /> Rank #{rank}
+              </span>
+            : 'Unranked'
+          }
         </span>
       </h4>
     )
@@ -86,85 +90,82 @@ export class PlayerOverview extends React.Component {
 
   render() {
     if (!this.props.data || this.props.fetching) {
-      return <div className="container app-container solid"><Throbber /></div>
+      return <div className="container"><Throbber /></div>
     }
     const data = this.props.data
     const pi = data.player_info
     const firstSeenDate = new Date(pi.first_seen * 1000)
+
+
+
     return (
       <DocumentTitle title={`Tempus - ${pi.name}`}>
-        <div className="app-container">
-          <div className="player-overview-container container">
-            <div>
-              <div className="player-overview-header clearfix">
-                <div className="player-overview-avatar">
-                  <SteamAvatar steamID={pi.steamid} size="mediumlarge" />
-                </div>
-                <span className="pull-right text-muted" style={{textAlign: 'right', padding: '5px', fontSize: '12px'}}>
-                  Online <TimeAgo date={pi.last_seen * 1000} />
-                  <br />
-                  Joined {getFormattedDate(firstSeenDate)}
-                </span>
-                <div className="player-overview-header-content">
-                  <h2 className="page-title" title={pi.steamid}>
-                    {pi.name}
-                  </h2>
-                </div>
-                {this.renderChatRank()}
-              </div>
+        <div className="PlayerOverview container">
+          <div className="player-overview-header clearfix">
+            <div className="player-overview-avatar">
+              <SteamAvatar steamID={pi.steamid} size="mediumlarge" />
             </div>
-            <div className="player-overview-body">
-              <Row>
-                {JUMP_CLASSES.map(pc => {
-                  const playerClassName = CLASSINDEX_TO_NAME[pc]
-                  const icon = <span className={'tf-icon large ' + playerClassName.toLowerCase()} />
-                  return (
-                    <PlayerOverviewStats leaderboardURL={`/ranks/${playerClassName.toLowerCase()}`}
-                                         leaderboardTitle={playerClassName}
-                                         icon={icon}
-                                         rankInfo={data.class_rank_info[pc]}
-                                         countryRankInfo={data.country_class_rank_info[pc]}
-                                         playerInfo={data.player_info}
-                                         prStats={data.pr_stats}
-                                         wrStats={data.wr_stats}
-                                         topStats={data.top_stats}
-                                         zoneCount={data.zone_count} />
-                  )
-                })}
-                <PlayerOverviewStats leaderboardURL="/ranks/overall"
-                                     leaderboardTitle={'Overall'}
-                                     icon={<i className="fa fa-users" />}
-                                     rankInfo={data.rank_info}
-                                     countryRankInfo={data.country_rank_info}
-                                     playerInfo={data.player_info}
-                                     prStats={data.pr_stats}
-                                     wrStats={data.wr_stats}
-                                     topStats={data.top_stats}
-                                     zoneCount={data.zone_count} />
-              </Row>
+            <span className="pull-right" style={{textAlign: 'right', padding: '5px'}}>
+              Online <TimeAgo date={pi.last_seen * 1000} />
+              <br />
+              Joined {getFormattedDate(firstSeenDate)}
+            </span>
+            <div className="player-overview-header-content">
+              <h2 className="page-title" title={pi.steamid}>
+                <span style={{fontFamily: 'Noto Sans'}}>
+                  [{this.renderChatRank()}]
+                </span> {pi.name}
+              </h2>
             </div>
-              <Tabs className="player-overview-tabs">
-                <Tab title="Soldier" eventKey="1">
-                  <div className="container">
-                    <h4 className="site-panel">
-                      <i className="fa fa-caret-down pull-right" />
-                      World Records <span className="text-muted">(placeholder)</span>
-                    </h4>
-                    <h4 className="site-panel">
-                      <i className="fa fa-caret-down pull-right" />
-                      Incomplete Maps <span className="text-muted">(placeholder)</span>
-                    </h4>
-                  </div>
-                </Tab>
-                <Tab title="Demoman" eventKey="2">
-                </Tab>
-              </Tabs>
+            {}
+          </div>
+          <div className="player-overview-class-selection">
+            <a className="btn btn-default active">
+              <span className="tf-icon medium soldier" /> <span className="title">Soldier</span>
+            </a>
+            <a className="btn btn-default">
+              <span className="tf-icon medium demoman" /> <span className="title">Demoman</span>
+            </a>
+            <a className="btn btn-default">
+              <i className="fa fa-users" /> <span className="title">Overall</span>
+            </a>
+          </div>
+          <div className="player-overview-body">
+            <h3>World records</h3>
           </div>
         </div>
       </DocumentTitle>
     )
   }
 }
+              // <Row>
+              //   {JUMP_CLASSES.map(pc => {
+              //     const playerClassName = CLASSINDEX_TO_NAME[pc]
+              //     const icon = <span className={'tf-icon large ' + playerClassName.toLowerCase()} />
+              //     return (
+              //       <PlayerOverviewStats leaderboardURL={`/ranks/${playerClassName.toLowerCase()}`}
+              //                            leaderboardTitle={playerClassName}
+              //                            icon={icon}
+              //                            rankInfo={data.class_rank_info[pc]}
+              //                            countryRankInfo={data.country_class_rank_info[pc]}
+              //                            playerInfo={data.player_info}
+              //                            prStats={data.pr_stats}
+              //                            wrStats={data.wr_stats}
+              //                            topStats={data.top_stats}
+              //                            zoneCount={data.zone_count} />
+              //     )
+              //   })}
+              //   <PlayerOverviewStats leaderboardURL="/ranks/overall"
+              //                        leaderboardTitle={'Overall'}
+              //                        icon={<i className="fa fa-users" />}
+              //                        rankInfo={data.rank_info}
+              //                        countryRankInfo={data.country_rank_info}
+              //                        playerInfo={data.player_info}
+              //                        prStats={data.pr_stats}
+              //                        wrStats={data.wr_stats}
+              //                        topStats={data.top_stats}
+              //                        zoneCount={data.zone_count} />
+              // </Row>
 
 
 function mapStateToProps(state) {

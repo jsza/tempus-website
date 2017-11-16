@@ -27,28 +27,19 @@ table
     .content
         flex 1
         position relative
+        display flex
 
-.tf-icon
-    background-size cover
-    display inline-block
-    vertical-align middle
-    &.sm
-        width 28px
-        height 28px
+.App-container
+    flex 1
+    // display flex
+    padding-top 41px
+    // padding-bottom 15px
+    min-height 100%
 
-    &.mini
-        width 24px
-        height 24px
-
-    &.large
-        width 48px
-        height 48px
-
-    &.demoman
-        background-image url('https://static.tempus.xyz/website/img/icons/demoman.png')
-
-    &.soldier
-        background-image url('https://static.tempus.xyz/website/img/icons/soldier.png')
+    &.solid
+        padding-top 56px
+        // background-color #F9F9F9
+        background white
 
 .App-footer
     background-color rgba(2, 2, 2, 0.6)
@@ -67,15 +58,31 @@ table
     // background-repeat no-repeat
     // background-position center top
 
-.app-container
-    padding-top 41px
-    // padding-bottom 15px
-    min-height 100%
+.tf-icon
+    background-size cover
+    display inline-block
+    vertical-align middle
+    &.sm
+        width 28px
+        height 28px
 
-    &.solid
-        padding-top 56px
-        // background-color #F9F9F9
-        background white
+    &.mini
+        width 24px
+        height 24px
+
+    &.medium
+        width 32px
+        height 32px
+
+    &.large
+        width 48px
+        height 48px
+
+    &.demoman
+        background-image url('https://static.tempus.xyz/website/img/icons/demoman.png')
+
+    &.soldier
+        background-image url('https://static.tempus.xyz/website/img/icons/soldier.png')
 
 #navbar-main
     background #222
@@ -92,8 +99,9 @@ table
         &:hover
             color rgb(0, 220, 250)
 
-    .navbar-nav > li > a
-        padding 10px 15px
+    .navbar-nav
+        & > li > a
+            padding 10px 15px
 
     .navbar-toggle
         margin-top 3px
@@ -137,34 +145,45 @@ table
     &:hover
         color white
 
+.app-search-form
+    margin 0
+
 .app-search-container
     position relative
     display inline-block
+    margin 0
 
     .app-search-input
+        padding 10px 15px
+        height auto
         width 180px
-        display inline-block
-        padding 10px
+        border-radius 0
         background rgb(15, 15, 15)
         outline 0
         border 0
         color #9d9d9d
+
         &:focus
+            box-shadow none
             color rgb(240, 240, 240)
 
-    .list-group
+    ul.app-search-results
+        border-radius 0 !important
         min-width 300px
         max-height 400px
         overflow-y auto
-        li
-            padding 8px 12px
-            min-width 80px
-        & li:first-child
-            border-top-left-radius 0
-            border-top-right-radius 0
         position absolute
         top calc(100% + 1px)
         right 0
+        & li:first-child
+            border-radius 0
+
+        // li
+        //     padding 8px 12px
+        //     min-width 80px
+        // & li:first-child
+        //     border-top-left-radius 0
+        //     border-top-right-radius 0
 
 .table-vertical-align
     & td

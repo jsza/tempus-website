@@ -15,7 +15,7 @@ class Servers extends React.Component {
     if (!this.props.data || this.props.fetching) {
       return <div>Loading...</div>
     }
-    console.log(this.props.data.toJS())
+    var totalPlayers = 0
     return (
       <div className="Home-Servers">
         <table className="Home-Servers-list">
@@ -29,12 +29,16 @@ class Servers extends React.Component {
               if (serverInfo.get('hidden')) {
                 return
               }
+              if (gameInfo) {
+                totalPlayers += gameInfo.get('users').size
+              }
               return (
                 <Server key={idx} serverInfo={serverInfo} gameInfo={gameInfo} />
               )
             })}
           </tbody>
         </table>
+        <span className="text-muted">{totalPlayers} player(s) online</span>
       </div>
     )
   }

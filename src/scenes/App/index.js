@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import AppSearch from './components/AppSearch'
 import {searchPlayersAndMaps} from './services/appsearch/actions'
@@ -59,26 +59,26 @@ class App extends React.Component {
             <Navbar.Collapse>
               <Nav navbar className="main-nav-items">
                 <LinkContainer to="/maps">
-                  <MenuItem>
+                  <NavItem eventKey={1}>
                     <i className="fa fa-globe" /> Maps
-                  </MenuItem>
+                  </NavItem>
                 </LinkContainer>
-                <NavDropdown
+                <NavDropdown eventKey={2}
                   id="navbar-dropdown-ranks"
                   title={<span><i className="fa fa-trophy" /> Ranks</span>}
                   >
                   <LinkContainer to="/ranks/overall">
-                    <MenuItem>
+                    <MenuItem  eventKey={2.1}>
                       <i className="fa fa-users rank-user-icon" /> Overall
                     </MenuItem>
                   </LinkContainer>
                   <LinkContainer to="/ranks/soldier">
-                    <MenuItem>
+                    <MenuItem eventKey={2.2}>
                       <span className="tf-icon soldier mini" /> Soldier
                     </MenuItem>
                   </LinkContainer>
                   <LinkContainer to="/ranks/demoman">
-                    <MenuItem>
+                    <MenuItem eventKey={2.3}>
                       <span className="tf-icon demoman mini" /> Demoman
                     </MenuItem>
                   </LinkContainer>
@@ -86,37 +86,42 @@ class App extends React.Component {
               </Nav>
 
               <Nav pullRight>
-                <li>
+                <Navbar.Form className="app-search-form" pullLeft>
                   <AppSearch search={this.props.searchPlayersAndMaps}
                              searchData={this.props.searchData} />
-                </li>
+                </Navbar.Form>
                 { USERNAME !== 'anonymous'
                 ? this.renderAvatar()
                 : <NavDropdown
                     id="navbar-dropdown-login"
                     title={<span>Sign in</span>}
+                    eventKey={2}
+                    pullRight
                     >
-                    <li>
-                      <a className="navbar-login-container" href="/openid/login">
-                        <img className="login-button"
-                             src="https://static.tempus.xyz/website/img/sits_small_new.png" />
-                      </a>
-                    </li>
+                    <MenuItem className="navbar-login-container" href="/openid/login">
+                      <img className="login-button"
+                           src="https://static.tempus.xyz/website/img/sits_small_new.png" />
+                    </MenuItem>
                   </NavDropdown>
                 }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
 
-          <Route exact path="/" component={Home} />
-          <Route exact path="/maps" component={Maps} />
-          <Route exact path="/maps/:name" component={MapOverview} />
-          <Route exact path="/players/:id" component={PlayerOverview} />
-          <Route exact path="/ranks/overall" component={(props) => <PlayerLeaderboards {...props} rankType="overall"/>} />
-          <Route exact path="/ranks/soldier" component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
-          <Route exact path="/ranks/demoman" component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
-          <Route exact path="/activity" component={Home} />
-          <Route exact path="/servers" component={Home} />
+          <div className="App-container">
+            <Route exact path="/" component={Home} />
+            <Route exact path="/maps" component={Maps} />
+            <Route exact path="/maps/:name" component={MapOverview} />
+            <Route exact path="/players/:id" component={PlayerOverview} />
+            <Route exact path="/ranks/overall"
+                   component={(props) => <PlayerLeaderboards {...props} rankType="overall"/>} />
+            <Route exact path="/ranks/soldier"
+                   component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
+            <Route exact path="/ranks/demoman"
+                   component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
+            <Route exact path="/activity" component={Home} />
+            <Route exact path="/servers" component={Home} />
+          </div>
         </div>
 
         <footer className="App-footer">

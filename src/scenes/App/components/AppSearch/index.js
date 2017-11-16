@@ -1,6 +1,7 @@
 import React from 'react'
 import SteamAvatar from 'root/components/SteamAvatar'
 import {Link} from 'react-router-dom'
+import {FormGroup} from 'react-bootstrap'
 import AppSearchInput from './components/AppSearchInput'
 import AppSearchResults from './components/AppSearchResults'
 
@@ -11,36 +12,26 @@ export default class AppSearch extends React.Component {
     this.state = {shown: false}
   }
 
-  componentDidMount() {
-    document.addEventListener('click', this.onDocumentClick.bind(this))
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.onDocumentClick)
-  }
-
-  onDocumentClick(event) {
-    if (!this.refs.searchContainer.contains(event.target)) {
-      this.setState({shown: false})
-    }
-  }
-
   onClickDismiss(event) {
     this.setState({shown: false})
   }
 
   onFocus(event) {
-    if (!this.state.shown) {
-      this.setState({shown: true})
-    }
+    this.setState({shown: true})
+  }
+
+  onBlur(event) {
+    this.setState({shown: false})
   }
 
   render() {
     const {data, fetching, error} = this.props.searchData
     return (
-      <div ref="searchContainer"
-           className="app-search-container hidden-xs hidden-sm"
-           onFocus={this.onFocus.bind(this)}
+      <FormGroup
+          ref="searchContainer"
+          className="app-search-container hidden-xs hidden-sm"
+          onFocus={this.onFocus.bind(this)}
+          onBlur={this.onBlur.bind(this)}
         >
         <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
         <AppSearchResults data={data}
@@ -49,7 +40,7 @@ export default class AppSearch extends React.Component {
                           shown={this.state.shown}
                           dismiss={this.onClickDismiss.bind(this)}
           />
-      </div>
+      </FormGroup>
     )
   }
 }
