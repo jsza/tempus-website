@@ -5,6 +5,7 @@ import {prettyZoneName} from 'root/utils/TempusUtils'
 import {Link} from 'react-router-dom'
 import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
+import zoneIcons from 'root/constants/zoneIcons'
 
 
 export default class ActivityList extends React.Component {
@@ -59,6 +60,8 @@ export default class ActivityList extends React.Component {
           </td>
           <td className="expand">
             <span>
+              <i className={`text-muted fa fa-fw fa-${zoneIcons[zi.get('type')]}`} />
+              <span> </span>
               {zi.get('type') !== 'map'
                ? prettyZoneName(zi.get('type'), zi.get('zoneindex'))
                : 'Map'

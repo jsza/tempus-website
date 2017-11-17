@@ -5,14 +5,14 @@ import {Link} from 'react-router-dom'
 import './styles.styl'
 
 
-export default class Server extends React.Component {
+export default class ServerItem extends React.Component {
   render() {
     const {serverInfo, gameInfo} = this.props
     const serverAddr =
       `steam://connect/${serverInfo.get('addr')}:${serverInfo.get('port')}`
 
     return (
-      <tr className="Home-Servers-Server">
+      <tr className="Home-Servers-ServerItem">
         <td className="name">
           <img className={`flag flag-${serverInfo.get('shortname').slice(0, 2).toLowerCase()}`}/>
           {serverInfo.get('name')}
@@ -47,7 +47,7 @@ export default class Server extends React.Component {
 }
 
 
-Server.propTypes =
+ServerItem.propTypes =
   { serverInfo: P.object.isRequired
   , gameInfo: P.object
   }

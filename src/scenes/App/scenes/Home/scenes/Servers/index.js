@@ -2,7 +2,7 @@ import React, {PropTypes as P} from 'react'
 import {Row, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {loadServers} from './services/servers/actions'
-import Server from './components/Server'
+import ServerItem from './components/ServerItem'
 
 import './styles.styl'
 
@@ -33,7 +33,7 @@ class Servers extends React.Component {
                 totalPlayers += gameInfo.get('users').size
               }
               return (
-                <Server key={idx} serverInfo={serverInfo} gameInfo={gameInfo} />
+                <ServerItem key={idx} serverInfo={serverInfo} gameInfo={gameInfo} />
               )
             })}
           </tbody>

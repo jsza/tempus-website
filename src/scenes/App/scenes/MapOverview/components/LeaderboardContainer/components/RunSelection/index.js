@@ -1,15 +1,9 @@
 import React from 'react'
 
 import {prettyZoneName} from 'root/utils/TempusUtils'
+import zoneIcons from 'root/constants/zoneIcons'
 
 import './styles.styl'
-
-
-const zoneIcons =
-  { 'map': 'globe'
-  , 'course': 'flag'
-  , 'bonus': 'star'
-  }
 
 
 export default class RunSelection extends React.Component {
