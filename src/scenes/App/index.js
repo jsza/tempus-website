@@ -125,7 +125,7 @@ class App extends React.Component {
         </div>
 
         <footer className="App-footer">
-          &copy; 2017 Tempus Network &bull; <a href="https://steamcommunity.com/">Powered by Steam</a>
+          &copy; 2017 Tempus Network &bull; <a href="http://steampowered.com/">Powered by Steam</a>
         </footer>
       </div>
     )
