@@ -8,22 +8,7 @@ import APIUtils from './utils/APIUtils'
 import { AppContainer } from 'react-hot-loader'
 import App from './scenes/App'
 
-// import {makeRoutes} from './routes'
-
 import '../stylus/index.styl'
-
-
-// class Root extends React.Component {
-//   render() {
-//     return (
-//       <Provider store={this.props.store}>
-//         <Router history={browserHistory}>
-//           {this.props.routes}
-//         </Router>
-//       </Provider>
-//     )
-//   }
-// }
 
 
 const api = new APIUtils()

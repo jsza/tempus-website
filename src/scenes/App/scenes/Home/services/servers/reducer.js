@@ -1,12 +1,15 @@
 import Immutable from 'immutable'
 
-import {LOAD_REQUEST, LOAD_SUCCESS, LOAD_FAILURE} from './actions'
+import {LOAD_REQUEST, LOAD_SUCCESS, LOAD_FAILURE,
+        FILTER_TOGGLE} from './actions'
 
 
 const initialState = Immutable.Record(
   { fetching: false
   , error: null
   , data: null
+  , filter: 'server'
+  , filterReverse: false
   })
 
 
@@ -24,6 +27,13 @@ export default function reducer(state=new initialState(), action) {
         { fetching: false
         , error: action.error
         })
+    case FILTER_TOGGLE:
+      const {filter} = action
+      return state.merge(
+        { filter: filter
+        , filterReverse: filter === state.filter ? !state.filterReverse : false
+        }
+      )
     default:
       return state
   }

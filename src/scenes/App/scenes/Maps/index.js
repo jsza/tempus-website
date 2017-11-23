@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import classnames from 'classnames'
 
 import DocumentTitle from 'react-document-title'
+import {Link} from 'react-router-dom'
 import Throbber from 'root/components/Throbber'
 import MapListFilters from './components/MapListFilters'
 import MapListFancy from './components/MapListFancy'
@@ -68,7 +69,7 @@ class Maps extends React.Component {
             </h1>
             <div>
               <span hidden={!data} className="pull-right text-muted">{data ? data.size : 0} result(s)</span>
-              <p>These are all available to play on our servers.</p>
+              <p>These are all available to play on our <Link to="/servers">servers</Link>.</p>
             </div>
           </span>
           <div className="Maps-container">

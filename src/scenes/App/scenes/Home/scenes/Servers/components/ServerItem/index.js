@@ -14,14 +14,19 @@ export default class ServerItem extends React.Component {
     return (
       <tr className="Home-Servers-ServerItem">
         <td className="name">
-          <img className={`flag flag-${serverInfo.get('shortname').slice(0, 2).toLowerCase()}`}/>
-          {serverInfo.get('name')}
+          <span className="flag-container">
+            <span className={`flag-icon flag-icon-${serverInfo.get('shortname').slice(0, 2).toLowerCase()}`}/>
+          </span>
+          <span> </span>
+          <Link to={`/servers/${serverInfo.get('id')}`}>
+            <strong>{serverInfo.get('name')}</strong>
+          </Link>
         </td>
         <td>
           <span className="currentmap">
             {gameInfo
               ? <Link to={`/maps/${gameInfo.get('currentMap')}`}>
-                {gameInfo.get('currentMap')}
+                  {gameInfo.get('currentMap')}
                 </Link>
               : null
             }

@@ -5,6 +5,8 @@ export const LOAD_REQUEST = 'SERVERS_LOAD_REQUEST'
 export const LOAD_SUCCESS = 'SERVERS_LOAD_SUCCESS'
 export const LOAD_FAILURE = 'SERVERS_LOAD_FAILURE'
 
+export const FILTER_TOGGLE = 'SERVERS_FILTER_TOGGLE'
+
 
 function fetch() {
   return (
@@ -26,5 +28,13 @@ export function loadServers() {
       return null
     }
     return dispatch(fetch())
+  }
+}
+
+
+export function toggleFilter(filter) {
+  return {
+    type: FILTER_TOGGLE,
+    filter
   }
 }

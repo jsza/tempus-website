@@ -1,0 +1,53 @@
+.Home-Server
+    .header
+        margin-bottom 10px
+
+        h3
+            display inline-block
+
+        .flag-container
+            display inline-block
+            vertical-align middle
+            float left
+            box-shadow 0 0 2px rgb(180, 180, 180)
+            margin-right 8px
+
+            .flag-icon
+                vertical-align middle
+                display inline-block
+                height 48px
+                width 64px
+
+        .status
+            display inline-block
+            float right
+
+            &.offline
+                color #a94442
+
+                &:before
+                    content 'OFFLINE'
+
+            &.online
+                color #3c763d
+
+                &:before
+                    content 'ONLINE'
+
+        .server-info-table
+            td
+                padding 2px 4px
+
+            .info-label
+                text-align right
+
+    .table-container
+        // max-height 400px
+        overflow-y auto
+
+    .players-panel, .demos-panel
+        h4
+            margin-top 0
+
+        table
+            margin-bottom 0

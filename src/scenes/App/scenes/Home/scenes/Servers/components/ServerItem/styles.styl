@@ -1,15 +1,24 @@
 .Home-Servers-ServerItem
-    padding 4px 8px
+    border-top 1px solid #ddd
 
     td
-        padding 10px
+        vertical-align middle !important
 
-    .name .flag
+    .name .flag-container
         margin-right 8px
+        box-shadow 0 0 4px rgb(180, 180, 180)
+        display inline-block
+        position relative
+        vertical-align middle
+
+        .flag-icon
+            display inline-block
+            height 24px
+            width 32px
+            vertical-align middle
 
     .status
-        // display none
-        float right
+        text-align right
         text-transform uppercase
 
         &.offline

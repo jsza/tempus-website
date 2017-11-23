@@ -12,6 +12,7 @@ import Maps from './scenes/Maps'
 import MapOverview from './scenes/MapOverview'
 import PlayerOverview from './scenes/PlayerOverview'
 import PlayerLeaderboards from './scenes/PlayerLeaderboards'
+import DemoOverview from './scenes/DemoOverview'
 
 import SteamAvatar from 'root/components/SteamAvatar'
 import {USERNAME, PLAYERNAME, STEAMID} from '../../utils/loginData'
@@ -111,7 +112,7 @@ class App extends React.Component {
           <div className="App-container">
             <Route exact path="/" component={Home} />
             <Route path="/activity" component={Home} />
-            <Route exact path="/servers" component={Home} />
+            <Route path="/servers" component={Home} />
             <Route exact path="/maps" component={Maps} />
             <Route exact path="/maps/:name" component={MapOverview} />
             <Route path="/players/:id" component={PlayerOverview} />
@@ -121,6 +122,7 @@ class App extends React.Component {
                    component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
             <Route exact path="/ranks/demoman"
                    component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
+            <Route path="/demos/:id" component={DemoOverview} />
           </div>
         </div>
 

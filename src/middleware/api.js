@@ -29,7 +29,7 @@ export default function apiMiddleware(api) {
           next(actionWith(thing))
         }
         else {
-          store.dispatch(a())
+          store.dispatch(a(extra))
         }
       }
     }

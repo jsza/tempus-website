@@ -2,6 +2,7 @@ import React from 'react'
 import {Row, Col, Tabs, Tab} from 'react-bootstrap'
 import Activity from './scenes/Activity'
 import Servers from './scenes/Servers'
+import Server from './scenes/Server'
 import {Route, Switch, NavLink} from 'react-router-dom'
 
 import './styles.styl'
@@ -26,8 +27,9 @@ export default class Home extends React.Component {
         <div className="Home-body">
           <div className="Home-content">
             <Route exact path="/" component={Servers} />
-            <Route exact path={`/servers`} component={Servers} />
-            <Route path={`/activity`} component={Activity} />
+            <Route exact path="/servers" component={Servers} />
+            <Route exact path="/servers/:id" component={Server} />
+            <Route path="/activity" component={Activity} />
           </div>
         </div>
       </div>

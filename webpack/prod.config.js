@@ -28,7 +28,7 @@ module.exports =
     { __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
     , __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
     })
-  , new webpack.optimize.UglifyJsPlugin()
+  , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
   , new ExtractTextPlugin('../build/styles.css')
   ]
 , module:

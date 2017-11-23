@@ -15,7 +15,9 @@ import search from './scenes/App/services/appsearch/reducer'
 import activity from './scenes/App/scenes/Home/scenes/Activity/reducer'
 import playerOverview from './scenes/App/scenes/PlayerOverview/services/playerOverview/reducer'
 import playerLeaderboards from './scenes/App/scenes/PlayerLeaderboards/services/playerLeaderboards/reducer'
-import servers from './scenes/App/scenes/Home/scenes/Servers/services/servers/reducer.js'
+import servers from './scenes/App/scenes/Home/services/servers/reducer.js'
+import serverDemos from './scenes/App/scenes/Home/scenes/Server/scenes/ServerDemoList/reducer.js'
+import demoOverview from './scenes/App/scenes/DemoOverview/services/demoOverview/reducer.js'
 
 
 export default function configureStore(api, history, initialState) {
@@ -33,6 +35,8 @@ export default function configureStore(api, history, initialState) {
     , playerOverview
     , playerLeaderboards
     , servers
+    , serverDemos
+    , demoOverview
     })
   const store = createStore(
     reducer,
