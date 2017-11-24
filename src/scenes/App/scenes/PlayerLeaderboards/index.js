@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {loadRanks} from './services/playerLeaderboards/actions'
 
 import {Link} from 'react-router-dom'
-import {Table} from 'react-bootstrap'
+import Table from 'react-bootstrap/lib/Table'
 import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from 'root/components/Throbber'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import SteamAvatar from 'root/components/SteamAvatar'
 import {Link} from 'react-router-dom'
-import {FormGroup} from 'react-bootstrap'
+import FormGroup from 'react-bootstrap/lib/FormGroup'
 import AppSearchInput from './components/AppSearchInput'
 import AppSearchResults from './components/AppSearchResults'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import Table from 'react-bootstrap/lib/Table'
 import {Link} from 'react-router-dom'
 import SteamAvatar from 'root/components/SteamAvatar'
 

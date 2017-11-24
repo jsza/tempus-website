@@ -2,7 +2,7 @@ import React from 'react'
 import {formatTime} from 'root/utils/TempusUtils'
 
 import {Link} from 'react-router-dom'
-import {OverlayTrigger, Tooltip} from 'react-bootstrap'
+import Tooltip from 'react-bootstrap/lib/Tooltip'
 import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
 

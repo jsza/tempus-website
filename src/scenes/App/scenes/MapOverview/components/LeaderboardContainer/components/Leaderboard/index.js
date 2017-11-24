@@ -1,7 +1,7 @@
 import React from 'react'
 import {CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
-import {Col} from 'react-bootstrap'
+import Col from 'react-bootstrap/lib/Col'
 import LeaderboardItem from './components/LeaderboardItem'
 
 import './styles.styl'

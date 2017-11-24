@@ -1,6 +1,6 @@
 import React from 'react'
 import P from 'prop-types'
-import {Col} from 'react-bootstrap'
+import Col from 'react-bootstrap/lib/Col'
 import {Link} from 'react-router-dom'
 
 

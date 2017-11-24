@@ -1,7 +1,7 @@
 import React from 'react'
 import {JUMP_CLASSES, CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
-import {Row} from 'react-bootstrap'
+import Row from 'react-bootstrap/lib/Row'
 import RunSelection from './components/RunSelection'
 import Leaderboard from './components/Leaderboard'
 

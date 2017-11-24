@@ -2,7 +2,10 @@ import React from 'react'
 import cx from 'classnames'
 import {mapScreenshot, formatTime, prettyZoneName} from 'root/utils/TempusUtils'
 import {Link} from 'react-router-dom'
-import {Table, OverlayTrigger} from 'react-bootstrap'
+
+import Table from 'react-bootstrap/lib/Table'
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
+
 import TimeAgo from 'react-timeago'
 import SteamAvatar from 'root/components/SteamAvatar'
 

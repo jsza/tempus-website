@@ -1,5 +1,5 @@
 import React, {PropTypes as P} from 'react'
-import {Row, Col, Table} from 'react-bootstrap'
+import Table from 'react-bootstrap/lib/Table'
 import {connect} from 'react-redux'
 import {loadServers, toggleFilter} from '../../services/servers/actions'
 import ServerItem from './components/ServerItem'

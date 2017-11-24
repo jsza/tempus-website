@@ -1,6 +1,6 @@
 import React from 'react'
 import P from 'prop-types'
-import {FormControl} from 'react-bootstrap'
+import FormControl from 'react-bootstrap/lib/FormControl'
 
 
 export default class AppSearchInput extends React.Component {

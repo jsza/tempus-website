@@ -1,6 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+
+import Navbar from 'react-bootstrap/lib/Navbar'
+import Nav from 'react-bootstrap/lib/Nav'
+import NavItem from 'react-bootstrap/lib/NavItem'
+import NavDropdown from 'react-bootstrap/lib/NavDropdown'
+import MenuItem from 'react-bootstrap/lib/MenuItem'
+
 import {LinkContainer} from 'react-router-bootstrap'
 import AppSearch from './components/AppSearch'
 import {searchPlayersAndMaps} from './services/appsearch/actions'

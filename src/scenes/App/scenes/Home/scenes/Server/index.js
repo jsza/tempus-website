@@ -1,5 +1,8 @@
 import React, {PropTypes as P} from 'react'
-import {Row, Col, Table, Panel} from 'react-bootstrap'
+
+import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
+
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {loadServers} from '../../services/servers/actions'
@@ -73,14 +76,18 @@ class Server extends React.Component {
         <hr />
         <Row>
           <Col md={6}>
-            <Panel className="players-panel">
-              <ServerPlayerList serverInfo={serverInfo} gameInfo={gameInfo} />
-            </Panel>
+            <div className="panel panel-default players-panel">
+              <div className="panel-body">
+                <ServerPlayerList serverInfo={serverInfo} gameInfo={gameInfo} />
+              </div>
+            </div>
           </Col>
           <Col md={6}>
-            <Panel className="demos-panel">
-              <ServerDemoList serverID={serverInfo.id} />
-            </Panel>
+            <div className="panel panel-default demos-panel">
+              <div className="panel-body">
+                <ServerDemoList serverID={serverInfo.id} />
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

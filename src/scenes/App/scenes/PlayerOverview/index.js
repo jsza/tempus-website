@@ -7,7 +7,6 @@ import {Link, Redirect} from 'react-router-dom'
 
 import TimeAgo from 'react-timeago'
 import DocumentTitle from 'react-document-title'
-import {Row, Col, Tabs, Tab, Table} from 'react-bootstrap'
 import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from 'root/components/Throbber'
 import Stats from './components/Stats'

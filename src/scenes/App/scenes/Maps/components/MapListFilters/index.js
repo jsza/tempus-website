@@ -1,7 +1,13 @@
 import React from 'react'
 import P from 'prop-types'
 import cx from 'classnames'
-import {MenuItem, ButtonToolbar, ButtonGroup, DropdownButton, Button} from 'react-bootstrap'
+
+import MenuItem from 'react-bootstrap/lib/MenuItem'
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
+import DropdownButton from 'react-bootstrap/lib/DropdownButton'
+import Button from 'react-bootstrap/lib/Button'
+
 import D from 'root/constants/Difficulties'
 
 

@@ -2,7 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {loadMapOverview, selectVideo,
         fetchLeaderboard} from './services/mapOverview/actions'
-import {Tooltip, OverlayTrigger} from 'react-bootstrap'
+
+import Tooltip from 'react-bootstrap/lib/Tooltip'
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
+
 import DocumentTitle from 'react-document-title'
 
 import Video from './components/Video'

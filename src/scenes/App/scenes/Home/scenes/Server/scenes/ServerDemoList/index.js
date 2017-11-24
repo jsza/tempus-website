@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Table, Button} from 'react-bootstrap'
+import Table from 'react-bootstrap/lib/Table'
 import TimeAgo from 'react-timeago'
 
 import {loadServerDemos} from './actions'

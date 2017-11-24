@@ -1,5 +1,4 @@
 import React from 'react'
-import {Tooltip, OverlayTrigger} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Difficulties from 'root/constants/Difficulties'
 import VisibilitySensor from 'react-visibility-sensor'

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row, Col, Tabs, Tab} from 'react-bootstrap'
+
 import Activity from './scenes/Activity'
 import Servers from './scenes/Servers'
 import Server from './scenes/Server'
