@@ -26,8 +26,8 @@ export default class ServerFilters extends React.Component {
     return (
       <thead className="ServerFilters">
         <tr>
-          {filters.map(f => (
-            <th onClick={ev => this.props.toggleFilter(f.type)}>
+          {filters.map((f, idx) => (
+            <th key={idx} onClick={ev => this.props.toggleFilter(f.type)}>
               {f.title}
               &nbsp;
               {filter === f.type

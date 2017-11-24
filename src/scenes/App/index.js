@@ -93,25 +93,18 @@ class App extends React.Component {
               </Nav>
 
               <Nav pullRight>
-                <Navbar.Form className="app-search-form" pullLeft>
-                  <AppSearch search={this.props.searchPlayersAndMaps}
-                             searchData={this.props.searchData} />
-                </Navbar.Form>
                 { USERNAME !== 'anonymous'
                 ? this.renderAvatar()
-                : <NavDropdown
-                    id="navbar-dropdown-login"
-                    title={<span>Sign in</span>}
-                    eventKey={2}
-                    pullRight
-                    >
-                    <MenuItem className="navbar-login-container" href="/openid/login">
-                      <img className="login-button"
-                           src="https://static.tempus.xyz/website/img/sits_small_new.png" />
-                    </MenuItem>
-                  </NavDropdown>
+                : <NavItem href="/openid/login">
+                    <i className="fa fa-steam" /> Sign in through Steam
+                  </NavItem>
                 }
               </Nav>
+
+              <Navbar.Form className="app-search-form" pullRight>
+                <AppSearch search={this.props.searchPlayersAndMaps}
+                           searchData={this.props.searchData} />
+              </Navbar.Form>
             </Navbar.Collapse>
           </Navbar>
 
