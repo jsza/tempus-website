@@ -4,8 +4,8 @@
   "description": "Tempus Jump Network website client.",
   "main": "index.js",
   "scripts": {
-    "watch": "webpack-dev-server --config webpack/dev.config.js",
-    "build": "NODE_ENV=production BUILD_DEV=0 webpack --progress --colors --display-error-details --config webpack/prod.config.js"
+    "watch": "webpack-dev-server --config webpack/dev.config.babel.js",
+    "build": "NODE_ENV=production BUILD_DEV=0 webpack --progress --colors --display-error-details --config webpack/prod.config.babel.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "babel-runtime": "^5.8.25",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.7",
