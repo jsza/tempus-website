@@ -8,11 +8,11 @@ import ZopfliPlugin from 'zopfli-webpack-plugin'
 export default
   { devtool: 'source-map'
   , entry:
-    { main: path.join(__dirname, '..', 'src', 'index.js')
+    { bundle: path.join(__dirname, '..', 'src', 'index.js')
     }
   , output:
     { path: path.join(__dirname, '..', 'build')
-    , filename: 'bundle.js'
+    , filename: '[name].js'
     }
   , resolve:
     { alias:
@@ -35,7 +35,6 @@ export default
     , new ExtractTextPlugin('../build/styles.css')
     , new webpack.optimize.CommonsChunkPlugin(
       { name: 'vendor'
-      , filename: 'vendor.js'
       , minChunks: ({resource}) => (
           resource
           && resource.match(/\.js$/)
@@ -60,7 +59,14 @@ export default
       , { test: /\.styl$/
         , exclude: /node_modules/
         , use: ExtractTextPlugin.extract(
-          { use: ['css-loader', 'stylus-loader']
+          { use:
+            [ { loader: 'css-loader'
+              , options: {sourceMap: true}
+              }
+            , { loader: 'stylus-loader'
+              , options: {sourceMap: true}
+              }
+            ]
           , fallback: 'style-loader'
           })
         }
