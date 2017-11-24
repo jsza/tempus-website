@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var ZopfliPlugin = require("zopfli-webpack-plugin")
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
@@ -32,6 +33,15 @@ module.exports =
     })
   , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
   , new ExtractTextPlugin('../build/styles.css')
+  , new webpack.optimize.CommonsChunkPlugin(
+    { name: "vendor"
+    , filename: "vendor.js"
+    , minChunks: function (things) {
+        var resource = things.resource
+        return resource && resource.match(/\.js$/) && resource.indexOf('node_modules') >= 0
+      }
+    })
+  , new ZopfliPlugin()
   // , new BundleAnalyzerPlugin()
   ]
 , module:
