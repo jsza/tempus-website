@@ -21,18 +21,11 @@ export default
     }
   , plugins:
     [ new webpack.optimize.ModuleConcatenationPlugin()
-    // , new webpack.IgnorePlugin(/\.\/dev/, /\/config$/)
     , new webpack.DefinePlugin(
       { 'process.env':
         { NODE_ENV: JSON.stringify('production')
         }
       })
-    , new webpack.DefinePlugin(
-      { __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
-      , __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
-      })
-    , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
-    , new ExtractTextPlugin('../build/styles.css')
     , new webpack.optimize.CommonsChunkPlugin(
       { name: 'vendor'
       , minChunks: ({resource}) => (
@@ -41,7 +34,12 @@ export default
           && resource.indexOf('node_modules') >= 0
         )
       })
-    , new ZopfliPlugin()
+    , new webpack.optimize.OccurrenceOrderPlugin()
+    , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
+    , new ExtractTextPlugin('styles.css')
+    , new ZopfliPlugin(
+      { deleteOriginalAssets: true
+      })
     // , new BundleAnalyzerPlugin()
     ]
   , module:
