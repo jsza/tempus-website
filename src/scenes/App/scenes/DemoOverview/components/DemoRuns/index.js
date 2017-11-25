@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 import Table from 'react-bootstrap/lib/Table'
 import {Link} from 'react-router-dom'
 import SteamAvatar from 'root/components/SteamAvatar'
@@ -16,6 +17,7 @@ const DemoRuns = ({demoRuns}) => (
         <thead>
           <tr>
             <th>Player</th>
+            <th>Class</th>
             <th>Zone</th>
             <th>Time</th>
             <th>Type</th>
@@ -28,6 +30,12 @@ const DemoRuns = ({demoRuns}) => (
             const zi = r.zone_info
             const zri = r.zone_run_info
             const runType = r.run_type
+            const iconClasses = cx(
+              { 'tf-icon': true
+              , 'mini': true
+              , 'soldier': zri.player_class === 3
+              , 'demoman': zri.player_class === 4
+              })
             return (
               <tr>
                 <td>
@@ -37,6 +45,7 @@ const DemoRuns = ({demoRuns}) => (
                     {pi.name}
                   </Link>
                 </td>
+                <td><span className={iconClasses} /></td>
                 <td>{prettyZoneName(zi.type, zi.index)}</td>
                 <td>{formatTime(zri.duration)}</td>
                 <td>
