@@ -26,6 +26,7 @@ export default
         { NODE_ENV: JSON.stringify('production')
         }
       })
+    , new webpack.NamedModulesPlugin()
     , new webpack.optimize.CommonsChunkPlugin(
       { name: 'vendor'
       , minChunks: ({resource}) => (
@@ -34,7 +35,6 @@ export default
           && resource.indexOf('node_modules') >= 0
         )
       })
-    , new webpack.optimize.OccurrenceOrderPlugin()
     , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
     , new ExtractTextPlugin('styles.css')
     , new ZopfliPlugin(
