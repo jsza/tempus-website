@@ -32,7 +32,6 @@ Stats.propTypes =
   { playerInfo: P.object.isRequired
   , rankInfo: P.object.isRequired
   , countryRankInfo: P.object.isRequired
-  , icon: P.element.isRequired
   , prStats: P.object.isRequired
   , wrStats: P.object.isRequired
   , topStats: P.object.isRequired

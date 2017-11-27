@@ -25,7 +25,7 @@ const DemoRuns = ({demoRuns}) => (
           </tr>
         </thead>
         <tbody>
-          {demoRuns.map(r => {
+          {demoRuns.map((r, idx) => {
             const pi = r.player_info
             const zi = r.zone_info
             const zri = r.zone_run_info
@@ -37,7 +37,7 @@ const DemoRuns = ({demoRuns}) => (
               , 'demoman': zri.player_class === 4
               })
             return (
-              <tr>
+              <tr key={idx}>
                 <td>
                   <SteamAvatar steamID={pi.steamid} size="tiny" />
                   &nbsp;
