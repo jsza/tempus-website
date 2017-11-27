@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import classnames from 'classnames'
 import {loadPlayer} from './services/playerOverview/actions'
 import {CLASSINDEX_TO_NAME, JUMP_CLASSES} from 'root/constants/TFClasses'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, NavLink, Redirect} from 'react-router-dom'
 
 import TimeAgo from 'react-timeago'
 import DocumentTitle from 'react-document-title'
@@ -140,15 +140,15 @@ export class PlayerOverview extends React.Component {
             {}
           </div>
           <div className="player-overview-class-selection">
-            <Link to={`${this.props.match.url}/soldier`} className="btn btn-default">
+            <NavLink to={`${this.props.match.url}/soldier`}>
               <span className="tf-icon medium soldier" /> <span className="title">Soldier</span>
-            </Link>
-            <Link to={`${this.props.match.url}/demoman`} className="btn btn-default">
+            </NavLink>
+            <NavLink to={`${this.props.match.url}/demoman`}>
               <span className="tf-icon medium demoman" /> <span className="title">Demoman</span>
-            </Link>
-            <Link to={`${this.props.match.url}/overall`} className="btn btn-default">
+            </NavLink>
+            <NavLink to={`${this.props.match.url}/overall`}>
               <i className="fa fa-users" /> <span className="title">Overall</span>
-            </Link>
+            </NavLink>
           </div>
           <div className="player-overview-body">
             {JUMP_CLASSES.map((pc, idx) => {
