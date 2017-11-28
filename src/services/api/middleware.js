@@ -21,13 +21,16 @@ function request(method, endpoint) {
     .on('error', logError)
 }
 
+
 function _get(endpoint, data) {
   return request(GET, endpoint)
 }
 
+
 function _post(endpoint, data) {
   return request(POST, endpoint).send(data)
 }
+
 
 function _delete(endpoint) {
   return request(DELETE, endpoint)
