@@ -45,7 +45,10 @@ export default
   , module:
     { rules:
       [ { test: /\.js$/
-        , exclude: /node_modules/
+        , exclude: (modulePath) => (
+            /node_modules/.test(modulePath) &&
+            !/node_modules\/cbor/.test(modulePath)
+          )
         , include: path.join(__dirname, '..')
         , use:
           [ { loader: 'babel-loader'
