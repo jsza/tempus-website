@@ -2,7 +2,7 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import {createHistory} from 'history'
 import thunkMiddleware from 'redux-thunk'
 import apiMiddleware from './middleware/api'
-import avatarMiddleware from './middleware/steamAvatar'
+import avatarMiddleware from './services/steamAvatars/middleware'
 import loggerMiddleware from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
