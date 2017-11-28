@@ -1,4 +1,4 @@
-import {CALL_API, GET} from 'root/middleware/api'
+import {CALL_API, GET} from 'root/services/api/middleware'
 
 
 export const LOAD_REQUEST = 'PLAYER_OVERVIEW_LOAD_REQUEST'

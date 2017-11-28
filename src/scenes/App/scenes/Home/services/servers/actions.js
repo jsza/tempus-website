@@ -1,4 +1,4 @@
-import {CALL_API, GET} from 'root/middleware/api'
+import {CALL_API, GET} from 'root/services/api/middleware'
 
 import * as wampActions from 'root/services/wamp/actions'
 

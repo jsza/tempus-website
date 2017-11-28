@@ -1,6 +1,6 @@
 import {createAction} from 'redux-actions'
 
-import {CALL_API, GET} from 'root/middleware/api'
+import {CALL_API, GET} from 'root/services/api/middleware'
 
 
 function fetchServerDemos(serverID) {

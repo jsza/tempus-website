@@ -1,6 +1,6 @@
 import {createAction} from 'redux-actions'
 
-import {CALL_API, GET, POST} from 'root/middleware/api'
+import {CALL_API, GET, POST} from 'root/services/api/middleware'
 
 
 function fetchDemoOverview(demoID) {

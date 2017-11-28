@@ -1,4 +1,4 @@
-import {CALL_API, GET, POST, DELETE} from 'root/middleware/api'
+import {CALL_API, GET, POST, DELETE} from 'root/services/api/middleware'
 
 
 export const LOAD_REQUEST = 'PLAYER_RANKS_LOAD_REQUEST'

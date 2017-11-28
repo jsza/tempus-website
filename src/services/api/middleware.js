@@ -1,10 +1,40 @@
+import superagent from 'superagent'
+
+
 export const CALL_API = Symbol('Call API')
 export const GET = 'GET'
 export const POST = 'POST'
 export const DELETE = 'DELETE'
 
+const BASE_URL = '/api/'
 
-export default function apiMiddleware(api) {
+
+export function logError(error) {
+    console.error('%o', error.original)
+}
+
+
+function request(method, endpoint) {
+  const url = BASE_URL + endpoint
+  return superagent(method, url)
+    .accept('json')
+    .on('error', logError)
+}
+
+function _get(endpoint, data) {
+  return request(GET, endpoint)
+}
+
+function _post(endpoint, data) {
+  return request(POST, endpoint).send(data)
+}
+
+function _delete(endpoint) {
+  return request(DELETE, endpoint)
+}
+
+
+export default function apiMiddleware() {
   return store => next => action => {
     const callAPI = action[CALL_API]
     if (typeof callAPI === 'undefined') {
@@ -39,13 +69,13 @@ export default function apiMiddleware(api) {
     let request
     switch (method) {
       case GET:
-        request = api.get(endpoint)
+        request = _get(endpoint)
         break
       case POST:
-        request = api.post(endpoint, data)
+        request = _post(endpoint, data)
         break
       case DELETE:
-        request = api.delete(endpoint)
+        request = _delete(endpoint)
         break
     }
     if (params) {
