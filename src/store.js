@@ -4,10 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 import apiMiddleware from './middleware/api'
 import avatarMiddleware from './middleware/steamAvatar'
 import loggerMiddleware from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
 
 import {combineReducers} from 'redux'
 import {routerReducer, routerMiddleware} from 'react-router-redux'
 
+import wamp from './services/wamp/reducer'
+import wampSaga from './services/wamp/saga'
 import maps from './scenes/App/scenes/Maps/services/maps/reducer'
 import mapOverview from './scenes/App/scenes/MapOverview/services/mapOverview/reducer'
 import steamAvatars from './services/steamAvatars/reducer'
@@ -16,6 +19,7 @@ import activity from './scenes/App/scenes/Home/scenes/Activity/reducer'
 import playerOverview from './scenes/App/scenes/PlayerOverview/services/playerOverview/reducer'
 import playerLeaderboards from './scenes/App/scenes/PlayerLeaderboards/services/playerLeaderboards/reducer'
 import servers from './scenes/App/scenes/Home/services/servers/reducer.js'
+import serversSaga from './scenes/App/scenes/Home/services/servers/saga.js'
 import serverDemos from './scenes/App/scenes/Home/scenes/Server/scenes/ServerDemoList/reducer.js'
 import demoOverview from './scenes/App/scenes/DemoOverview/services/demoOverview/reducer.js'
 
@@ -27,6 +31,7 @@ export default function configureStore(api, history, initialState) {
     compose
   const reducer = combineReducers(
     { router: routerReducer
+    , wamp
     , maps
     , mapOverview
     , steamAvatars
@@ -38,6 +43,7 @@ export default function configureStore(api, history, initialState) {
     , serverDemos
     , demoOverview
     })
+  const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     reducer,
     initialState,
@@ -45,10 +51,13 @@ export default function configureStore(api, history, initialState) {
       routerMiddleware(history),
       thunkMiddleware,
       apiMiddleware(api),
-      avatarMiddleware()
+      avatarMiddleware(),
+      sagaMiddleware
       // loggerMiddleware
     )
   ))
+  sagaMiddleware.run(wampSaga)
+  sagaMiddleware.run(serversSaga)
 
   // if (module.hot) {
   //   // Enable Webpack hot module replacement for reducers

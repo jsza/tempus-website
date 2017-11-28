@@ -29,7 +29,7 @@ class Server extends React.Component {
     if (!this.props.data || this.props.fetching) {
       return <div>Loading...</div>
     }
-    const server = data.find(s => s.getIn(['server_info', 'id']) == this.props.match.params.id)
+    const server = data.get(parseInt(this.props.match.params.id))
     if (!server) {
       return <div>Server not found.</div>
     }

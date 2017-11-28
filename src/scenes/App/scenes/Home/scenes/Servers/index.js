@@ -1,7 +1,8 @@
 import React, {PropTypes as P} from 'react'
 import Table from 'react-bootstrap/lib/Table'
 import {connect} from 'react-redux'
-import {loadServers, toggleFilter} from '../../services/servers/actions'
+import {loadServers, toggleFilter, subscribe,
+        unsubscribe} from '../../services/servers/actions'
 import ServerItem from './components/ServerItem'
 import ServerFilters from './components/ServerFilters'
 
@@ -9,15 +10,20 @@ import './styles.styl'
 
 
 class Servers extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     if (!this.props.data && !this.props.fetching) {
       this.props.loadServers()
     }
+    this.props.subscribe()
+  }
+
+  componentWillUnmount() {
+    this.props.unsubscribe()
   }
 
   renderServers() {
     const {filter, filterReverse} = this.props
-    let data = this.props.data
+    let data = this.props.data.valueSeq()
     if (filter === 'server') {
       data = data.sortBy(s => {
         const si = s.get('server_info').toJS()
@@ -63,7 +69,7 @@ class Servers extends React.Component {
     if (!data || fetching) {
       return <div>Loading...</div>
     }
-    const totalPlayers = data.reduce((total, server) => {
+    const totalPlayers = data.valueSeq().reduce((total, server) => {
       const gameInfo = server.get('game_info')
       return gameInfo ? total + gameInfo.get('users').size : total
     }, 0)
@@ -97,5 +103,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {loadServers, toggleFilter}
+  {loadServers, toggleFilter, subscribe, unsubscribe}
 )(Servers)
