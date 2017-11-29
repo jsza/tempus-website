@@ -47,6 +47,7 @@ class App extends React.Component {
             <i className="fa fa-fw fa-user" /> My profile
           </NavItem>
         </LinkContainer>
+        <MenuItem divider />
         <MenuItem href="/logout">
           <i className="fa fa-fw fa-sign-out" /> Sign out
         </MenuItem>
