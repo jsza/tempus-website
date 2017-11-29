@@ -21,7 +21,7 @@ import PlayerLeaderboards from './scenes/PlayerLeaderboards'
 import DemoOverview from './scenes/DemoOverview'
 
 import SteamAvatar from 'root/components/SteamAvatar'
-import {USERNAME, PLAYERNAME, STEAMID} from '../../utils/loginData'
+import {USERNAME, PLAYERNAME, STEAMID, PLAYERID} from '../../utils/loginData'
 
 import './styles.styl'
 
@@ -42,8 +42,13 @@ class App extends React.Component {
         className="navbar-login-container"
         title={title}
         >
+        <LinkContainer to={`/players/${PLAYERID}`} activeClassName={null}>
+          <NavItem href="/logout">
+            <i className="fa fa-fw fa-user" /> My profile
+          </NavItem>
+        </LinkContainer>
         <MenuItem href="/logout">
-          Sign out
+          <i className="fa fa-fw fa-sign-out" /> Sign out
         </MenuItem>
       </NavDropdown>
     )
