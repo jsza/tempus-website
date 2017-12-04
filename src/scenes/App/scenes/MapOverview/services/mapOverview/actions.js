@@ -53,11 +53,16 @@ export function fetchLeaderboard(mapName, zoneType, index) {
         , started: [LOAD_LEADERBOARD_REQUEST]
         , success: [LOAD_LEADERBOARD_SUCCESS]
         , failure: [LOAD_LEADERBOARD_FAILURE]
-        , endpoint: `maps/name/${mapName}/zones/typeindex/${zoneType}/${index}/records/list`
+        , endpoint: `maps/name/${mapName}/zones/typeindex/${zoneType}/${index}/records/list?limit=50`
         }
         , zoneType
         , index
       }
     )
   }
+}
+
+
+export function fetchMoreLeaderboard(playerClass) {
+
 }

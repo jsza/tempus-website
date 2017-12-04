@@ -7,18 +7,16 @@ $tier-6-color := rgb(255, 125, 125)
 
 .MapOverview-LeaderboardContainer-Leaderboard
     padding 0
-    color rgb(220, 220, 220)
     margin-bottom 15px
-    // box-shadow 0 1px 2px black
 
     > header
-        padding 4px 16px
+        border-radius 4px 4px 0 0
+        padding 2px 16px
         background linear-gradient(
             rgba(10, 10, 10, 0.7),
             rgba(10, 10, 10, 0.9),
             rgba(10, 10, 10, 1.0))
-        // text-align center
-        border-bottom 0
+        border-bottom 1px solid rgb(10, 10, 10)
         position relative
 
         h4
@@ -40,14 +38,22 @@ $tier-6-color := rgb(255, 125, 125)
                     color $tier-6-color
 
     > main
-        min-height 419px
-        background rgba(0, 0, 0, 0.6)
+        display flex
+        flex-direction column
+        height 370px
+        overflow auto
+        background rgba(20, 20, 20, 0.95)
+
+        // .main-container
+        //     padding 8px
 
         .no-records
+            flex 1
             padding 8px 16px
             font-size 16px
 
         > table
+            flex 1
             list-style none
             padding-left 0
 
@@ -61,3 +67,50 @@ $tier-6-color := rgb(255, 125, 125)
 
                     &:hover
                         background rgba(50, 50, 50, 0.75)
+
+        .load-more-button-container
+            padding 4px
+            .load-more-button
+                width 100%
+                // outline 0
+                // border 1px solid black
+                border 0
+                // box-shadow 0 0 2px black
+                padding 8px
+                background rgba(255, 255, 255, 0.15)
+
+                &:hover,&:focus
+                    background rgba(255, 255, 255, 0.2)
+
+    .leaderboard-footer
+        background rgb(10, 10, 10)
+        padding 4px 8px
+        border-radius 0 0 4px 4px
+
+        .lb-pager-btn
+            background none
+            border none
+            border-radius 2px
+            padding 4px 16px
+
+            &:focus
+                border none
+                outline none
+
+            &:hover, &:focus
+                background rgb(40, 40, 40)
+                text-shadow 0 1px 0 black
+                box-shadow 0 1px 0 rgb(60, 60, 60)
+
+            &:active
+                box-shadow 0 0 2px black inset
+                background rgb(30, 30, 30)
+                padding 5px 16px 3px 16px
+                transform translateY(1px)
+
+
+            &.prev
+                float left
+
+            &.next
+                float right

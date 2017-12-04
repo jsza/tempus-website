@@ -34,28 +34,30 @@ export default class RunSelection extends React.Component {
     let zoneCounts = this.props.data.get('zone_counts')
     let zoneItems = []
     const zoneTypes = ['map', 'course', 'bonus']
+    let total = 0
     zoneTypes.forEach((zoneType, itemIdx) => {
       const count = zoneCounts.get(zoneType, 0)
       let idx = 1
       while (idx <= count) {
         const idxCopy = idx
         zoneItems.push(
-          <li onClick={(event) => this.onSelectLeaderboard(event, zoneType, idxCopy)}>
+          <li key={total} onClick={(event) => this.onSelectLeaderboard(event, zoneType, idxCopy)}>
             <i className={'fa fa-fw fa-' + zoneIcons[zoneType]} /> {prettyZoneName(zoneType, idx)}
           </li>
         )
         idx++
+        total++
       }
-      if (count > 0 && itemIdx !== zoneTypes.length - 2) {
-        zoneItems.push(<hr />)
+      if (count > 0 && itemIdx !== zoneTypes.length - 1) {
+        zoneItems.push(<hr key={total*100} />)
       }
     })
     return (
       <div className="MapOverview-RunSelection">
         <div className="MapOverview-RunSelection-inner">
-          <h2 onClick={(event) => this.onClickDropdown(event)} style={{cursor: 'pointer'}}>
+          <button className="run-selection-button" onClick={(event) => this.onClickDropdown(event)} style={{cursor: 'pointer'}}>
             <i className={'fa fa-fw fa-' + zoneIcons[zoneType]} /> {zoneName} <i className="fa fa-caret-down" />
-          </h2>
+          </button>
           <ul className="MapOverview-RunSelection-dropdown" hidden={!this.state.showDropdown}>
             {zoneItems}
           </ul>

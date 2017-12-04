@@ -40,9 +40,9 @@ class MapOverview extends React.Component {
     else {
       const tooltip = (
         <Tooltip>
-          {authorNames.map((name) => {
+          {authorNames.map((name, idx) => {
             return (
-              <span>{name}<br /></span>
+              <span key={idx}>{name}<br /></span>
             )
           })}
         </Tooltip>
@@ -67,14 +67,16 @@ class MapOverview extends React.Component {
       content = 'N/A'
     }
     else {
-      content = ['soldier', 'demoman'].map((c) => {
+      content = ['soldier', 'demoman'].map((c, idx) => {
         const video = videos.get(c)
         if (video) {
-          return <span className={'video-button tf-icon sm ' + c}
+          return <span key={idx}
+                       className={'video-button tf-icon sm ' + c}
                        onClick={() => this.props.selectVideo(video)} />
         }
         else {
-          return <span className={'video-button disabled tf-icon sm ' + c}
+          return <span key={idx}
+                       className={'video-button disabled tf-icon sm ' + c}
                        style={{opacity: '0.3', cursor: 'not-allowed'}} />
         }
       })
@@ -156,7 +158,7 @@ class MapOverview extends React.Component {
                 {this.renderZoneCounts()}
               </div>
             </header>
-            <section className="MapOverview-body">
+            <section className="MapOverview-body container">
               <Video selectedVideo={this.props.selectedVideo}
                      onClickCloseVideo={this.onClickCloseVideo.bind(this)} />
               <LeaderboardContainer data={data}

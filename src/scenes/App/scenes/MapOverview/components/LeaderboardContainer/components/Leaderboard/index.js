@@ -3,17 +3,22 @@ import {CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import Col from 'react-bootstrap/lib/Col'
 import LeaderboardItem from './components/LeaderboardItem'
+import {Scrollbars} from 'react-custom-scrollbars'
 
 import './styles.styl'
 
 
 export default class Leaderboard extends React.Component {
+  loadMore() {
+    console.log(this.props.playerClass)
+  }
+
   renderLeaderboard() {
     const {data} = this.props
     if (data.size === 0) {
       return (
         <div className="no-records">
-          No records found.
+          No one has completed this.
         </div>
       )
     }
@@ -23,6 +28,7 @@ export default class Leaderboard extends React.Component {
         <tbody>
           {data.map((data, idx) =>
             <LeaderboardItem
+              key={idx}
               data={data}
               firstPlace={firstPlace}
               />
@@ -38,28 +44,36 @@ export default class Leaderboard extends React.Component {
     const tfClassLower = tfClass.toLowerCase()
 
     return (
-      <Col lg={6}>
-        <div className="MapOverview-LeaderboardContainer-Leaderboard">
-          <header className="clearfix">
-            <h4>
-              <span className={'tf-icon sm  ' + tfClassLower} /> {tfClass}
-              <span> | </span>
-              <span className={'tier tier-' + tier}>Tier {tier}</span>
-            </h4>
-          </header>
-          <main>
+      <div className="MapOverview-LeaderboardContainer-Leaderboard">
+        <header className="clearfix">
+          <h4>
+            <span className={'tf-icon sm  ' + tfClassLower} /> {tfClass}
+            <span> | </span>
+            <span className={'tier tier-' + tier}>Tier {tier}</span>
+          </h4>
+        </header>
+        <main>
+          <Scrollbars renderThumbVertical={({style, ...props}) =>
+                <div {...props}
+                     style={{...style,
+                             backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                             cursor: 'pointer',
+                             borderRadius: '4px'
+                            }}
+                  />
+              }>
             {this.renderLeaderboard()}
-          </main>
-          <div className="leaderboard-pager clearfix">
-            <button className="lb-pager-btn prev">
-              <i className="fa fa-arrow-circle-left" /> Prev
-            </button>
-            <button className="lb-pager-btn next">
-              Next <i className="fa fa-arrow-circle-right" />
-            </button>
-          </div>
+          </Scrollbars>
+        </main>
+        <div className="leaderboard-footer">
+        &nbsp;
         </div>
-      </Col>
+      </div>
     )
   }
 }
+// <div className="load-more-button-container">
+  // <button className="load-more-button" onClick={this.loadMore.bind(this)}>
+    // Load more
+  // </button>
+// </div>

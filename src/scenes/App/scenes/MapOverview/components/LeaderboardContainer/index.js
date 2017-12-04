@@ -2,6 +2,7 @@ import React from 'react'
 import {JUMP_CLASSES, CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 
 import Row from 'react-bootstrap/lib/Row'
+import Col from 'react-bootstrap/lib/Col'
 import RunSelection from './components/RunSelection'
 import Leaderboard from './components/Leaderboard'
 
@@ -28,13 +29,15 @@ export default class LeaderboardContainer extends React.Component {
     }
     return (
       <Row>
-        {JUMP_CLASSES.map((playerClass) =>
-          <Leaderboard
-            data={leaderboard.data.getIn(
-              ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
-            tier={leaderboard.data.getIn(['tier_info', playerClass.toString()])}
-            playerClass={playerClass}
-            mapData={this.props.data} />
+        {JUMP_CLASSES.map((playerClass, idx) =>
+          <Col lg={6} key={idx}>
+            <Leaderboard
+              data={leaderboard.data.getIn(
+                ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
+              tier={leaderboard.data.getIn(['tier_info', playerClass.toString()])}
+              playerClass={playerClass}
+              mapData={this.props.data} />
+          </Col>
         )}
       </Row>
     )

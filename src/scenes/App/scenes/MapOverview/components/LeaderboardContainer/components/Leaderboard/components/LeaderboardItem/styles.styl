@@ -1,39 +1,63 @@
 .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
-    background rgba(20, 20, 20, 0.7)
+    cursor pointer
+    font-size 14px
+
+    &:nth-of-type(odd)
+        background rgba(255, 255, 255, 0.05)
+
     &:hover
-        background rgba(50, 50, 50, 0.75)
+        background rgba(255, 255, 255, 0.1)
 
     td
-        padding 8px
+        padding 6px 12px
 
     .rank
-        font-size 125%
+        color rgb(150, 150, 150)
         text-align right
 
     .avatar
         padding-right 0
+        text-align right
 
     .name
-        padding-right 32px
+        padding-left 8px
+        max-width 20px
+        text-overflow ellipsis
+
         a
-            font-size 16px
             color rgb(0, 180, 240)
+            &:hover
+                color rgb(0, 200, 255)
+                text-decoration none
+
+        .steamavatar
+            margin-right 8px
 
     .duration
         font-family Droid Sans Mono
-        font-size 16px
-        span
-            border-bottom 1px dotted rgb(100, 100, 100)
-            cursor help
+        text-align right
+
+    .duration a
+        color inherit
+
+    .compared
+        color rgb(150, 150, 150)
+        font-size 12px
+
+    .date
+        text-align right
+        color rgb(150, 150, 150)
 
     &.rank-1
-        line-height 24px
         color gold
-        background darken(rgba(255, 215, 0, 0.6), 80%)
-        border 1px solid darken(rgb(255, 215, 0), 50%)
+        background darken(rgba(255, 215, 0, 0.6), 75%)
+        border 1px solid darken(rgba(255, 215, 0, 0.6), 50%)
         border-left 0
         border-right 0
         position relative
+
+        td
+            padding-top 8px
 
         &:before
             content
@@ -41,10 +65,8 @@
         &:hover
             background darken(rgba(255, 215, 0, 0.65), 70%)
 
-        .steamavatar
-            width 32px
-            height 32px
-            border-width 1px
+        .rank, .date
+            color darken(gold, 20%)
 
         .name a
             color gold
