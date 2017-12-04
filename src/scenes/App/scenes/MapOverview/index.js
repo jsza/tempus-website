@@ -155,7 +155,13 @@ class MapOverview extends React.Component {
                 <span className="pull-right">
                   {this.renderVideoButtons()}
                 </span>
-                {this.renderZoneCounts()}
+                <p>
+                  {this.renderZoneCounts()}
+                </p>
+                <a className="btn btn-primary" target="_blank"
+                   href={`http://tempus.site.nfoservers.com/server/maps/${data.getIn(['map_info', 'name'])}.bsp.bz2`}>
+                  <i className="fa fa-download" /> Download
+                </a>
               </div>
             </header>
             <section className="MapOverview-body container">
