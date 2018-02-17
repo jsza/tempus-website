@@ -44,6 +44,7 @@ export default class SessionProxy {
   }
 
   wantsSubscribe(topic, actionType, callback) {
+    console.log('wants sub', topic, actionType)
     this.wantsSubs = this.wantsSubs.set(actionType, topic)
     if (this.session) {
       this._subForDispatch(topic, actionType)
@@ -51,7 +52,7 @@ export default class SessionProxy {
   }
 
   wantsUnsubscribe(topic, actionType) {
-    console.log('check wants subs', topic, actionType, this.actionSubscriptions)
+    console.log('wants unsub', topic, actionType, this.actionSubscriptions)
     if (this.wantsSubs.get(actionType)) {
       const subscription = this.actionSubscriptions[actionType]
       console.log('unsub', topic, actionType)

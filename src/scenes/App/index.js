@@ -19,6 +19,7 @@ import MapOverview from './scenes/MapOverview'
 import PlayerOverview from './scenes/PlayerOverview'
 import PlayerLeaderboards from './scenes/PlayerLeaderboards'
 import DemoOverview from './scenes/DemoOverview'
+import RecordOverview from './scenes/RecordOverview'
 
 import SteamAvatar from 'root/components/SteamAvatar'
 import {USERNAME, PLAYERNAME, STEAMID, PLAYERID} from '../../utils/loginData'
@@ -128,6 +129,7 @@ class App extends React.Component {
             <Route exact path="/ranks/demoman"
                    component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
             <Route path="/demos/:id" component={DemoOverview} />
+            <Route path="/records/:id" component={RecordOverview} />
           </div>
         </div>
 

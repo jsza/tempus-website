@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/lib/Col'
 
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {loadServers} from '../../services/servers/actions'
+import {loadServers, subscribe, unsubscribe} from '../../services/servers/actions'
 import SteamAvatar from 'root/components/SteamAvatar'
 import ServerPlayerList from './components/ServerPlayerList'
 import ServerDemoList from './scenes/ServerDemoList'
@@ -18,6 +18,11 @@ class Server extends React.Component {
     if (!this.props.data && !this.props.fetching) {
       this.props.loadServers()
     }
+    this.props.subscribe()
+  }
+
+  componentWillUnmount() {
+    this.props.unsubscribe
   }
 
   renderUsers() {
@@ -108,5 +113,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {loadServers}
+  {loadServers, subscribe, unsubscribe}
 )(Server)

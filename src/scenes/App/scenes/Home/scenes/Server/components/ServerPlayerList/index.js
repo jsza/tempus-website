@@ -2,6 +2,7 @@ import React from 'react'
 import P from 'prop-types'
 import {Link} from 'react-router-dom'
 import Table from 'react-bootstrap/lib/Table'
+import Transition from 'react-motion-ui-pack/lib/Transition'
 
 import {mapScreenshot} from 'root/utils/TempusUtils'
 import SteamAvatar from 'root/components/SteamAvatar'
@@ -40,22 +41,21 @@ export default class ServerPlayerList extends React.Component {
           </span>
         </h4>
         <div className="table-container">
-          {totalPlayers > 0
-            ? <Table hover condensed>
-                <tbody>
-                  {gameInfo.users.map((u, idx) =>
-                    <tr key={idx}>
-                      <td>
-                        <SteamAvatar steamID={u.steamid} size="tiny" />
-                        &nbsp;
-                        <Link to={`/players/${u.id}`}>{u.name}</Link>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </Table>
-            : 'No one here right now.'
-          }
+          <Table hover condensed>
+            <Transition
+              component="tbody"
+              enter={{opacity: 1}}
+              leave={{opacity: 0}}
+            >
+              {gameInfo.users.map((u, idx) =>
+                <tr className="ServerPlayerList-item" key={idx}>
+                  <td>
+                    <Link to={`/players/${u.id}`}>{u.name}</Link>
+                  </td>
+                </tr>
+              )}
+            </Transition>
+          </Table>
         </div>
       </div>
     )

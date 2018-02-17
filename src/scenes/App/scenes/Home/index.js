@@ -26,12 +26,10 @@ export default class Home extends React.Component {
         </nav>
         <div className="Home-body">
           <div className="Home-content">
-            <Switch>
-              <Route exact path="/servers" component={Servers} />
-              <Route exact path="/servers/:id" component={Server} />
-              <Route path="/activity" component={Activity} />
-              <Redirect path="/" to="/servers" />
-            </Switch>
+            <Route exact path="/" component={Servers} />
+            <Route exact path="/servers" component={Servers} />
+            <Route exact path="/servers/:id" component={Server} />
+            <Route path="/activity" component={Activity} />
           </div>
         </div>
       </div>

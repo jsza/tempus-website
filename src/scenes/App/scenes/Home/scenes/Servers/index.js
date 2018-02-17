@@ -10,7 +10,7 @@ import './styles.styl'
 
 
 class Servers extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.data && !this.props.fetching) {
       this.props.loadServers()
     }

@@ -22,6 +22,7 @@ import servers from './scenes/App/scenes/Home/services/servers/reducer.js'
 import serversSaga from './scenes/App/scenes/Home/services/servers/saga.js'
 import serverDemos from './scenes/App/scenes/Home/scenes/Server/scenes/ServerDemoList/reducer.js'
 import demoOverview from './scenes/App/scenes/DemoOverview/services/demoOverview/reducer.js'
+import recordOverview from './scenes/App/scenes/RecordOverview/services/recordOverview/reducer.js'
 
 
 export default function configureStore(api, history, initialState) {
@@ -42,6 +43,7 @@ export default function configureStore(api, history, initialState) {
     , servers
     , serverDemos
     , demoOverview
+    , recordOverview
     })
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
