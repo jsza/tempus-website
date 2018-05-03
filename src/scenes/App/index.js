@@ -148,7 +148,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   {searchPlayersAndMaps}
-)(App)
+)(App))
