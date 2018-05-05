@@ -34,11 +34,10 @@ class RecordOverview extends React.Component {
       const playerInfo = data.get('player_info').toJS()
       const recordInfo = data.get('record_info').toJS()
       const zoneInfo = data.get('zone_info').toJS()
-      const tierInfo = data.get('tier_info').toJS()
+      const zoneTier = data.getIn(['tier_info', recordInfo.class.toString()])
       const mapInfo = data.get('map_info').toJS()
       const demoInfo = data.get('demo_info').toJS()
       const zoneName = prettyZoneName(zoneInfo.type, zoneInfo.zoneindex)
-      console.log(demoInfo)
       const iconClasses = cx(
         { 'tf-icon': true
         , 'mini': true
@@ -86,7 +85,7 @@ class RecordOverview extends React.Component {
                       <tr>
                         <td className="info-label">Tier</td>
                         <td>
-                          {tierInfo.tier}
+                          {zoneTier}
                         </td>
                       </tr>
                     </tbody>
