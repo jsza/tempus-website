@@ -58,32 +58,6 @@ table
     // background-repeat no-repeat
     // background-position center top
 
-.tf-icon
-    background-size cover
-    display inline-block
-    vertical-align middle
-    &.sm
-        width 28px
-        height 28px
-
-    &.mini
-        width 24px
-        height 24px
-
-    &.medium
-        width 32px
-        height 32px
-
-    &.large
-        width 48px
-        height 48px
-
-    &.demoman
-        background-image url('https://static.tempus.xyz/website/img/icons/demoman.png')
-
-    &.soldier
-        background-image url('https://static.tempus.xyz/website/img/icons/soldier.png')
-
 #navbar-main
     background #222
     // background rgb(40, 40, 40)
@@ -203,3 +177,96 @@ table
 .small-input
     padding 3px 6px
     height auto
+
+.panel-dark {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px 5px rgba(8,8,8,0.4);
+  text-shadow 1px 1px 0 black
+  background linear-gradient(135deg, darken(rgba(56, 87, 119, 0.5), 20%), rgba(64, 123, 130, 0.5), darken(rgba(60, 193, 208, 0.5), 40%)),
+               repeating-linear-gradient(
+                 -45deg,
+                 rgba(20, 20, 20, 0.5),
+                 rgba(20, 20, 20, 0.5) 4px,
+                 rgba(40, 40, 40, 0.5) 4px,
+                 rgba(40, 40, 40, 0.5) 16px
+               );
+  background none
+
+  .nav {
+    // display none
+  }
+
+  & > .panel-body {
+    background-color: rgba(10, 20, 20, 0.7);
+    border-radius 0 0 4px 4px
+  }
+
+  & > .panel-heading {
+    color: rgb(240, 240, 240);
+    background: linear-gradient(rgba(173, 173, 173, 0.5), rgba(88, 88, 88, 0.5));
+    background: rgba(rgba(173,173,173,0.27))
+    background linear-gradient(135deg,
+                               darken(rgba(45,70,95,0.6), 28%),
+                               darken(rgba(64,123,130,0.6), 28%),
+                               darken(rgba(31,120,130,0.6), 28%)
+                               )
+    // background linear-gradient(135deg, darken(rgba(56, 87, 119, 0.5), 20%), rgba(64, 123, 130, 0.5), darken(rgba(60, 193, 208, 0.5), 40%)),
+    //            repeating-linear-gradient(
+    //              -45deg,
+    //              rgba(20, 20, 20, 0.5),
+    //              rgba(20, 20, 20, 0.5) 4px,
+    //              rgba(20, 20, 20, 0.5) 4px,
+    //              rgba(20, 20, 20, 0.5) 16px
+    //            );
+    // background none
+    // background-color: rgba(0, 180, 220, 1);
+    // background-color: @heading-bg-color;
+    // border-color: @heading-border;
+
+    + .panel-collapse > .panel-body {
+      border-top-color: rgba(200, 200, 200, 0.8);
+    }
+    .badge {
+      // color: @heading-bg-color;
+      background-color rgba(255, 255, 255, 0.3)
+    }
+  }
+  & > .panel-footer {
+    + .panel-collapse > .panel-body {
+      border-bottom-color: rgba(200, 200, 200, 0.8);
+    }
+  }
+}
+
+.nav-pills.nav-dark
+    > li > a
+        color rgb(230, 230, 230)
+
+    > li.active > a
+        display block
+        background rgba(255, 255, 255, 0.3)
+
+
+.btn-default.btn-dark
+    background linear-gradient(to bottom,rgba(200, 200, 200, 0.5) 0,rgba(170, 170, 170, 0.5) 100%)
+    color rgb(240, 240, 240)
+    text-shadow 0 1px black
+    border none
+    // text-align: left
+    // background: rgba(255, 255, 255, 0.3)
+    // border-radius: 4px
+    // border: none
+    // text-shadow: 1px 1px #080808
+    // box-shadow: none
+
+    &.active
+        background rgba(150, 150, 150, 0.5)
+
+.nav-nested
+    margin-top 0px
+    padding-left 8px
+    margin-bottom 8px
+
+    > li > a
+        padding-top 4px
+        padding-bottom 4px

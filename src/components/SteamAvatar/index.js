@@ -87,7 +87,7 @@ class SteamAvatar extends React.Component {
     const body = <img className={classes} src={this.getAvatarURL()} />
     if (!this.props.noLink)
       return (
-        <a href={this.makeURL()} onClick={this.onClick}>
+        <a href={this.makeURL()} onClick={this.onClick} target="_blank">
           {body}
         </a>
       )

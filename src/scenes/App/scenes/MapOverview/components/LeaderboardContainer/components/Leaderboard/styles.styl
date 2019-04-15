@@ -38,6 +38,32 @@ $tier-6-color := rgb(255, 125, 125)
                     color $tier-6-color
 
     > main
+        > .search-container
+            padding 2px 8px
+            background rgba(0, 0, 0, 0.05)
+            border-bottom 1px solid black
+            box-shadow 0 0 4px black
+
+            > .inner
+                position relative
+                // padding-left 8px
+                background none
+
+                i
+                    color grey
+                    position absolute
+                    top calc(50% - 7px)
+                    left 5px
+                input
+                    // position relative
+                    padding 4px
+                    padding-left 24px
+                    width 100%
+                    border none
+                    background none
+                    &:focus
+                        border none
+                        outline none
         display flex
         flex-direction column
         height 370px

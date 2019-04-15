@@ -1,18 +1,55 @@
+.table-mapoverview
+    // box-shadow 0 0 4px black inset
+    margin-left -15px
+    margin-right -15px
+    width calc(100% + 30px)
+    max-width calc(100% + 30px)
+
+    & > tbody > tr > td
+        border-top none
+
+    // tr:nth-of-type(odd)
+    //     background rgba(60, 60, 60, 0.5)
+
+    // tr:nth-of-type(even)
+    //     background rgba(100, 100, 100, 0.5)
+
+//     padding-left 15px
+//     padding-right 15px
+
 .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
     cursor pointer
-    font-size 14px
+    // border-top 1px solid rgb(80, 80, 80)
 
     &:nth-of-type(odd)
         background rgba(255, 255, 255, 0.05)
+    //     background repeating-linear-gradient(
+    //              -45deg,
+    //              rgba(255, 255, 255, 0.05),
+    //              rgba(255, 255, 255, 0.05) 8px,
+    //              rgba(255, 255, 255, 0.075) 8px,
+    //              rgba(255, 255, 255, 0.075) 16px
+    //            );
+
+    // &:nth-of-type(even)
+    //     background repeating-linear-gradient(
+    //              -45deg,
+    //              rgba(0, 0, 0, 0.1),
+    //              rgba(0, 0, 0, 0.1) 8px,
+    //              rgba(0, 0, 0, 0.15) 8px,
+    //              rgba(0, 0, 0, 0.15) 16px
+    //            );
 
     &:hover
         background rgba(255, 255, 255, 0.1)
 
     td
-        padding 6px 12px
+        padding 5px 12px !important
+        vertical-align middle !important
 
     .rank
-        color rgb(150, 150, 150)
+        color rgb(200, 200, 200)
+        // font-size 13px
         text-align right
 
     .avatar
@@ -21,7 +58,6 @@
 
     .name
         padding-left 8px
-        max-width 20px
         text-overflow ellipsis
 
         a
@@ -30,8 +66,18 @@
                 color rgb(0, 200, 255)
                 text-decoration none
 
+        .name-inner
+            display block
+            white-space nowrap
+
         .steamavatar
-            margin-right 8px
+            height 28px
+            width 28px
+            border-radius 50%
+            border-width 2px
+            margin-right 4px
+            box-shadow 1px 0 4px black
+
 
     .duration
         font-family Droid Sans Mono
@@ -47,12 +93,13 @@
 
     .date
         text-align right
-        color rgb(150, 150, 150)
+        font-size 13px
+        color rgb(200, 200, 200)
 
     &.rank-1
-        color gold
-        background darken(rgba(255, 215, 0, 0.6), 75%)
-        border 1px solid darken(rgba(255, 215, 0, 0.6), 50%)
+        // color gold
+        // background darken(rgba(255, 215, 0, 0.6), 75%) !important
+        // border 1px solid darken(rgba(255, 215, 0, 0.6), 50%)
         border-left 0
         border-right 0
         position relative
@@ -60,14 +107,39 @@
         td
             padding-top 8px
 
-        &:before
-            content
+        // &:hover
+        //     background darken(rgba(255, 215, 0, 0.65), 70%)
 
-        &:hover
-            background darken(rgba(255, 215, 0, 0.65), 70%)
-
-        .rank, .date
+        .rank
             color darken(gold, 20%)
+            // font-size 16px
+
+        .name-inner
+            // padding 4px
+            padding-right 8px
+            position relative
+            background linear-gradient(to right, #736100 0%, #564904 100%)
+            // margin-left -4px
+            margin-right 21px
+            // min-width 300px
+            border-top-left-radius 36px
+            border-bottom-left-radius 36px
+
+            filter drop-shadow(1px 0 1px black)
+
+            &:after
+                content ''
+                position absolute
+                right -21px
+                top 0
+                border-top 14px solid #564904
+                border-bottom 14px solid #564904
+                border-right 21px solid transparent
+
+            a.player-link
+                overflow hidden
+                text-overflow ellipsis
+                min-width 300px
 
         .name a
             color gold
@@ -75,12 +147,14 @@
         .duration span
             border-bottom-color rgb(127, 107, 0)
 
-    &.rank-1, &.rank-2, &.rank-3
-        .rank
-            text-shadow -1px 0 0 black
+    // &.rank-1, &.rank-2, &.rank-3
+    //     .rank
+    //         text-shadow -1px 0 0 black
 
     &.rank-2 .rank
         color rgb(190, 190, 190)
 
     &.rank-3 .rank
         color #B87333
+
+

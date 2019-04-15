@@ -59,7 +59,8 @@ export default
     , historyApiFallback: true
     , proxy:
       { '/api':
-        { target: 'https://tempus.xyz/'
+        // { target: 'https://tempus.xyz/'
+        { target: 'http://localhost:8080'
         , secure: true
         , changeOrigin: true
         , logLevel: 'debug'

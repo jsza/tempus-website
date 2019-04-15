@@ -28,28 +28,25 @@ export default class LeaderboardContainer extends React.Component {
       )
     }
     return (
-      <Row>
-        {JUMP_CLASSES.map((playerClass, idx) =>
-          <Col lg={6} key={idx}>
+      <div>
+        {[3, 4].map((playerClass, idx) =>
+          <Col md={5} key={idx}>
             <Leaderboard
               data={leaderboard.data.getIn(
                 ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
               tier={leaderboard.data.getIn(['tier_info', playerClass.toString()])}
+              zoneInfo={leaderboard.data.get('zone_info')}
               playerClass={playerClass}
               mapData={this.props.data} />
           </Col>
         )}
-      </Row>
+      </div>
     )
   }
 
   render() {
     return (
       <div className="MapOverview-LeaderboardContainer">
-        <RunSelection
-          data={this.props.data}
-          leaderboard={this.props.leaderboard}
-          fetchLeaderboard={this.props.fetchLeaderboard} />
         {this.renderLeaderboards()}
       </div>
     )

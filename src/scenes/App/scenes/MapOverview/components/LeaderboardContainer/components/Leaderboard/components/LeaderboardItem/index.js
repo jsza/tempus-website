@@ -19,10 +19,22 @@ export default function LeaderboardItem({data, firstPlace}) {
   }
   let avatarSize = 'tiny'
 
+  var rankElement
+  if (rank <= 3) {
+    rankElement = (
+      <span>
+        <i className="fa fa-trophy" /> {rank}.
+      </span>
+    )
+  }
+  else {
+    rankElement = `${rank}.`
+  }
+
   return (
     <tr className={'MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem rank-' + rank}>
-      <td className="rank shrink">
-        {rankIcon}
+      <td className="rank shrink text-right">
+        {rankElement}
       </td>
       <td className="duration shrink">
         <Link to={`/records/${data.get('id')}`}>
@@ -30,8 +42,15 @@ export default function LeaderboardItem({data, firstPlace}) {
         </Link>
       </td>
       <td className="name expand">
-        <SteamAvatar steamID={pi.get('steamid')} size={avatarSize} />
-        <Link to={`/players/${pi.get('id')}`}>{pi.get('name')}</Link>
+        <div className="name-inner">
+          <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
+          <Link to={`/players/${pi.get('id')}`}>
+            {pi.get('name')}
+          </Link>
+        </div>
+      </td>
+      <td className="date shrink hidden-xs">
+        <TimeAgo date={data.get('date') * 1000} />
       </td>
     </tr>
   )

@@ -4,6 +4,10 @@ import {CLASSINDEX_TO_NAME} from 'root/constants/TFClasses'
 import Col from 'react-bootstrap/lib/Col'
 import LeaderboardItem from './components/LeaderboardItem'
 import {Scrollbars} from 'react-custom-scrollbars'
+import {prettyZoneName, formatTime} from 'root/utils/TempusUtils'
+import Difficulties from 'root/constants/Difficulties'
+import TFIcon from 'root/components/TFIcon'
+
 
 import './styles.styl'
 
@@ -24,49 +28,35 @@ export default class Leaderboard extends React.Component {
     }
     const firstPlace = data.get(0)
     return (
-      <table>
+      <table className="table table-condensed table-mapoverview">
         <tbody>
-          {data.map((data, idx) =>
+          {data ? data.toArray().map((data, idx) =>
             <LeaderboardItem
               key={idx}
               data={data}
               firstPlace={firstPlace}
               />
-          )}
+          ) : 'nothing'}
         </tbody>
       </table>
     )
   }
 
   render() {
-    const {playerClass, tier} = this.props
+    const {playerClass, tier, zoneInfo} = this.props
     const tfClass = CLASSINDEX_TO_NAME[playerClass]
     const tfClassLower = tfClass.toLowerCase()
+    const zoneName = prettyZoneName(zoneInfo.get('type'), zoneInfo.get('zoneindex'))
 
     return (
-      <div className="MapOverview-LeaderboardContainer-Leaderboard">
-        <header className="clearfix">
-          <h4>
-            <span className={'tf-icon sm  ' + tfClassLower} /> {tfClass}
-            <span> | </span>
-            <span className={'tier tier-' + tier}>Tier {tier}</span>
-          </h4>
-        </header>
-        <main>
-          <Scrollbars renderThumbVertical={({style, ...props}) =>
-                <div {...props}
-                     style={{...style,
-                             backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                             cursor: 'pointer',
-                             borderRadius: '4px'
-                            }}
-                  />
-              }>
-            {this.renderLeaderboard()}
-          </Scrollbars>
-        </main>
-        <div className="leaderboard-footer">
-        &nbsp;
+      <div className="panel panel-dark">
+        <div className="panel-heading">
+          <i className={'tf-icon medium pull-left ' + tfClassLower} style={{marginRight: '8px', height: '40px', width: '40px'}} />
+          <div className="" style={{fontWeight: 'bold'}}> {zoneName}</div>
+          <div><span>{Difficulties[tier]} (Tier {tier})</span></div>
+        </div>
+        <div className="panel-body">
+          {this.renderLeaderboard()}
         </div>
       </div>
     )
