@@ -19,12 +19,22 @@ export default class LeaderboardContainer extends React.Component {
 
   renderLeaderboards() {
     const {leaderboard} = this.props
-    if (leaderboard.fetching || !leaderboard.data) {
-      return <i className="fa fa-spin fa-refresh fa-4x" style={{textAlign: 'center', display: 'block'}} />
-    }
-    else if (leaderboard.error) {
+    if (leaderboard.error) {
       return (
-        <h4 className="text-danger">{leaderboard.error}</h4>
+        <Col md={10}>
+          <div className="panel panel-dark">
+            <div className="panel-body">
+              <span className="text-danger"><i className="fa fa-exclamation-circle" /> {leaderboard.error}</span>
+            </div>
+          </div>
+        </Col>
+      )
+    }
+    else if ((leaderboard.fetching && !leaderboard.data) || !leaderboard.data) {
+      return (
+        <div className="container">
+          <i className="fa fa-spin fa-refresh fa-4x" style={{textAlign: 'center', display: 'block'}} />
+        </div>
       )
     }
     return (
@@ -32,12 +42,14 @@ export default class LeaderboardContainer extends React.Component {
         {[3, 4].map((playerClass, idx) =>
           <Col md={5} key={idx}>
             <Leaderboard
+              fetching={leaderboard.fetching}
               data={leaderboard.data.getIn(
                 ['results', CLASSINDEX_TO_NAME[playerClass].toLowerCase()])}
               tier={leaderboard.data.getIn(['tier_info', playerClass.toString()])}
               zoneInfo={leaderboard.data.get('zone_info')}
               playerClass={playerClass}
-              mapData={this.props.data} />
+              mapData={this.props.data}
+              fetchMoreLeaderboard={this.props.fetchMoreLeaderboard} />
           </Col>
         )}
       </div>

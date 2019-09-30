@@ -8,6 +8,9 @@ export const SELECT_VIDEO = 'MAP_OVERVIEW_SELECT_VIDEO'
 export const LOAD_LEADERBOARD_REQUEST = 'MAP_OVERVIEW_LOAD_LEADERBOARD_REQUEST'
 export const LOAD_LEADERBOARD_SUCCESS = 'MAP_OVERVIEW_LOAD_LEADERBOARD_SUCCESS'
 export const LOAD_LEADERBOARD_FAILURE = 'MAP_OVERVIEW_LOAD_LEADERBOARD_FAILURE'
+export const LOAD_MORE_LEADERBOARD_REQUEST = 'MAP_OVERVIEW_LOAD_MORE_LEADERBOARD_REQUEST'
+export const LOAD_MORE_LEADERBOARD_SUCCESS = 'MAP_OVERVIEW_LOAD_MORE_LEADERBOARD_SUCCESS'
+export const LOAD_MORE_LEADERBOARD_FAILURE = 'MAP_OVERVIEW_LOAD_MORE_LEADERBOARD_FAILURE'
 
 
 
@@ -47,6 +50,11 @@ export function selectVideo(video) {
 
 export function fetchLeaderboard(mapName, zoneType, index) {
   return (dispatch, getState) => {
+    const {mapOverview} = getState()
+    if (mapOverview.getIn(['leaderboard', 'fetching'])) {
+      return null
+    }
+
     return dispatch(
       { [CALL_API]:
         { method: GET
@@ -64,5 +72,21 @@ export function fetchLeaderboard(mapName, zoneType, index) {
 
 
 export function fetchMoreLeaderboard(playerClass) {
-
+  return (dispatch, getState) => {
+    const leaderboard = getState().mapOverview.get('leaderboard')
+    const zoneID = leaderboard.getIn(['data', 'zone_info', 'id'])
+    const runsKey = {3: 'soldier', 4: 'demoman'}[playerClass]
+    const lastRank = leaderboard.getIn(['data', 'results', runsKey]).last().get('rank')
+    return dispatch(
+      { [CALL_API]:
+        { method: GET
+        , started: [LOAD_MORE_LEADERBOARD_REQUEST]
+        , success: [LOAD_MORE_LEADERBOARD_SUCCESS]
+        , failure: [LOAD_MORE_LEADERBOARD_FAILURE]
+        , endpoint: `zones/id/${zoneID}/records/list?limit=50&start=${lastRank + 1}&sort=duration&direction=ascending`
+        }
+        , playerClass
+      }
+    )
+  }
 }

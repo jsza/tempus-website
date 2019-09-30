@@ -42,11 +42,13 @@ export default function LeaderboardItem({data, firstPlace}) {
         </Link>
       </td>
       <td className="name expand">
-        <div className="name-inner">
-          <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
-          <Link to={`/players/${pi.get('id')}`}>
-            {pi.get('name')}
-          </Link>
+        <div style={{position: 'relative'}}>
+          <span className="name-inner">
+            <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
+            <Link to={`/players/${pi.get('id')}`}>
+              {pi.get('name')}
+            </Link>
+          </span>
         </div>
       </td>
       <td className="date shrink hidden-xs">
@@ -55,3 +57,9 @@ export default function LeaderboardItem({data, firstPlace}) {
     </tr>
   )
 }
+//          <div style={{position: 'absolute', top: 0, left: 0}}>
+//            <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
+//            <Link to={`/players/${pi.get('id')}`}>
+//              {pi.get('name')}
+//            </Link>
+//          </div>

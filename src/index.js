@@ -3,14 +3,13 @@ import 'babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
-import {ConnectedRouter} from 'react-router-redux'
+import { ConnectedRouter } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 import App from './scenes/App'
 
 import '../stylus/index.styl'
-
 
 const history = createHistory()
 const store = configureStore(history)

@@ -1,28 +1,26 @@
-.table-mapoverview
-    // box-shadow 0 0 4px black inset
-    margin-left -15px
-    margin-right -15px
-    width calc(100% + 30px)
-    max-width calc(100% + 30px)
-
-    & > tbody > tr > td
-        border-top none
-
-    // tr:nth-of-type(odd)
-    //     background rgba(60, 60, 60, 0.5)
-
-    // tr:nth-of-type(even)
-    //     background rgba(100, 100, 100, 0.5)
-
-//     padding-left 15px
-//     padding-right 15px
-
 .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
     cursor pointer
     // border-top 1px solid rgb(80, 80, 80)
 
+    td
+        border-bottom 1px solid #5a5a5a
+
     &:nth-of-type(odd)
+        // td
         background rgba(255, 255, 255, 0.05)
+
+        // td
+        //     border-bottom 1px solid #5a5a5a
+
+        // &:first-child
+        //     td
+        //         border-bottom 1px solid #5a5a5a
+
+        // &:not(:first-child)
+        //     td
+        //         border-top 1px solid #5a5a5a
+        //         border-bottom 1px solid #5a5a5a
+
     //     background repeating-linear-gradient(
     //              -45deg,
     //              rgba(255, 255, 255, 0.05),
@@ -30,6 +28,9 @@
     //              rgba(255, 255, 255, 0.075) 8px,
     //              rgba(255, 255, 255, 0.075) 16px
     //            );
+
+    &:nth-of-type(even)
+        background rgba(0, 0, 0, 0.2)
 
     // &:nth-of-type(even)
     //     background repeating-linear-gradient(
@@ -44,8 +45,14 @@
         background rgba(255, 255, 255, 0.1)
 
     td
-        padding 5px 12px !important
+        padding 4px 6px !important
         vertical-align middle !important
+
+    td:first-child
+        padding-left 15px !important
+
+    td:last-child
+        padding-right 15px !important
 
     .rank
         color rgb(200, 200, 200)
@@ -62,9 +69,10 @@
 
         a
             color rgb(0, 180, 240)
+
             &:hover
                 color rgb(0, 200, 255)
-                text-decoration none
+                text-decoration underline
 
         .name-inner
             display block
@@ -84,8 +92,11 @@
         font-weight bold
         text-align right
 
-    .duration a
-        color inherit
+        a
+            color inherit
+            // background rgba(255, 255, 255, 0.1)
+            padding 2px 8px
+            border-radius 8px
 
     .compared
         color rgb(150, 150, 150)
@@ -93,18 +104,21 @@
 
     .date
         text-align right
-        font-size 13px
+        // font-size 13px
         color rgb(200, 200, 200)
 
     &.rank-1
         // color gold
-        // background darken(rgba(255, 215, 0, 0.6), 75%) !important
+
         // border 1px solid darken(rgba(255, 215, 0, 0.6), 50%)
         border-left 0
         border-right 0
-        position relative
 
         td
+            // TODO: stick
+            // position sticky
+            // top 133px
+            // z-index 2
             padding-top 8px
 
         // &:hover

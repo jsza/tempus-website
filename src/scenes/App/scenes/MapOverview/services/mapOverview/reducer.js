@@ -1,8 +1,12 @@
 import Immutable from 'immutable'
 
 import {LOAD_REQUEST, LOAD_SUCCESS, LOAD_FAILURE, SELECT_VIDEO,
-        LOAD_LEADERBOARD_REQUEST, LOAD_LEADERBOARD_SUCCESS,
-        LOAD_LEADERBOARD_FAILURE} from './actions'
+        LOAD_LEADERBOARD_REQUEST,
+        LOAD_LEADERBOARD_SUCCESS,
+        LOAD_LEADERBOARD_FAILURE,
+        LOAD_MORE_LEADERBOARD_REQUEST,
+        LOAD_MORE_LEADERBOARD_SUCCESS,
+        LOAD_MORE_LEADERBOARD_FAILURE} from './actions'
 
 
 let initialLeaderboardState = Immutable.Record(
@@ -46,7 +50,6 @@ export default function reducer(state=initialState, action) {
       return state.mergeIn(['leaderboard'],
         { fetching: true
         , error: null
-        , data: null
         , zoneType: action.zoneType
         , index: action.index
         })
@@ -56,6 +59,25 @@ export default function reducer(state=initialState, action) {
         , data: action.data
         })
     case LOAD_LEADERBOARD_FAILURE:
+      return state.mergeIn(['leaderboard'],
+        { fetching: false
+        , error: action.error
+        })
+    case LOAD_MORE_LEADERBOARD_REQUEST:
+      return state.mergeIn(['leaderboard'],
+        { fetching: false
+        })
+    case LOAD_MORE_LEADERBOARD_SUCCESS: {
+      const runsKey = {3: 'soldier', 4: 'demoman'}[action.playerClass]
+      return state.mergeDeepIn(['leaderboard'],
+        { fetching: false
+        , data: {
+          results: {
+            [runsKey]: state.getIn(['leaderboard', 'data', 'results', runsKey]).concat(Immutable.fromJS(action.data.results[runsKey]))
+          }
+        }})
+    }
+    case LOAD_MORE_LEADERBOARD_FAILURE:
       return state.mergeIn(['leaderboard'],
         { fetching: false
         , error: action.error

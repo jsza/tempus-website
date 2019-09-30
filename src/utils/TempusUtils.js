@@ -28,12 +28,12 @@ export function formatTime(time) {
 }
 
 
-export function prettyZoneName(zoneType, index) {
+export function prettyZoneName(zoneType, index, customName) {
   if (zoneType === 'map') {
     return 'Map Run'
   }
   else {
-    return capitalize(zoneType) + ' ' + index
+    return capitalize(zoneType) + ' ' + index + (customName ? ` (${customName})` : '')
   }
 }
 
