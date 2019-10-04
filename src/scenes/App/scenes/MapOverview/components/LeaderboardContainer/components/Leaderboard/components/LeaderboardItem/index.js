@@ -41,6 +41,11 @@ export default function LeaderboardItem({data, firstPlace}) {
           {formatTime(data.get('duration'))}
         </Link>
       </td>
+      <td className="comparison shrink">
+        {rank === 1 ? <div className="text-center">&mdash;</div> :
+          <span>(+{formatTime(data.get('duration') - firstPlace.get('duration'))})</span>
+        }
+      </td>
       <td className="name expand">
         <div style={{position: 'relative'}}>
           <span className="name-inner">

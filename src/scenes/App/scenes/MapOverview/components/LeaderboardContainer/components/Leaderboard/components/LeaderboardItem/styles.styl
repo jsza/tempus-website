@@ -45,8 +45,8 @@
         background rgba(255, 255, 255, 0.1)
 
     td
-        padding 4px 6px !important
-        vertical-align middle !important
+        padding 4px 6px
+        vertical-align middle
 
     td:first-child
         padding-left 15px !important
@@ -89,14 +89,26 @@
 
     .duration
         font-family Droid Sans Mono
-        font-weight bold
         text-align right
 
         a
+            font-weight bold
             color inherit
             // background rgba(255, 255, 255, 0.1)
             padding 2px 8px
             border-radius 8px
+
+        .comparison
+            color rgb(200, 200, 200)
+            font-size 11px
+            text-align center
+
+    > .comparison
+        padding-left 0
+        font-size 11px
+        font-family Droid Sans Mono
+        color rgb(200, 200, 200)
+        // display none
 
     .compared
         color rgb(150, 150, 150)
@@ -119,7 +131,6 @@
             // position sticky
             // top 133px
             // z-index 2
-            padding-top 8px
 
         // &:hover
         //     background darken(rgba(255, 215, 0, 0.65), 70%)

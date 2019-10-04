@@ -120,14 +120,9 @@ class App extends React.Component {
             <Route path="/activity" component={Home} />
             <Route path="/servers" component={Home} />
             <Route exact path="/maps" component={Maps} />
-            <Route exact path="/maps/:name" component={MapOverview} />
+            <Route path="/maps/:name" component={MapOverview} />
             <Route path="/players/:id" component={PlayerOverview} />
-            <Route exact path="/ranks/overall"
-                   component={(props) => <PlayerLeaderboards {...props} rankType="overall"/>} />
-            <Route exact path="/ranks/soldier"
-                   component={(props) => <PlayerLeaderboards {...props} rankType="soldier"/>} />
-            <Route exact path="/ranks/demoman"
-                   component={(props) => <PlayerLeaderboards {...props} rankType="demoman"/>} />
+            <Route path="/ranks/:type" component={PlayerLeaderboards} />
             <Route path="/demos/:id" component={DemoOverview} />
             <Route path="/records/:id" component={RecordOverview} />
           </div>

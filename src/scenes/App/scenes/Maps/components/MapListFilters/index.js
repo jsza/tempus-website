@@ -71,12 +71,12 @@ class FilterDropdown extends React.Component {
       </span>
 
     return (
-      <DropdownButton title={title} pullRight>
+      <DropdownButton id="maps-filter-dropdown" title={title} pullRight>
         {
           OPTIONS.map((o) => {
             let [value, s] = o
             return (
-            <MenuItem onSelect={() => this.props.onChange(value)} active={value === this.props.selected}>
+            <MenuItem key={value} onSelect={() => this.props.onChange(value)} active={value === this.props.selected}>
               {value !== null ? ` (T${value}) ` : null}{s}
             </MenuItem>
             )

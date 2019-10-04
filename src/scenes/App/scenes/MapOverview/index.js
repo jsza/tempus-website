@@ -10,6 +10,8 @@ import {
 import Tooltip from 'react-bootstrap/lib/Tooltip'
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
 
+import {Switch, Route, Redirect} from 'react-router'
+
 import DocumentTitle from 'react-document-title'
 
 import Video from './components/Video'
@@ -57,7 +59,7 @@ class MapOverview extends React.Component {
       authorItem = (
         <OverlayTrigger placement="bottom" overlay={tooltip}>
           <span style={{ borderBottom: '1px dotted rgb(170, 170, 170)' }}>
-            Multiple Authors
+            {authorNames.size} authors
           </span>
         </OverlayTrigger>
       )
@@ -153,6 +155,7 @@ class MapOverview extends React.Component {
       backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg)`
     }
     // const bgStyle = {}
+    const { match } = this.props
 
     return (
       <DocumentTitle title={`Tempus - ${mapName}`}>
@@ -222,12 +225,17 @@ class MapOverview extends React.Component {
                   fetchLeaderboard={this.props.fetchLeaderboard}
                 />
               </div>
-              <LeaderboardContainer
-                data={data}
-                leaderboard={leaderboard}
-                fetchLeaderboard={this.onFetchLeaderboard.bind(this)}
-                fetchMoreLeaderboard={this.onFetchMoreLeaderboard.bind(this)}
-              />
+              <Switch>
+                <Route
+                  path={`${match.url}/leaderboards`}
+                  component={LeaderboardContainer} />
+                <Route exact path={`${match.url}`}>
+                  <Redirect to={`${match.url}/leaderboards`} />
+                </Route>
+                <Route>
+                  No such resource.
+                </Route>
+              </Switch>
             </div>
           </section>
         </div>

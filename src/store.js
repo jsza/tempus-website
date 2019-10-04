@@ -7,7 +7,7 @@ import loggerMiddleware from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
 import {combineReducers} from 'redux'
-import {routerReducer, routerMiddleware} from 'react-router-redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 
 import wamp from './services/wamp/reducer'
 import wampSaga from './services/wamp/saga'
@@ -25,13 +25,13 @@ import demoOverview from './scenes/App/scenes/DemoOverview/services/demoOverview
 import recordOverview from './scenes/App/scenes/RecordOverview/services/recordOverview/reducer.js'
 
 
-export default function configureStore(api, history, initialState) {
+export default function configureStore(history, initialState) {
   const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
     compose
   const reducer = combineReducers(
-    { router: routerReducer
+    { router: connectRouter(history)
     , wamp
     , maps
     , mapOverview
@@ -52,7 +52,7 @@ export default function configureStore(api, history, initialState) {
     composeEnhancers(applyMiddleware(
       routerMiddleware(history),
       thunkMiddleware,
-      apiMiddleware(api),
+      apiMiddleware(),
       avatarMiddleware(),
       sagaMiddleware
       // loggerMiddleware

@@ -32,11 +32,12 @@ export default class Leaderboard extends React.Component {
     const firstPlace = data.get(0)
     return (
       <div>
-        <table className="table table-condensed table-mapoverview">
+        <table className="table-mapoverview">
           <thead>
             <tr>
               <th className="rank sortable selected shrink">rank <i className="fa fa-caret-down" /></th>
               <th className="duration shrink"></th>
+              <th className="comparison shrink"></th>
               <th className="player expand"></th>
               <th className="date sortable shrink hidden-xs">date</th>
             </tr>

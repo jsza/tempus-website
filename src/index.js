@@ -4,14 +4,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store'
 import { Provider } from 'react-redux'
-import createHistory from 'history/createBrowserHistory'
-import { ConnectedRouter } from 'react-router-redux'
+import {createBrowserHistory} from 'history'
+import { ConnectedRouter } from 'connected-react-router'
 import { AppContainer } from 'react-hot-loader'
 import App from './scenes/App'
 
 import '../stylus/index.styl'
 
-const history = createHistory()
+const history = createBrowserHistory()
 const store = configureStore(history)
 function render(Component) {
   ReactDOM.render(

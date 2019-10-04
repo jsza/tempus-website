@@ -1,29 +1,107 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import P from 'prop-types'
 import {connect} from 'react-redux'
 import {loadRanks} from './services/playerLeaderboards/actions'
 
-import {Link} from 'react-router-dom'
+import {useParams} from 'react-router'
+
+import PlayerLeaderboardTitle from './components/PlayerLeaderboardTitle'
+
+import {Link, NavLink} from 'react-router-dom'
 import Table from 'react-bootstrap/lib/Table'
 import SteamAvatar from 'root/components/SteamAvatar'
 import Throbber from 'root/components/Throbber'
 
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup'
+import DropdownButton from 'react-bootstrap/lib/DropdownButton'
+import Button from 'react-bootstrap/lib/Button'
+
 import './styles.styl'
 
 
-class PlayerLeaderboards extends React.Component {
+function PlayerLeaderboards ({ fetching, error, data, loadRanks }) {
+  const {type} = useParams()
+
+  useEffect(() => {
+    loadRanks(type)
+  }, [type])
+
+  return (
+    <div className="PlayerLeaderboards container">
+      <PlayerLeaderboardTitle rankType={type} />
+      <span className="pull-right">
+        <ButtonGroup>
+          <NavLink activeClassname="active" to="/ranks/overall" className="btn btn-default">
+            <i className="fa fa-users" style={{fontSize: '24px', 'verticalAlign': 'middle'}} /> Overall
+          </NavLink>
+          <NavLink activeClassname="active" to="/ranks/soldier" className="btn btn-default">
+            <span className="tf-icon soldier mini" /> Soldier
+          </NavLink>
+          <NavLink activeClassname="active" to="/ranks/demoman" className="btn btn-default">
+            <span className="tf-icon demoman mini" /> Demoman
+          </NavLink>
+        </ButtonGroup>
+      </span>
+      {!data ? <Throbber /> :
+        <div>
+          <div className="player-ranks-table-container">
+            <Table striped hover className="player-ranks-table">
+              <thead>
+                <tr>
+                  <th />
+                  <th>Player</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.get('players').map((p, idx) =>
+                  <tr key={idx}>
+                    <td width="50">
+                      <strong className="pull-right">
+                        #{p.get('rank')}
+                      </strong>
+                    </td>
+                    <td>
+                      <SteamAvatar steamID={p.get('steamid')} size="tiny" />
+                      <span> </span>
+                      <Link to={`/players/${p.get('id')}`}>
+                        {p.get('name')}
+                      </Link>
+                    </td>
+                    <td>
+                      {Math.round(p.get('points'))}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          </div>
+          <p className="text-muted">
+            {data.get('count')} total ranked players.
+          </p>
+        </div>}
+    </div>
+  )
+
+  return <div>hi</div>
+}
+
+
+
+class _PlayerLeaderboards extends React.Component {
   componentDidMount() {
     this.loadRanks()
   }
 
   loadRanks() {
     // const {start} = this.props.location.query
-    this.props.loadRanks(this.props.rankType, null)
+    this.props.loadRanks(this.props.match.params.type, null)
   }
 
   componentDidUpdate(prevProps) {
-    const oldRankType = prevProps.rankType
-    const newRankType = this.props.rankType
+    const oldRankType = prevProps.match.params.type
+    const newRankType = this.props.match.params.type
     // const {start} = this.props.location.query
     // const oldStart = prevProps.location.query.start
 
@@ -54,6 +132,7 @@ class PlayerLeaderboards extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     let content
     if (!this.props.data) {
       content = <Throbber />
@@ -109,9 +188,9 @@ class PlayerLeaderboards extends React.Component {
 }
 
 
-PlayerLeaderboards.propTypes =
-  { rankType: P.string.isRequired
-  }
+// PlayerLeaderboards.propTypes =
+//   {
+//   }
 
 
 function mapStateToProps(state) {

@@ -19,7 +19,7 @@ function fetch(mapName) {
     { [CALL_API]:
       { method: GET
       , started: [LOAD_REQUEST]
-      , success: [LOAD_SUCCESS, () => fetchLeaderboard(mapName, 'map', 1)]
+      , success: [LOAD_SUCCESS]
       , failure: [LOAD_FAILURE]
       , endpoint: `maps/name/${mapName}/fullOverview`
       }

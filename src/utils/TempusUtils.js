@@ -20,7 +20,7 @@ export function formatTime(time) {
   s = Math.floor( time )
   ms = time % 1
 
-  newTime = pad(m, 2) + ':' + pad(s, 2) + '.' + (ms.toString() + '00').substring(2, 4)
+  newTime = pad(m, 2) + ':' + pad(s, 2) + '.' + pad((ms.toString() + '00').substring(2, 4), 2)
   if (h !== 0) {
     newTime = pad(h, 1) + ':' + newTime
   }
