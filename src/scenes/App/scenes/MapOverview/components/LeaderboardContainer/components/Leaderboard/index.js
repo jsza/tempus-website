@@ -35,11 +35,11 @@ export default class Leaderboard extends React.Component {
         <table className="table-mapoverview">
           <thead>
             <tr>
-              <th className="rank sortable selected shrink">rank <i className="fa fa-caret-down" /></th>
-              <th className="duration shrink"></th>
-              <th className="comparison shrink"></th>
-              <th className="player expand"></th>
-              <th className="date sortable shrink hidden-xs">date</th>
+              <th className="rank sortable selected shrink"># <i className="fa fa-caret-down" /></th>
+              <th className="duration shrink">duration</th>
+              <th className="comparison shrink hidden"></th>
+              <th className="player expand">player</th>
+              <th className="date sortable shrink hidden-xs"><i className="fa fa-calendar" /></th>
             </tr>
           </thead>
           <tbody>

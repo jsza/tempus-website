@@ -183,59 +183,46 @@ table
     padding 3px 6px
     height auto
 
-.panel-dark {
-  border-color: #6f8d8c;
+.panel-dark
+  border-color rgba(255, 255, 255, 0.1)
   // border-color: rgb(60, 100, 110)
-  box-shadow: 3px 3px 5px rgba(8,8,8,0.4);
+  box-shadow 0 0 8px black;
   text-shadow 1px 1px 0 black
-  background linear-gradient(135deg, darken(rgba(56, 87, 119, 0.5), 20%), rgba(64, 123, 130, 0.5), darken(rgba(60, 193, 208, 0.5), 40%)),
-               repeating-linear-gradient(
-                 -45deg,
-                 rgba(20, 20, 20, 0.5),
-                 rgba(20, 20, 20, 0.5) 4px,
-                 rgba(40, 40, 40, 0.5) 4px,
-                 rgba(40, 40, 40, 0.5) 16px
-               );
   background none
 
-  .nav {
-    // display none
-  }
+  a
+    color rgb(0, 180, 240)
 
-  & > .panel-body {
-    background-color: rgba(10, 20, 20, 0.7);
+    &:hover
+        color rgb(0, 200, 255)
+        text-decoration underline
+
+  & > .panel-body
+    background-color rgba(15, 30, 30, 0.7)
     border-radius 0 0 4px 4px
-  }
 
-  & > .panel-heading {
-    color: rgb(240, 240, 240);
-    background: linear-gradient(rgba(173, 173, 173, 0.5), rgba(88, 88, 88, 0.5));
-    background: rgba(rgba(173,173,173,0.27))
+
+  & > .panel-heading
+    color rgb(240, 240, 240)
     background linear-gradient(135deg,
                                darken(rgba(45,70,95,0.8), 10%),
                                darken(rgba(64,123,130,0.8), 20%),
                                darken(rgba(31,120,130,0.8), 10%)
                                )
 
-    + .panel-collapse > .panel-body {
-      border-top-color: rgba(200, 200, 200, 0.8);
-    }
-    .badge {
+    + .panel-collapse > .panel-body
+      border-top-color rgba(200, 200, 200, 0.8)
+
+    .badge
       background-color rgba(255, 255, 255, 0.3)
-    }
-  }
 
-  & > .panel-footer {
-      border-color: rgba(255, 255, 255, 0.25);
-      background-color: rgba(10, 20, 20, 0.7);
-  }
+  & > .panel-footer
+      border-color rgba(255, 255, 255, 0.25)
+      background-color rgba(10, 20, 20, 0.7)
 
-  & > .panel-footer {
-    + .panel-collapse > .panel-body {
-      border-bottom-color: rgba(200, 200, 200, 0.8);
-    }
-  }
-}
+  & > .panel-footer
+    + .panel-collapse > .panel-body
+      border-bottom-color rgba(200, 200, 200, 0.8)
 
 .nav-pills.nav-dark
     > li > a
@@ -260,12 +247,3 @@ table
 
     &.active
         background rgba(150, 150, 150, 0.5)
-
-.nav-nested
-    margin-top 0px
-    padding-left 8px
-    margin-bottom 8px
-
-    > li > a
-        padding-top 4px
-        padding-bottom 4px

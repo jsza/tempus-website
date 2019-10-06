@@ -41,11 +41,10 @@ $tier-6-color := rgb(255, 125, 125)
         position sticky
         top 41px
         z-index 1
-        border-bottom 1px solid #6f8d8c
 
     .panel-body
-        padding-top 0
         position relative
+        padding-top 0
 
     .table-mapoverview
         position relative
@@ -79,8 +78,11 @@ $tier-6-color := rgb(255, 125, 125)
             &:last-child
                 padding-right 15px
 
-            &.rank, &.duration, &.date
+            &.rank, &.date
                 text-align right
+
+            &.duration
+                padding 5px 14px
 
             &.sortable
                 &:hover

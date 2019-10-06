@@ -41,7 +41,7 @@ export default function LeaderboardItem({data, firstPlace}) {
           {formatTime(data.get('duration'))}
         </Link>
       </td>
-      <td className="comparison shrink">
+      <td className="comparison shrink hidden">
         {rank === 1 ? <div className="text-center">&mdash;</div> :
           <span>(+{formatTime(data.get('duration') - firstPlace.get('duration'))})</span>
         }

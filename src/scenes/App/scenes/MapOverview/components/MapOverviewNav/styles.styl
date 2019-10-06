@@ -1,10 +1,39 @@
 .MapOverview-MapOverviewNav
-    position sticky
-    top 200px
+    border-radius 4px
+
+    .inner-container
+        border-radius inherit
+        padding 15px 0
+        background linear-gradient(135deg,
+                                   darken(rgba(45,70,95,0.8), 10%),
+                                   darken(rgba(64,123,130,0.8), 20%),
+                                   darken(rgba(31,120,130,0.8), 10%)
+                                   )
+    box-shadow 0 0 8px black
+    text-shadow 1px 1px 0 black
+    border 1px solid rgba(255,255,255,0.1)
+
+    .nav-stacked>li+li
+        margin-top 0
+
+    li a
+        line-height 20px
+        padding-top 8px
+        padding-bottom 8px
+        padding-left 30px
+        border-radius 0
+
+        .badge
+            background-color rgba(255, 255, 255, 0.3)
+    //     margin-top 6px
+    //     margin-bottom 6px
+    //     border-radius 14px
+
+    li.divider
+        margin-top 0
+        height 8px
 
     ul.nav
-        li.divider
-            height 2px
 
         li a
             &:hover
@@ -12,3 +41,16 @@
 
             &.active
                 background rgba(144, 244, 255, 0.4)
+
+    .nav-nested
+        // font-size 90%
+        margin-top 0px
+        // padding-left 8px
+        margin-bottom 8px
+
+        > li > a
+            padding-left 45px
+            padding-top 4px
+            padding-bottom 4px
+        //     margin-bottom 2px
+        //     margin-top 2px

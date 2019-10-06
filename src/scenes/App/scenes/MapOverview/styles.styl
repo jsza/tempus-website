@@ -25,20 +25,21 @@
     // margin-top 0
     margin-bottom 15px
     width 100%
-    background rgba(173,173,173,0.27)
-    background linear-gradient(135deg,
-                               darken(rgba(45,70,95,0.8), 28%),
-                               darken(rgba(64,123,130,0.8), 28%),
-                               darken(rgba(31,120,130,0.8), 28%)
-                               )
 
-    border-bottom 1px solid #6f8d8c
+    border-bottom 1px solid rgba(255, 255, 255, 0.1)
     text-shadow 1px 1px 0 black
-    box-shadow 0 2px 5px rgba(8,8,8,0.4)
+    box-shadow 0 0 8px black
     width 100%
     z-index 100
-    padding 0 0 8px 0
     text-align center
+
+    .MapOverview-header-inner
+        padding 0 0 8px 0
+        background linear-gradient(135deg,
+                                   darken(rgba(45,70,95,0.8), 28%),
+                                   darken(rgba(64,123,130,0.8), 28%),
+                                   darken(rgba(31,120,130,0.8), 28%)
+                                   )
 
     h1
         background rgba(20, 20, 20, 0.7)
@@ -47,11 +48,13 @@
         margin-top 0
         padding 8px
 
+        a
+            color inherit
+            &:hover
+                color rgb(220, 220, 220)
+
     h1 small
         color rgb(180, 180, 180)
-
-    .MapOverview-header-inner
-        position relative
 
     .MapOverview-header-video-buttons
         display block
