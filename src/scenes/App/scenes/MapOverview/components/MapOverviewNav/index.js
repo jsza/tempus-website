@@ -5,7 +5,10 @@ import Immutable from 'immutable'
 import {withRouter} from 'react-router'
 import {NavLink} from 'react-router-dom'
 
+import ZoneIcon from 'root/components/ZoneIcon'
+
 import {prettyZoneName} from 'root/utils/TempusUtils'
+
 import './styles.styl'
 
 
@@ -16,11 +19,10 @@ export function MapOverviewNavItem({ zone, onClick, mapName, baseURL}) {
   const type = zone.get('type')
   const index = zone.get('zoneindex')
   const customName = zone.get('custom_name')
-  const icon = {map: 'globe', course: 'flag', bonus: 'star'}[type]
   return (
     <li>
       <NavLink to={`${baseURL}/leaderboards/${type}/${index}`}>
-        <i className={`fa fa-fw fa-${icon}`} /> {prettyZoneName(type, index)} {customName ? <small>({customName})</small> : ''}
+        <ZoneIcon type={type} fixedWidth /> {prettyZoneName(type, index)} {customName ? <small>({customName})</small> : ''}
       </NavLink>
     </li>
   )
@@ -28,18 +30,36 @@ export function MapOverviewNavItem({ zone, onClick, mapName, baseURL}) {
 
 
 export function MapOverviewLeaderboardNav({ zones, mapName, baseURL }) {
-  const zonesGrouped = zoneTypes.map(zoneType => zones.get(zoneType)).filter(x => x !== undefined)
-
+  const zonesGrouped = zoneTypes.map(zoneType => {
+    const zs = zones.get(zoneType)
+    if (zs)
+      return [zoneType, zs]
+  }).filter(x => x !== undefined)
   return (
     <ul className="nav nav-pills nav-stacked nav-dark nav-nested">
-      { zonesGrouped.map(zs => zs.map(zone =>
-        <MapOverviewNavItem
-          key={zone.get('id')}
-          zone={zone}
-          mapName={mapName}
-          baseURL={baseURL}
-        />
-      )).interleave(Immutable.Range(1).map(n => <li key={n} className="divider" />))
+      { zonesGrouped.map(([zoneType, zs], idx) => {
+        return (
+          <React.Fragment key={`frag${idx}`}>
+            { zoneType === 'course' &&
+              <li key="course-category" className="category">
+                COURSES
+              </li>
+            }
+            { zoneType === 'bonus' &&
+              <li key="bonus-category"className="category">
+                BONUSES
+              </li>
+            }
+            { zs.map(zone =>
+              <MapOverviewNavItem
+                key={zone.get('id')}
+                zone={zone}
+                mapName={mapName}
+                baseURL={baseURL}
+              />
+            ) }
+          </React.Fragment>
+        )}).interleave(Immutable.Range(1).map(n => <li key={n} className="divider" />))
       }
     </ul>
   )

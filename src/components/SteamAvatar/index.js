@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import P from 'prop-types'
 import {connect} from 'react-redux'
 import cx from 'classnames'
 import steam from 'steamidconvert'
 
-import {queueAvatar} from 'root/services/steamAvatars/actions'
+import {queueAvatar} from './actions'
 
 import './styles.styl'
 
@@ -23,76 +23,66 @@ const defaultAvatars = {
 }
 
 
-class SteamAvatar extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidMount() {
-    if (!this.getSteamInfo()) {
-      this.props.queueAvatar([this.getSteamID()])
+function getAvatarURL(steamInfo, size) {
+  if (steamInfo) {
+    if (['mini', 'tiny'].includes(size)) {
+      return steamInfo.avatar['small']
     }
-  }
-
-  getSteamID() {
-    if (this.props.steamID64) {
-      return this.props.steamID64
+    else if (size === 'mediumlarge') {
+      return steamInfo.avatar['large']
     }
-    return Steam.convertTo64(this.props.steamID)
+    return steamInfo.avatar[size]
   }
-
-  getSteamInfo() {
-    if (this.props.avatars) {
-      return this.props.avatars[this.getSteamID()]
-    }
+  else {
+    return defaultAvatars[size]
   }
+}
 
-  getAvatarURL() {
-    const steamInfo = this.getSteamInfo()
+
+function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar }) {
+  const sid = steamID64 ? steamID64 : Steam.convertTo64(steamID)
+  const steamInfo = avatars ? avatars[sid] : undefined
+  const avatarURL = getAvatarURL(steamInfo, size)
+
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  useEffect(() => {
+    queueAvatar(sid)
+  }, [])
+
+  useEffect(() => {
+    let unmounted = false
     if (steamInfo) {
-      if (['mini', 'tiny'].includes(this.props.size)) {
-        return steamInfo.avatar['small']
+      const image = new Image()
+      image.onload = () => {
+        if (!unmounted)
+          setImgLoaded(true)
       }
-      else if (this.props.size === 'mediumlarge') {
-        return steamInfo.avatar['large']
-      }
-      return steamInfo.avatar[this.props.size]
+      image.src = getAvatarURL(steamInfo, size)
     }
-    else {
-      return defaultAvatars[this.props.size]
-    }
-  }
+    return () => unmounted = true
+  }, [steamInfo])
 
-  makeURL() {
-    return 'http://steamcommunity.com/profiles/' + this.getSteamID()
-  }
-
-  onClick(event) {
-    event.stopPropagation()
-  }
-
-  getStatus() {
-    const steamInfo = this.getSteamInfo()
-    return !steamInfo ? 'offline' : steamInfo.status
-  }
-
-  render() {
-    let classes = cx(
-      this.props.size,
-      { 'steamavatar': true
-      , 'online': this.getStatus() === 'online'
-      , 'offline': this.getStatus() === 'offline'
-      , 'in-game': this.getStatus() === 'in-game'
-      })
-    const body = <img className={classes} src={this.getAvatarURL()} />
-    if (!this.props.noLink)
-      return (
-        <a href={this.makeURL()} onClick={this.onClick} target="_blank">
-          {body}
-        </a>
-      )
-    return body
-  }
+  const steamStatus = (steamInfo && imgLoaded) ? steamInfo.status : 'offline'
+  let classes = cx(
+    size,
+    { 'steamavatar': true
+    , [steamStatus]: true
+    , 'steamavatar-default': true
+    })
+  const body = (
+    <span className="steamavatar-image-container">
+      <img className={classes} src={defaultAvatars[size]} style={{opacity: imgLoaded ? 0 : 100}} />
+      <img className={`steamavatar steamavatar-image ${size} ${steamStatus}`} src={imgLoaded ? avatarURL : null} style={{opacity: imgLoaded ? 100 : 0}} />
+    </span>
+  )
+  if (!noLink)
+    return (
+      <a href={`http://steamcommunity.com/profiles/${sid}`} onClick={(e) => e.stopPropagation()} target="_blank">
+        {body}
+      </a>
+    )
+  return body
 }
 
 

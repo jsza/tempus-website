@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
-import {loadPlayer} from './services/playerOverview/actions'
+import {loadPlayer} from './actions'
 import {CLASSINDEX_TO_NAME, JUMP_CLASSES} from 'root/constants/TFClasses'
 import {Link, NavLink, Redirect} from 'react-router-dom'
 
@@ -214,8 +214,7 @@ export class PlayerOverview extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {playerOverview} = state
-  const {fetching, error, data} = playerOverview
+  const {fetching, error, data} = state.app.playerOverview
   return {fetching, error, data: data ? data.toJS() : data}
 }
 

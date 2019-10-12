@@ -80,7 +80,7 @@ class ServerDemoList extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data} = state.serverDemos
+  const {fetching, error, data} = state.app.serverDemos
   return ({
     fetching,
     error,

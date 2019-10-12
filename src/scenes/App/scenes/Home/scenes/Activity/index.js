@@ -88,8 +88,7 @@ class Activity extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {activity} = state
-  const {fetching, error, data} = activity
+  const {fetching, error, data} = state.app.activity
   return {fetching, error, data}
 }
 

@@ -2,7 +2,7 @@ import React, {PropTypes as P} from 'react'
 import Table from 'react-bootstrap/lib/Table'
 import {connect} from 'react-redux'
 import {loadServers, toggleFilter, subscribe,
-        unsubscribe} from '../../services/servers/actions'
+        unsubscribe} from '../../actions'
 import ServerItem from './components/ServerItem'
 import ServerFilters from './components/ServerFilters'
 
@@ -90,7 +90,7 @@ class Servers extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data, filter, filterReverse} = state.servers
+  const {fetching, error, data, filter, filterReverse} = state.app.servers
   return (
     { fetching
     , error

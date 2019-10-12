@@ -62,7 +62,9 @@ export default function apiMiddleware() {
           next(actionWith(thing))
         }
         else {
-          store.dispatch(a(extra))
+          const payload = Object.assign({}, action, extra)
+          delete payload[CALL_API]
+          store.dispatch(a(payload))
         }
       }
     }

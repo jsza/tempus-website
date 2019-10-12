@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import {withRouter} from 'react-router'
+import {connect} from 'react-redux'
+
 import SteamAvatar from 'root/components/SteamAvatar'
 import {Link} from 'react-router-dom'
 import FormGroup from 'react-bootstrap/lib/FormGroup'
 import AppSearchInput from './components/AppSearchInput'
 import AppSearchResults from './components/AppSearchResults'
+import {searchPlayersAndMaps} from './actions'
 
 
-export default class AppSearch extends React.Component {
+// export default function AppSearch({ data, fetching, error, search }) {
+//   const [shown, setShown] = useState()
+//   useEffect(() => {
+//
+//   }, [])
+// }
+
+
+class AppSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {shown: false}
@@ -58,3 +70,15 @@ export default class AppSearch extends React.Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  const {search} = state.app
+  return {searchData: search}
+}
+
+
+export default withRouter(connect(
+  mapStateToProps,
+  {searchPlayersAndMaps}
+)(AppSearch))

@@ -34,9 +34,9 @@ export default function* rootSaga() {
     session.wantsUnsubscribe(topic, actionType)
   }
 
-  yield takeEvery(actions.WAMP_CALL, callProcedure)
-  yield takeEvery(actions.WAMP_SUBSCRIBE, subscribe)
-  yield takeEvery(actions.WAMP_UNSUBSCRIBE, unsubscribe)
+  yield takeEvery(actions.wampCall, callProcedure)
+  yield takeEvery(actions.wampSubscribe, subscribe)
+  yield takeEvery(actions.wampUnsubscribe, unsubscribe)
 
   while (true) {
     const action = yield take(channel)

@@ -1,0 +1,140 @@
+$tier-1-color := rgb(220, 220, 220)
+$tier-2-color := rgb(130, 240, 240)
+$tier-3-color := rgb(100, 230, 100)
+$tier-4-color := rgb(235, 235, 40)
+$tier-5-color := rgb(255, 160, 0)
+$tier-6-color := rgb(255, 125, 125)
+
+// TODO: Finish this up for small viewports
+.classtabs
+    margin-left 8px
+    z-index 99
+    .classtab
+        display inline-block
+        background black
+        margin-right 8px
+        padding 4px 8px
+        border-radius 4px 4px 0 0
+        text-shadow 1px 1px black
+        border 1px solid #6f8d8c
+        border-color #6f8d8c #6f8d8c rgba(0, 0, 0, 0.0) #6f8d8c
+        background linear-gradient(135deg,
+                           darken(rgba(45,70,95,0.8), 10%),
+                           darken(rgba(64,123,130,0.8), 20%),
+                           darken(rgba(31,120,130,0.8), 10%)
+                           )
+        transform translateY(1px)
+
+.MapOverview-LeaderboardContainer-Leaderboard
+    position relative
+
+    > .loading-overlay
+        z-index 2
+        position absolute
+        height 100%
+        width 100%
+        background rgba(0, 0, 0, 0.5)
+        border-radius 4px
+
+
+    > .panel-heading
+        position sticky
+        top 41px
+        z-index 2
+
+    // .panel-body
+    //     position relative
+
+    .table-mapoverview
+        position relative
+        width calc(100% + 30px)
+        max-width calc(100% + 30px)
+        margin-top -15px
+        margin-left -15px
+        margin-right -15px
+        margin-bottom 15px
+        border-collapse: separate
+        border-top 0
+
+        & > thead > tr > th
+            position sticky
+            top 102px
+            padding 5px
+            border-bottom-color rgba(255, 255, 255, 0.2)
+            border-bottom-width 2px
+            border-bottom 2px solid rgb(90, 90, 90)
+            font-weight normal
+            background rgba(255, 255, 255, 0.1)
+            background rgba(0, 0, 0, 0.7)
+            // border 1px solid rgba(80, 80, 80, 1.0) !important
+            user-select none
+            color rgb(210, 210, 210)
+            z-index 1
+
+
+            &:first-child
+                padding-left 15px
+
+            &:last-child
+                padding-right 15px
+
+            &.rank, &.date
+                text-align right
+
+            &.duration
+                padding 5px 14px
+
+            &.sortable
+                &:hover
+                    // text-decoration underline
+                    color rgb(240, 240, 240)
+                    background rgba(100, 100, 100, 0.8)
+
+                cursor pointer
+
+            &.selected
+                border-bottom-color rgb(160, 160, 160)
+
+        & > tbody > tr > td
+            // border-top none
+            // border-bottom 1px solid rgb(70, 70, 70)
+            // border-color rgba(255, 255, 255, 0.1)
+
+        // tr:nth-of-type(odd)
+        //     background rgba(60, 60, 60, 0.5)
+
+        // tr:nth-of-type(even)
+        //     background rgba(100, 100, 100, 0.5)
+
+    //     padding-left 15px
+    //     padding-right 15px
+
+    .load-more-button
+        display block
+        width 100%
+        padding 4px
+        border none
+        // background linear-gradient(135deg, rgba(41,63,86,0.5), rgba(51,98,104,0.5), rgba(28,108,117,0.5))
+        // box-shadow 0 1px 2px rgba(0, 0, 0, 0.8)
+        border-radius 4px
+        background none
+
+        &:hover
+            // box-shadow 0 0 2px black
+            background linear-gradient(135deg, rgba(41,63,86,0.6), rgba(51,98,104,0.6), rgba(28,108,117,0.6))
+            text-decoration underline
+
+        &:active
+            background linear-gradient(180deg, rgba(41,63,86,0.6), rgba(51,98,104,0.6), rgba(28,108,117,0.6))
+
+        &:focus
+            outline none
+
+        &:disabled
+            background rgba(255, 255, 255, 0.2)
+            color rgb(180, 180, 180)
+            box-shadow none
+
+            &:hover
+                text-decoration none
+                // cursor not-allowed

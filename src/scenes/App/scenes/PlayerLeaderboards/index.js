@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import P from 'prop-types'
 import {connect} from 'react-redux'
-import {loadRanks} from './services/playerLeaderboards/actions'
+import {loadRanks} from './actions'
 
 import {useParams} from 'react-router'
 
@@ -56,7 +56,7 @@ function PlayerLeaderboards ({ fetching, error, data, loadRanks }) {
               </thead>
               <tbody>
                 {data.get('players').map((p, idx) =>
-                  <tr key={idx}>
+                  <tr key={p.get('id')}>
                     <td width="50">
                       <strong className="pull-right">
                         #{p.get('rank')}
@@ -132,7 +132,6 @@ class _PlayerLeaderboards extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     let content
     if (!this.props.data) {
       content = <Throbber />
@@ -194,7 +193,7 @@ class _PlayerLeaderboards extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data} = state.playerLeaderboards
+  const {fetching, error, data} = state.app.playerLeaderboards
   return {fetching, error, data}
 }
 

@@ -18,7 +18,7 @@ function fetchServerDemos(serverID) {
 
 export function loadServerDemos(serverID) {
   return (dispatch, getState) => {
-    const fetching = getState().servers.fetching
+    const fetching = getState().app.servers.fetching
     if (fetching) {
       return null
     }

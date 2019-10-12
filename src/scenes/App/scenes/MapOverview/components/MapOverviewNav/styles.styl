@@ -1,5 +1,6 @@
 .MapOverview-MapOverviewNav
     border-radius 4px
+    font-weight bold
 
     .inner-container
         border-radius inherit
@@ -9,19 +10,24 @@
                                    darken(rgba(64,123,130,0.8), 20%),
                                    darken(rgba(31,120,130,0.8), 10%)
                                    )
-    box-shadow 0 0 8px black
+    box-shadow 1px 1px 8px black
     text-shadow 1px 1px 0 black
-    border 1px solid rgba(255,255,255,0.1)
+    border 2px solid rgba(255,255,255,0.2)
 
     .nav-stacked>li+li
         margin-top 0
 
     li a
         line-height 20px
-        padding-top 8px
-        padding-bottom 8px
-        padding-left 30px
+        padding 8px 30px
         border-radius 0
+        white-space nowrap
+        overflow hidden
+        text-overflow ellipsis
+
+        small
+            color rgb(210, 210, 210)
+            font-weight normal
 
         .badge
             background-color rgba(255, 255, 255, 0.3)
@@ -29,15 +35,25 @@
     //     margin-bottom 6px
     //     border-radius 14px
 
+    li.category
+        padding 0 30px
+        font-size 10px
+        // font-weight normal
+        color rgb(210, 210, 210)
+        user-select none
+        // &:before, &:after
+        //     content '-'
+
     li.divider
         margin-top 0
         height 8px
 
+
     ul.nav
 
         li a
-            &:hover
-                background rgba(255, 255, 255, 0.4)
+            &:hover, &:focus
+                background rgba(144, 244, 255, 0.3)
 
             &.active
                 background rgba(144, 244, 255, 0.4)
@@ -52,5 +68,8 @@
             padding-left 45px
             padding-top 4px
             padding-bottom 4px
+
+        li.category
+            padding-left 45px
         //     margin-bottom 2px
         //     margin-top 2px

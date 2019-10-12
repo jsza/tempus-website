@@ -1,14 +1,16 @@
 import React from 'react'
 import P from 'prop-types'
-import cx from 'classnames'
+import classnames from 'classnames'
 import './styles.styl'
 
 
 export default function TFIcon({tfClass, size, ...props}) {
+  console.log(tfClass)
   const classes = classnames({
     'tf-icon': true,
-    'soldier': tfClass === 'soldier',
-    'demoman': tfClass === 'demoman'
+    'soldier': ['soldier', 3].includes(tfClass),
+    'demoman': ['demoman', 4].includes(tfClass),
+    [size]: true
   })
   return <i {...props} className={classes} />
 }

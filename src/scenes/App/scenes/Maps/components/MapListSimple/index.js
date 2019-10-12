@@ -4,6 +4,8 @@ import Difficulties from 'root/constants/Difficulties'
 import {Link} from 'react-router-dom'
 import LazyLoad from 'react-lazyload'
 
+import ZoneIcon from 'root/components/ZoneIcon'
+
 import './styles.styl'
 
 
@@ -116,10 +118,10 @@ export default class MapListSimple extends React.Component {
                   <Tier tier={m.getIn(['tier_info', '3'])} />
                   <Tier tier={m.getIn(['tier_info', '4'])} />
                   <td>
-                    {bonusCount > 0 ? <span><i className="fa fa-star" /> {bonusCount}</span> : 'None'}
+                    {bonusCount > 0 ? <span><ZoneIcon type="bonus" /> {bonusCount}</span> : 'None'}
                   </td>
                   <td>
-                    {courseCount > 0 ? <span><i className="fa fa-flag" /> {courseCount}</span> : 'Linear'}
+                    {courseCount > 0 ? <span><ZoneIcon type="course" /> {courseCount}</span> : 'Linear'}
                   </td>
                   <td width="10">
                     <a href={`http://tempus.site.nfoservers.com/server/maps/${name}.bsp.bz2`}>

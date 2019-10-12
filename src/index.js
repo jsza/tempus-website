@@ -1,4 +1,4 @@
-import 'babel/polyfill'
+import '@babel/polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -8,6 +8,7 @@ import {createBrowserHistory} from 'history'
 import { ConnectedRouter } from 'connected-react-router'
 import { AppContainer } from 'react-hot-loader'
 import App from './scenes/App'
+import {FormProvider} from 'react-advanced-form'
 
 import '../stylus/index.styl'
 
@@ -17,9 +18,11 @@ function render(Component) {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Component />
-        </ConnectedRouter>
+        <FormProvider>
+          <ConnectedRouter history={history}>
+            <Component />
+          </ConnectedRouter>
+        </FormProvider>
       </Provider>
     </AppContainer>,
     document.getElementById('app')

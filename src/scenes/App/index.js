@@ -6,10 +6,10 @@ import Nav from 'react-bootstrap/lib/Nav'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import NavDropdown from 'react-bootstrap/lib/NavDropdown'
 import MenuItem from 'react-bootstrap/lib/MenuItem'
+import ReactModal from 'react-modal'
 
 import {LinkContainer} from 'react-router-bootstrap'
 import AppSearch from './components/AppSearch'
-import {searchPlayersAndMaps} from './services/appsearch/actions'
 import {withRouter} from 'react-router-dom'
 import {Route, Link} from 'react-router-dom'
 
@@ -25,6 +25,9 @@ import SteamAvatar from 'root/components/SteamAvatar'
 import {USERNAME, PLAYERNAME, STEAMID, PLAYERID} from '../../utils/loginData'
 
 import './styles.styl'
+
+
+ReactModal.setAppElement('#app')
 
 
 class App extends React.Component {
@@ -109,8 +112,7 @@ class App extends React.Component {
               </Nav>
 
               <Navbar.Form className="app-search-form" pullRight>
-                <AppSearch search={this.props.searchPlayersAndMaps}
-                           searchData={this.props.searchData} />
+                <AppSearch />
               </Navbar.Form>
             </Navbar.Collapse>
           </Navbar>
@@ -137,13 +139,4 @@ class App extends React.Component {
 }
 
 
-function mapStateToProps(state) {
-  const {search, router} = state
-  return {searchData: search, routerState: router}
-}
-
-
-export default withRouter(connect(
-  mapStateToProps,
-  {searchPlayersAndMaps}
-)(App))
+export default withRouter(App)

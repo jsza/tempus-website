@@ -21,7 +21,7 @@ function fetch() {
 
 export function loadActivity() {
   return (dispatch, getState) => {
-    const fetching = getState().activity.fetching
+    const fetching = getState().app.activity.fetching
     if (fetching) {
       return null
     }

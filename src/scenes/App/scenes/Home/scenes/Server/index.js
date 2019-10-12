@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/lib/Col'
 
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {loadServers, subscribe, unsubscribe} from '../../services/servers/actions'
+import {loadServers, subscribe, unsubscribe} from '../../actions'
 import SteamAvatar from 'root/components/SteamAvatar'
 import ServerPlayerList from './components/ServerPlayerList'
 import ServerDemoList from './scenes/ServerDemoList'
@@ -102,7 +102,7 @@ class Server extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data} = state.servers
+  const {fetching, error, data} = state.app.servers
   return (
     { fetching
     , error

@@ -1,12 +1,14 @@
 import path from 'path'
 import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+// import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import ZopfliPlugin from 'zopfli-webpack-plugin'
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 export default
-  { devtool: 'source-map'
+  { mode: 'production'
+  , devtool: 'source-map'
   , entry:
     { bundle: path.join(__dirname, '..', 'src', 'index.js')
     }
@@ -27,21 +29,34 @@ export default
         }
       })
     , new webpack.NamedModulesPlugin()
-    , new webpack.optimize.CommonsChunkPlugin(
-      { name: 'vendor'
-      , minChunks: ({resource}) => (
-          resource
-          && resource.match(/\.js$/)
-          && resource.indexOf('node_modules') >= 0
-        )
-      })
-    , new webpack.optimize.UglifyJsPlugin({sourceMap: true})
-    , new ExtractTextPlugin('styles.css')
+    // , new webpack.optimize.CommonsChunkPlugin(
+    //   { name: 'vendor'
+    //   , minChunks: ({resource}) => (
+    //       resource
+    //       && resource.match(/\.js$/)
+    //       && resource.indexOf('node_modules') >= 0
+    //     )
+    //   })
+    , new MiniCssExtractPlugin('styles.css')
     , new ZopfliPlugin(
       { deleteOriginalAssets: true
       })
     // , new BundleAnalyzerPlugin()
     ]
+  , optimization:
+    { splitChunks:
+      { cacheGroups:
+        { vendor:
+          { name: 'vendor'
+          , test: /node_modules/
+          , chunks: 'initial'
+          , priority: 10
+          , enforce: true
+          }
+        }
+      }
+    , minimize: true
+    }
   , module:
     { rules:
       [ { test: /\.js$/
@@ -53,23 +68,32 @@ export default
         , use:
           [ { loader: 'babel-loader'
             , options:
-              { presets: ['env', 'react']
+              { presets:
+                [ '@babel/preset-env'
+                , '@babel/preset-react'
+                ]
               }
             }]
         }
       , { test: /\.styl$/
         , exclude: /node_modules/
-        , use: ExtractTextPlugin.extract(
-          { use:
-            [ { loader: 'css-loader'
-              , options: {sourceMap: true}
+        , use:
+          [ { loader: MiniCssExtractPlugin.loader
+            , options:
+              { sourceMap: true
               }
-            , { loader: 'stylus-loader'
-              , options: {sourceMap: true}
+          }
+          , { loader: 'css-loader'
+            , options:
+              { sourceMap: true
               }
-            ]
-          , fallback: 'style-loader'
-          })
+            }
+          , { loader: 'stylus-loader'
+            , options:
+              { sourceMap: true
+              }
+            }
+          ]
         }
       ]
     }

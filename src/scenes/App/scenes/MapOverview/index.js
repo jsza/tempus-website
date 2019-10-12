@@ -1,11 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import {
   loadMapOverview,
-  selectVideo,
-  fetchLeaderboard,
-  fetchMoreLeaderboard
-} from './services/mapOverview/actions'
+  selectVideo
+} from './actions'
 
 import Tooltip from 'react-bootstrap/lib/Tooltip'
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
@@ -17,13 +15,42 @@ import DocumentTitle from 'react-document-title'
 
 import Video from './components/Video'
 import Throbber from 'root/components/Throbber'
-import LeaderboardContainer from './components/LeaderboardContainer'
+import Leaderboards from './scenes/Leaderboards'
 import MapAuthorsView from './scenes/MapAuthorsView'
 import MapOverviewNav from './components/MapOverviewNav'
 import SteamAvatar from 'root/components/SteamAvatar'
+import ZoneIcon from 'root/components/ZoneIcon'
 import { formatTime } from 'root/utils/TempusUtils'
 
 import './styles.styl'
+
+
+function MapOverviewBackground({ mapName }) {
+  const imgURL = `http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg`
+  const [imgLoaded, setImgLoaded] = useState(false)
+  useEffect(() => {
+    let unmounted = false
+    const image = new Image()
+    image.onload = () => {
+      if (!unmounted)
+        setImgLoaded(true)
+    }
+    image.src = imgURL
+    return () => unmounted = true
+  }, [mapName])
+
+  const styles = {
+    opacity: 0
+  }
+  if (imgLoaded) {
+    styles.backgroundImage = `url(${imgURL})`
+    styles.opacity = 100
+  }
+  return (
+    <div className="MapOverview-background" style={ styles } />
+  )
+}
+
 
 class MapOverview extends React.Component {
   componentDidMount() {
@@ -53,7 +80,7 @@ class MapOverview extends React.Component {
     } else {
       authorItem = (
         <Link to={`${match.url}/authors`}>
-          {authors.size} authors
+          <i className="fas fa-paint-brush" /> {authors.size} authors
         </Link>
       )
     }
@@ -114,23 +141,15 @@ class MapOverview extends React.Component {
     }
     return (
       <span>
-        <i className="fa fa-fw fa-flag" /> {courseString}
+        <ZoneIcon type="course" fixedWidth /> {courseString}
         <br />
-        <i className="fa fa-fw fa-star" /> {bonusString}
+        <ZoneIcon type="bonus" fixedWidth /> {bonusString}
       </span>
     )
   }
 
   onClickCloseVideo() {
     this.props.selectVideo(null)
-  }
-
-  onFetchLeaderboard(zoneType, index) {
-    this.props.fetchLeaderboard(this.props.match.params.name, zoneType, index)
-  }
-
-  onFetchMoreLeaderboard(playerClass) {
-    this.props.fetchMoreLeaderboard(playerClass)
   }
 
   render() {
@@ -144,9 +163,6 @@ class MapOverview extends React.Component {
     }
     const { leaderboard } = this.props
     const mapName = data.getIn(['map_info', 'name'])
-    const bgStyle = {
-      backgroundImage: `url(http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg)`
-    }
     // const bgStyle = {}
     const { match } = this.props
 
@@ -154,7 +170,7 @@ class MapOverview extends React.Component {
       <DocumentTitle title={`Tempus - ${mapName}`}>
         <div>
           <section className="MapOverview">
-            <div className="MapOverview-background" style={bgStyle} />
+            <MapOverviewBackground mapName={mapName} />
             <header className="MapOverview-header">
               <div className="MapOverview-header-inner">
                 <div className="MapOverview-header-inner-inner">
@@ -215,15 +231,12 @@ class MapOverview extends React.Component {
             </header>
             <div className="container-fluid">
               <div className="col-md-2">
-                <MapOverviewNav
-                  data={this.props.data}
-                  fetchLeaderboard={this.props.fetchLeaderboard}
-                />
+                <MapOverviewNav data={this.props.data} />
               </div>
               <Switch>
                 <Route
                   path={`${match.url}/leaderboards`}
-                  component={LeaderboardContainer} />
+                  component={Leaderboards} />
                 <Route
                   path={`${match.url}/authors`}
                   component={() => <MapAuthorsView authors={data.get('authors')} />} />
@@ -243,11 +256,11 @@ class MapOverview extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { mapOverview } = state
+  const { mapOverview } = state.app.mapOverview
   return mapOverview.toObject()
 }
 
 export default connect(
   mapStateToProps,
-  { loadMapOverview, selectVideo, fetchLeaderboard, fetchMoreLeaderboard }
+  { loadMapOverview, selectVideo }
 )(MapOverview)

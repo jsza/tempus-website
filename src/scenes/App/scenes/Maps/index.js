@@ -1,5 +1,5 @@
 import React from 'react'
-import {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort} from './services/maps/actions'
+import {loadMaps, resetMaps, setFilter, toggleSimple, selectMapSort} from './actions'
 import {connect} from 'react-redux'
 import classnames from 'classnames'
 
@@ -83,8 +83,7 @@ class Maps extends React.Component {
 
 
 function mapStateToProps(state) {
-  const {maps} = state
-  const {fetching, error, data, filters, simple, sort} = maps
+  const {fetching, error, data, filters, simple, sort} = state.app.maps
   return {fetching, error, data, filters, simple, sort}
 }
 

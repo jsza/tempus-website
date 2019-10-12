@@ -1,0 +1,240 @@
+row-box-shadow-color = black
+
+row-bg-color = rgba(255, 255, 255, 0.05)
+row-bg-color-hover = rgba(255, 255, 255, 0.1)
+row-bg-color-expanded = rgba(255, 255, 255, 0.15)
+row-bg-color-expanded-hover = rgba(255, 255, 255, 0.20)
+
+row-border-color = rgba(255, 255, 255, 0.10)
+row-border-color-hover = alpha(row-border-color, alpha(row-border-color) + 0.05)
+row-border-color-expanded = row-border-color-hover
+row-border-color-hover = alpha(row-border-color-expanded, alpha(row-border-color-expanded) + 0.05)
+
+
+row-border(top = false, bottom = false)
+    border-color row-border-color
+    border-style solid
+    border-left-width 0
+    border-right-width 0
+
+    if top
+        border-top-width 1px
+    else
+        border-top-width 0
+
+    if bottom
+        border-bottom-width 1px
+    else
+        border-bottom-width 0
+
+
+row-box-shadow-values(posY)
+    0 posY 2px -2px row-box-shadow-color
+
+
+row-box-shadow(top=false, bottom=false)
+    if top and bottom
+        box-shadow row-box-shadow-values(-3px) ,
+                   row-box-shadow-values(3px)
+    else if top
+        box-shadow row-box-shadow-values(-3px)
+    else if bottom
+        box-shadow row-box-shadow-values(3px)
+
+
+.MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
+    cursor pointer
+
+    &:hover
+        row-box-shadow(top: true, bottom: true)
+
+        td
+            border-top-width 1px
+            border-bottom-width 1px
+            // border-top-width 2px
+            // border-bottom-width 2px
+            background-color row-bg-color-hover
+
+        & + .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
+            td
+                border-top 0
+
+            &.expanded
+                box-shadow none
+
+    td
+        row-border()
+        border-top-width 1px
+        background-color row-bg-color
+        padding 5px 6px
+        vertical-align middle
+        background-clip border-box
+
+        &:first-child
+            padding-left 15px
+
+        &:last-child
+            padding-right 15px
+
+    &:first-child td
+        border-top 0
+
+    &:last-child td
+        border-bottom-width 1px
+
+    &.expanded
+        box-shadow 0 -3px 2px -2px black
+        td
+            border-bottom-width 1px
+            border-color row-border-color-expanded
+            border-bottom-color transparent
+            background-color row-bg-color-expanded
+
+        &:hover
+            td
+                background-color row-bg-color-expanded-hover
+                border-color row-border-color-expanded-hover
+                border-bottom-color row-border-color-expanded-hover
+
+    .rank
+        color rgb(200, 200, 200)
+        text-align right
+        // font-family 'Droid Sans Mono', monospace
+        // font-weight bold
+
+    .name
+        padding-top 3px
+        padding-bottom 3px
+        padding-left 8px
+        text-overflow ellipsis
+        font-weight bold
+
+        .name-inner
+            display block
+            white-space nowrap
+
+        .steamavatar
+            height 24px
+            width 24px
+            border-radius 50%
+            border-width 2px
+            margin-right 4px
+            box-shadow 1px 0 4px black
+
+
+    .duration
+        font-family 'Droid Sans Mono', monospace
+        text-align right
+
+        a
+            font-weight bold
+            font-size 14px
+            color inherit
+            // background rgba(255, 255, 255, 0.1)
+            padding 2px 8px
+            border-radius 8px
+
+        .comparison
+            color rgb(200, 200, 200)
+            font-size 11px
+            text-align center
+
+    > .comparison
+        padding-left 0
+        font-size 11px
+        font-family 'Droid Sans Mono', monospace
+        color rgb(200, 200, 200)
+
+    .date
+        text-align right
+        color rgb(180, 180, 180)
+
+    &.rank-1
+        border-left 0
+        border-right 0
+
+        td
+            // TODO: stick
+            // position sticky
+            // top 133px
+            // z-index 2
+
+        .rank
+            color darken(gold, 20%)
+
+        .name-inner
+            padding-right 8px
+            position relative
+            background linear-gradient(to right, #736100 0%, #564904 100%)
+            margin-right 16px
+            border-top-left-radius 36px
+            border-bottom-left-radius 36px
+
+            filter drop-shadow(1px 0 1px black)
+
+            &:after
+                content ''
+                position absolute
+                right -18px
+                top 0
+                border-top 12px solid #564904
+                border-bottom 12px solid #564904
+                border-right 18px solid transparent
+
+            a.player-link
+                overflow hidden
+                text-overflow ellipsis
+                min-width 300px
+
+        .name a
+            color gold
+
+        .duration span
+            border-bottom-color rgb(127, 107, 0)
+
+    &.rank-2 .rank
+        color rgb(190, 190, 190)
+
+    &.rank-3 .rank
+        color #B87333
+
+
+.MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItemPanel
+    row-box-shadow(bottom: true)
+
+    > td
+        row-border()
+        border-bottom-width 1px
+        margin-bottom 4px
+
+        .run-info-container
+            box-shadow inset 0 3px 2px -2px rgba(0, 0, 0, 0.6)
+            display flex
+            justify-content space-around
+            padding 6px
+
+            .run-info-panel
+                flex 0 0 auto
+                background row-bg-color-expanded
+                border 1px solid row-border-color-expanded
+                padding 3px 6px
+                border-radius 2px
+
+                > .run-info-table
+                    tr > td
+                        padding 2px 4px
+                        &:first-child
+                            font-weight bold
+                            text-align right
+
+                        a
+                            font-weight bold
+
+    & + .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
+        td
+            border-top-color transparent
+
+        &:hover
+            row-box-shadow(top: false, bottom: true)
+            td
+                border-top-color transparent

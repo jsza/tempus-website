@@ -1,7 +1,7 @@
 import React from 'react'
 import P from 'prop-types'
 import IP from 'react-immutable-proptypes'
-import {loadDemoOverview, requestDemoUpload} from './services/demoOverview/actions'
+import {loadDemoOverview, requestDemoUpload} from './actions'
 import {connect} from 'react-redux'
 
 import DocumentTitle from 'react-document-title'
@@ -71,7 +71,7 @@ DemoOverview.propTypes = {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data, uploading, uploadingError} = state.demoOverview
+  const {fetching, error, data, uploading, uploadingError} = state.app.demoOverview
   return {fetching, error, data, uploading, uploadingError}
 }
 

@@ -3,7 +3,7 @@ import P from 'prop-types'
 import IP from 'react-immutable-proptypes'
 import cx from 'classnames'
 import {connect} from 'react-redux'
-import {loadRecordOverview} from './services/recordOverview/actions'
+import {loadRecordOverview} from './actions'
 import {prettyZoneName, formatTime} from 'root/utils/TempusUtils'
 import {Link} from 'react-router-dom'
 import SteamAvatar from 'root/components/SteamAvatar'
@@ -147,7 +147,7 @@ RecordOverview.propTypes = {
 
 
 function mapStateToProps(state) {
-  const {fetching, error, data} = state.recordOverview
+  const {fetching, error, data} = state.app.recordOverview
   return {fetching, error, data}
 }
 
