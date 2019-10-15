@@ -25,37 +25,59 @@
 .MapOverview-header
     // margin-top 0
     margin-bottom 15px
-    width 100%
-
-    border-bottom 2px solid rgba(255, 255, 255, 0.2)
+    border-bottom 1px solid rgb(86, 104, 118)
     text-shadow 1px 1px 0 black
-    box-shadow 0 0 8px black
-    width 100%
+    box-shadow 0 2px 4px black
     z-index 100
     text-align center
+    padding 0 0 0 0
+    background linear-gradient(135deg,
+                               darken(rgba(45,70,95,1), 28%),
+                               darken(rgba(64,123,130,1), 28%),
+                               darken(rgba(31,120,130,1), 28%)
+                               )
+    background-clip padding-box
+    // box-shadow 0 1px 0 rgb(85, 115, 121),
+    //            0 2px 1px darken(rgb(85, 115, 121), 40%),
+    //            0 3px 2px darken(rgb(85, 115, 121), 60%)
 
-    .MapOverview-header-inner
-        padding 0 0 8px 0
-        background linear-gradient(135deg,
-                                   darken(rgba(45,70,95,0.8), 28%),
-                                   darken(rgba(64,123,130,0.8), 28%),
-                                   darken(rgba(31,120,130,0.8), 28%)
-                                   )
+    .header-title
+        background rgba(0, 0, 0, 0.35)
+        // box-shadow 0 4px 4px -4px black
+        // border-bottom 1px solid rgba(0,0,0,0.25)
+        // padding 8px 0 0 0
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 60px,
+            rgba(0, 0, 0, 0.25) 60px,
+            rgba(0, 0, 0, 0.2) 90px,
+            rgba(0, 0, 0, 0.25) 120px
+        );
+        // box-shadow 0 1px 2px black
+        // background-clip padding-box
 
-    h1
-        background rgba(20, 20, 20, 0.7)
-        box-shadow 0 0 4px black
-        border-bottom 2px solid rgba(255,255,255,0.15)
-        margin-top 0
-        padding 8px
+        .header-container
+            padding-top 8px
+            background linear-gradient(90deg, transparent, #ffffff1f, transparent)
 
-        a
-            color inherit
-            &:hover
-                color rgb(220, 220, 220)
+        h1
+            margin-top 0
+            font-weight bold
+            margin-bottom 0
+            text-shadow 3px 3px 0 rgba(0, 0, 0, 0.65)
 
-    h1 small
-        color rgb(180, 180, 180)
+            a
+                color inherit
+                &:hover
+                    color rgb(220, 220, 220)
+
+            small
+                color rgb(180, 180, 180)
+                text-shadow 2px 2px 0 rgba(0, 0, 0, 0.65)
+
+    .MapOverview-sub-header
+        padding 6px 0
 
     .MapOverview-header-video-buttons
         display block
@@ -170,15 +192,29 @@
 .map-info-table
     margin 0 auto
     width auto
-    margin-bottom 8 px
+    margin-bottom 8px
 
     & > tbody > tr > td
         border-top 0
 
 .map-info-list
+    display inline-block
+    padding 3px 20px
+    padding-top 6px
+    margin-top 8px
+    margin-bottom -1px
+    border-radius 20px 20px 0 0
+    background linear-gradient(135deg,
+                               darken(rgba(45,70,95,1), 28%),
+                               darken(rgba(64,123,130,1), 28%),
+                               darken(rgba(31,120,130,1), 28%)
+                               )
+    box-shadow 2px 2px 8px inset rgba(0, 0, 0, .7)
+    border 1px solid rgb(86, 104, 118)
+    // border-bottom 1px solid transparent
+    border-bottom-color rgba(255, 255, 255, 0.05)
     list-style none
-    padding-left 0
-    margin-bottom 0
+    // font-weight bold
 
     li
         display inline

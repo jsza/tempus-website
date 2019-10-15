@@ -185,11 +185,13 @@ table
 
 .panel-dark
   border-color rgba(255, 255, 255, 0.2)
-  border-width 2px
+  border-width 1px
   // border-color: rgb(60, 100, 110)
   box-shadow 1px 1px 8px black;
+  // text-shadow 1px 1px 1px rgba(0, 0, 0, 0.8)
   text-shadow 1px 1px 0 black
   background none
+  border-radius 8px
 
   a
     color rgb(0, 180, 240)
@@ -199,17 +201,23 @@ table
         text-decoration underline
 
   & > .panel-body
-    background-color rgba(20, 30, 35, 0.7)
-    border-radius 0 0 4px 4px
+    background-color lighten(rgba(20, 30, 40, 0.90), 0%)
+    // background-color darken(rgba(51, 98, 104, 0.9), 50%)
+    // background-color rgba(40, 40, 40, 0.9)
+    border-radius 0 0 8px 8px
 
 
   & > .panel-heading
     color rgb(240, 240, 240)
     background linear-gradient(135deg,
-                               darken(rgba(45,70,95,0.8), 10%),
-                               darken(rgba(64,123,130,0.8), 20%),
-                               darken(rgba(31,120,130,0.8), 10%)
+                               darken(rgba(45,70,95,0.90), 10%),
+                               darken(rgba(64,123,130,0.90), 20%),
+                               darken(rgba(31,120,130,0.90), 10%)
                                )
+    box-shadow 0 4px 3px -3px black
+    border-bottom 1px solid rgba(255, 255, 255, 0.3)
+    border-top-left-radius 7px
+    border-top-right-radius 7px
 
     + .panel-collapse > .panel-body
       border-top-color rgba(200, 200, 200, 0.8)
@@ -249,6 +257,18 @@ table
     &.active
         background rgba(150, 150, 150, 0.5)
 
+.btn-primary.btn-dark
+    background-image linear-gradient(hsla(197, 52%, 37%, 1) 0px, rgb(24, 62, 78) 100%)
+    background-color rgb(24, 62, 78)
+    // box-shadow 0 1px 3px rgba(0, 0, 0, 0.9)
+    border-color rgb(24, 62, 78)
+
+    &:hover
+        background-color rgb(24, 62, 78)
+
+    &:active:focus
+        background-color rgb(24, 62, 78)
+
 .form-row
     display flex
     flex-wrap wrap
@@ -261,3 +281,13 @@ table
         max-width 100%
         flex-grow 1
         flex-basis 0
+
+.flex-row
+    display flex
+    padding-left 15px
+    padding-right 15px
+
+    > .col
+        flex 1 0
+        padding-left 15px
+        padding-right 15px

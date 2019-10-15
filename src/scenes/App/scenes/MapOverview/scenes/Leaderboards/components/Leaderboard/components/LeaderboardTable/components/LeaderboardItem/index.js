@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import {formatTime} from 'root/utils/TempusUtils'
 
 import {Link} from 'react-router-dom'
@@ -97,6 +97,9 @@ function LeaderboardItem({ data, firstPlace, expanded, onClick }) {
   return (
     <>
       <tr className={classes} onClick={onClick}>
+        <td className="toggle-expand">
+          <i className={`fas fa-chevron-right`} style={{transform: `rotate(${expanded ? '90deg' : '0deg'})`, textShadow: 'none'}} />
+        </td>
         <td className="rank shrink">
           {rankElement}
         </td>
@@ -124,6 +127,11 @@ function LeaderboardItem({ data, firstPlace, expanded, onClick }) {
       </tr>
       {expanded && (
         <LeaderboardItemPanel data={data} />
+      )}
+      {expanded && (
+        <tr className="LeaderboardItemPanel-spacer">
+          <td></td>
+        </tr>
       )}
     </>
   )

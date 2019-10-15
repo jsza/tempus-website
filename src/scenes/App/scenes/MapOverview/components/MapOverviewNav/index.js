@@ -40,16 +40,10 @@ export function MapOverviewLeaderboardNav({ zones, mapName, baseURL }) {
       { zonesGrouped.map(([zoneType, zs], idx) => {
         return (
           <React.Fragment key={`frag${idx}`}>
-            { zoneType === 'course' &&
-              <li key="course-category" className="category">
-                COURSES
-              </li>
-            }
-            { zoneType === 'bonus' &&
-              <li key="bonus-category"className="category">
-                BONUSES
-              </li>
-            }
+            <li key={`${zoneType}-category`} className="category">
+              {zoneType === 'bonus' && 'BONUSES'}
+              {zoneType === 'course' && 'COURSES'}
+            </li>
             { zs.map(zone =>
               <MapOverviewNavItem
                 key={zone.get('id')}
@@ -72,19 +66,17 @@ function MapOverviewNav({ data, fetchLeaderboard, match }) {
   const zones = data.get('zones')
   return (
     <div className="MapOverview-MapOverviewNav">
-      <div className="inner-container">
-        <ul className="nav nav-pills nav-stacked nav-dark">
-          <li role="presentation">
-            <a href="#">
-              <i className="fa fa-fw fa-trophy" /> Leaderboards <i className="fa fa-caret-down" />
-            </a>
-            <MapOverviewLeaderboardNav zones={zones} mapName={name} baseURL={match.url} />
-          </li>
-          <li>
-            <NavLink to={`${match.url}/authors`}><i className="fa fa-fw fa-paint-brush" /> Authors <span className="badge">{`${data.get('authors').size}`}</span></NavLink>
-          </li>
-        </ul>
-      </div>
+      <ul className="nav nav-pills nav-stacked nav-dark">
+        <li role="presentation">
+          <a href="#">
+            <i className="fa fa-fw fa-trophy" /> Leaderboards <i className="fa fa-caret-down" />
+          </a>
+          <MapOverviewLeaderboardNav zones={zones} mapName={name} baseURL={match.url} />
+        </li>
+        <li>
+          <NavLink to={`${match.url}/authors`}><i className="fa fa-fw fa-paint-brush" /> Authors <span className="badge">{`${data.get('authors').size}`}</span></NavLink>
+        </li>
+      </ul>
     </div>
   )
 }

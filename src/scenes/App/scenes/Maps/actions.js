@@ -25,8 +25,8 @@ function fetch() {
 
 export function loadMaps() {
   return (dispatch, getState) => {
-    const {fetching, data} = getState().app.maps
-    if (fetching || data) {
+    const {fetching} = getState().app.maps
+    if (fetching) {
       return null
     }
     return dispatch(fetch())

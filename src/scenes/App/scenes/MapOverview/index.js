@@ -20,13 +20,14 @@ import MapAuthorsView from './scenes/MapAuthorsView'
 import MapOverviewNav from './components/MapOverviewNav'
 import SteamAvatar from 'root/components/SteamAvatar'
 import ZoneIcon from 'root/components/ZoneIcon'
+import TFIcon from 'root/components/TFIcon'
 import { formatTime } from 'root/utils/TempusUtils'
 
 import './styles.styl'
 
 
 function MapOverviewBackground({ mapName }) {
-  const imgURL = `http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_1080p.jpeg`
+  const imgURL = `http://tempus.site.nfoservers.com/web/screenshots/raw/${mapName}_320p.jpeg`
   const [imgLoaded, setImgLoaded] = useState(false)
   useEffect(() => {
     let unmounted = false
@@ -53,16 +54,6 @@ function MapOverviewBackground({ mapName }) {
 
 
 class MapOverview extends React.Component {
-  componentDidMount() {
-    this.props.loadMapOverview(this.props.match.params.name)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.name !== this.props.match.params.name) {
-      this.props.loadMapOverview(nextProps.match.params.name)
-    }
-  }
-
   renderAuthor() {
     const authors = this.props.data.get('authors')
     const {match} = this.props
@@ -80,7 +71,7 @@ class MapOverview extends React.Component {
     } else {
       authorItem = (
         <Link to={`${match.url}/authors`}>
-          <i className="fas fa-paint-brush" /> {authors.size} authors
+          {authors.size} authors
         </Link>
       )
     }
@@ -172,8 +163,8 @@ class MapOverview extends React.Component {
           <section className="MapOverview">
             <MapOverviewBackground mapName={mapName} />
             <header className="MapOverview-header">
-              <div className="MapOverview-header-inner">
-                <div className="MapOverview-header-inner-inner">
+              <div className="header-title">
+                <div className="container header-container">
                   <h1>
                     {data.getIn(['map_info', 'name'])}{' '}
                     <br className="hidden-lg hidden-md" />
@@ -181,56 +172,59 @@ class MapOverview extends React.Component {
                       <small>by {this.renderAuthor()}</small>
                     </div>
                   </h1>
-                  <div>
-                    <ul className="map-info-list">
-                      <li>
-                        <i className="fa fa-flag" />{' '}
-                        {this.props.data.getIn(['zone_counts', 'course'], 1)}{' '}
-                        Courses
-                      </li>
-                      <li>
-                        <i className="fa fa-star" />{' '}
-                        {this.props.data.getIn(['zone_counts', 'bonus'], 0)}{' '}
-                        Bonuses
-                      </li>
-                      {/* TODO: Enable when we have data for this */}
-                      <li className="hidden">
-                        Made for <i className="tf-icon soldier mini" />{' '}
-                        <i className="tf-icon demoman mini" />
-                      </li>
-                      <li>
-                        <a
-                          className="btn btn-link"
-                          target="_blank"
-                          style={{ padding: 0, color: '#00b4f0' }}
-                          href={`http://tempus.site.nfoservers.com/server/maps/${data.getIn(
-                            ['map_info', 'name']
-                          )}.bsp.bz2`}
-                        >
-                          Download
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="hidden">
-                  <p style={{ margin: 0 }}>
-                    <i
-                      className="tf-icon soldier small"
-                      style={{
-                        height: '20px',
-                        width: '20px',
-                        filter: 'grayscale(100%)'
-                      }}
-                    />{' '}
-                    Soldier map
-                  </p>
-                  <p>{this.renderZoneCounts()}</p>
+                  <ul className="map-info-list">
+                    <li>
+                      <i className="fa fa-flag" />{' '}
+                      {this.props.data.getIn(['zone_counts', 'course'], 1)}
+                    </li>
+                    <li>
+                      <i className="fa fa-star" />{' '}
+                      {this.props.data.getIn(['zone_counts', 'bonus'], 0)}
+                    </li>
+                    {/* TODO: Enable when we have data for this */}
+                    <li className="hidden">
+                      Made for <i className="tf-icon soldier mini" />{' '}
+                      <i className="tf-icon demoman mini" />
+                    </li>
+                    <li>
+                      <TFIcon tfClass="soldier" size="auto" /> {`T${data.getIn(['tier_info', 'soldier'])}`}
+                    </li>
+                    <li>
+                      <TFIcon tfClass="demoman" size="auto" /> {`T${data.getIn(['tier_info', 'demoman'])}`}
+                    </li>
+                    <li>
+                      <a
+                        className="btn btn-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ padding: 0, color: '#00b4f0' }}
+                        href={`http://tempus.site.nfoservers.com/server/maps/${data.getIn(
+                          ['map_info', 'name']
+                        )}.bsp.bz2`}
+                      >
+                        <i className="fas fa-download" />
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
+              <div className="hidden">
+                <p style={{ margin: 0 }}>
+                  <i
+                    className="tf-icon soldier small"
+                    style={{
+                      height: '20px',
+                      width: '20px',
+                      filter: 'grayscale(100%)'
+                    }}
+                  />{' '}
+                  Soldier map
+                </p>
+                <p>{this.renderZoneCounts()}</p>
+              </div>
             </header>
-            <div className="container-fluid">
-              <div className="col-md-2">
+            <div className="flex-row">
+              <div className="col" style={{flex: '0 0 270px'}}>
                 <MapOverviewNav data={this.props.data} />
               </div>
               <Switch>

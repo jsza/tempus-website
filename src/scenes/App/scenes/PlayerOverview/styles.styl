@@ -6,17 +6,25 @@
     // min-height 1000px
     box-shadow 0 0 4px black
 
+.player-overview-header-container
+    background linear-gradient(135deg,
+                               darken(rgb(45, 70, 95), 35%),
+                               darken(rgb(64, 123, 130), 35%),
+                               darken(rgb(31, 120, 130), 35%)
+                               )
+
 .player-overview-header
     position relative
     padding 15px 15px
     color rgba(255, 255, 255, 0.9)
-    background: repeating-linear-gradient(
-        -45deg,
-        darken(rgb(55, 90, 110), 40%),
-        darken(rgb(55, 90, 110), 40%) 40px,
-        darken(rgb(55, 90, 110), 80%) 40px,
-        darken(rgb(55, 90, 110), 80%) 80px
-    );
+    background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 60px,
+            rgba(0, 0, 0, 0.25) 60px,
+            rgba(0, 0, 0, 0.2) 90px,
+            rgba(0, 0, 0, 0.25) 120px
+        );
     text-shadow 0 1px 1px black, 0 1px 1px black
     // background darken(rgb(55, 90, 110), 60%)
     // background linear-gradient(
@@ -49,7 +57,7 @@
     // margin-top 15px
     // padding-bottom 15px
     // border-bottom 1px solid #ddd
-    box-shadow 0 0 4px grey
+    box-shadow 0 4px 4px -4px grey
 
     a:first-child
         border-left 0
@@ -109,8 +117,9 @@
     margin-right 12px
 
 .player-overview-header-content
-    h1
+    h2
         margin-top 0
+        text-shadow 2px 2px 1px black
 
 .player-overview-stats
     padding-left 0

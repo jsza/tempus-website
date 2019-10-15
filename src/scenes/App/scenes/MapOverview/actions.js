@@ -31,7 +31,7 @@ function fetch(mapName) {
 
 export function loadMapOverview(mapName) {
   return (dispatch, getState) => {
-    const { fetching } = getState().app.mapOverview
+    const { fetching } = getState().app.mapOverview.mapOverview
     if (fetching) {
       return null
     }

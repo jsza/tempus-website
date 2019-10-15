@@ -8,19 +8,18 @@ import {FETCH,
         FETCH_MORE,
         FETCH_MORE_SUCCESS,
         FETCH_MORE_ERROR,
-        TOGGLE_EXPAND} from './actions'
+        TOGGLE_EXPAND,
+        COLLAPSE_ALL} from './actions'
 
 
 let initialState = new Immutable.Record(
   { fetching: false
   , error: null
   , data: null
-  , zoneType: 'map'
-  , index: 1
-  , expandedRun: Immutable.Map(
-    { [3]: null
-    , [4]: null
-    })
+  , expandedRuns:
+    { [3]: Immutable.Set()
+    , [4]: Immutable.Set()
+    }
   })()
 
 
@@ -31,7 +30,7 @@ export default handleActions(
       , error: null
       , zoneType: action.zoneType
       , index: action.index
-      , expandedRun: {[3]: null, [4]: null}
+      , expandedRuns: initialState.expandedRuns
       })
   , [RECEIVE]: (state, action) =>
     state.merge(
@@ -64,8 +63,11 @@ export default handleActions(
       })
   , [TOGGLE_EXPAND]: (state, action) => {
     const { playerClass, runID } = action.payload
-    return state.updateIn(['expandedRun', playerClass],
-      (x) => x === runID ? null : runID
+    return state.updateIn(['expandedRuns', playerClass],
+      (x) => x.includes(runID) ? x.delete(runID) : x.add(runID)
     )}
+  , [COLLAPSE_ALL]: (state, action) =>
+    state.updateIn(
+      ['expandedRuns', action.payload.playerClass], (x) => x.clear())
   }, initialState
 )

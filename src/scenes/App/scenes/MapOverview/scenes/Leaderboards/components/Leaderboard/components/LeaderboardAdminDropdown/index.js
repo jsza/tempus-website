@@ -18,10 +18,11 @@ function LeaderboardAdminDropdown({ zoneInfo, playerClass, location, match }) {
   return (
     <div className="MapOverview-LeaderboardContainer-Leaderboard-LeaderboardAdminDropdown">
       <DropdownButton
+        id="LeaderboardAdminDropdown"
         pullRight
         title={<span><i className="fas fa-user-secret" /> Admin <i className="fa fa-caret-down" /></span>}
         bsStyle="primary"
-        noCaret>
+        noCaret className="btn-dark">
         <LinkContainer to={addRunURL}>
           <MenuItem>
             <i className="fas fa-plus fa-large" /> Add run

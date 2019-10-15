@@ -1,18 +1,19 @@
 .MapOverview-MapOverviewNav
-    border-radius 4px
+    border-radius 8px
     font-weight bold
+    width 270px
+    margin-bottom 15px
+    background linear-gradient(135deg,
+                               darken(rgba(45,70,95,0.9), 10%),
+                               darken(rgba(64,123,130,0.9), 20%),
+                               darken(rgba(31,120,130,0.9), 10%)
+                               )
+    background-clip padding-box
+    padding 15px 0
 
-    .inner-container
-        border-radius inherit
-        padding 15px 0
-        background linear-gradient(135deg,
-                                   darken(rgba(45,70,95,0.8), 10%),
-                                   darken(rgba(64,123,130,0.8), 20%),
-                                   darken(rgba(31,120,130,0.8), 10%)
-                                   )
     box-shadow 1px 1px 8px black
     text-shadow 1px 1px 0 black
-    border 2px solid rgba(255,255,255,0.2)
+    border 1px solid rgba(255,255,255,0.2)
 
     .nav-stacked>li+li
         margin-top 0

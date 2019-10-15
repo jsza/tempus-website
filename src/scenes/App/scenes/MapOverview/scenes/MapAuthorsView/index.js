@@ -12,7 +12,7 @@ export default function MapAuthors({ authors }) {
     <div className="col-md-10 MapOverview-MapAuthorsView">
       <div className="panel panel-dark">
         <div className="panel-heading">
-          Map Authors
+          <i className="fas fa-paint-brush" /> <strong>Map Authors</strong>
         </div>
         <div className="panel-body">
           <ul>

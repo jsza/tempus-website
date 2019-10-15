@@ -2,8 +2,12 @@ import React from 'react'
 
 import LeaderboardItem from './components/LeaderboardItem'
 
+import './styles.styl'
 
-export default function LeaderboardTable({ data, playerClass, fetchMore, toggleExpand, expandedRun  }) {
+
+export default function LeaderboardTable(
+  { data, playerClass, fetchMore, toggleExpand, collapseAll, expandedRuns }
+) {
   if (data.size === 0) {
     return (
       <div className="no-records">
@@ -13,15 +17,21 @@ export default function LeaderboardTable({ data, playerClass, fetchMore, toggleE
   }
   const firstPlace = data.get(0)
   return (
-    <div>
-      <table className="table-mapoverview">
+    <div className="MapOverview-LeaderboardTable-container">
+      <table className="MapOverview-LeaderboardTable">
         <thead>
           <tr>
-            <th className="rank sortable selected shrink"><i className="fas fa fa-hashtag fa-sm" /> <i className="fa fa-caret-down" /></th>
-            <th className="duration shrink">duration</th>
+            <th className="rank sortable selected shrink" colSpan="2">
+              # <i className="fa fa-sort-down" />
+            </th>
+            <th className="duration sortable shrink text-right selected">
+              duration
+            </th>
             <th className="comparison shrink hidden"></th>
-            <th className="player expand">player</th>
-            <th className="date sortable shrink hidden-xs"><i className="fa fa-calendar" /></th>
+            <th className="player expand unsortable">player</th>
+            <th className="date sortable shrink hidden-xs">
+              date
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -33,12 +43,24 @@ export default function LeaderboardTable({ data, playerClass, fetchMore, toggleE
                 data={data}
                 firstPlace={firstPlace}
                 onClick={() => toggleExpand(playerClass, runID)}
-                expanded={expandedRun === runID}
+                expanded={expandedRuns.includes(runID)}
               />
             )
           }) : 'nothing'}
         </tbody>
       </table>
+      {expandedRuns.size > 0 &&
+        <div className="leaderboard-buttons">
+          <div className="btn-group">
+            <button className="btn btn-primary btn-dark" onClick={() => collapseAll(playerClass)}>
+              <i className="fas fa-chevron-up" /> <i className="fa-secret" /> Admin
+            </button>
+            <button className="btn btn-primary btn-dark" onClick={() => collapseAll(playerClass)}>
+              <i className="fas fa-chevron-up" /> Collapse runs
+            </button>
+          </div>
+        </div>
+      }
       <button className="load-more-button" onClick={() => fetchMore()}>
           Load more
       </button>

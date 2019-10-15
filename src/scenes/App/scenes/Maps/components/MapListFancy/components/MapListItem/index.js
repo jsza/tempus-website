@@ -79,7 +79,7 @@ export default class MapListItem extends React.Component {
     }
     else {
       content = (
-        <span>
+        <>
           <div className="item-background"
                style={bgStyles} />
           <span className="item-inner">
@@ -90,7 +90,7 @@ export default class MapListItem extends React.Component {
             </span>
             {this.renderTiers()}
           </span>
-        </span>
+        </>
       )
     }
     return (

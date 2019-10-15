@@ -11,9 +11,10 @@ export const FETCH_MORE_SUCCESS = createAction('MAP_OVERVIEW_LEADERBOARDS/FETCH_
 export const FETCH_MORE_ERROR = createAction('MAP_OVERVIEW_LEADERBOARDS/FETCH_MORE_ERROR')
 
 export const TOGGLE_EXPAND = createAction('MAP_OVERVIEW_LEADERBOARDS/TOGGLE_EXPAND')
+export const COLLAPSE_ALL = createAction('MAP_OVERVIEW_LEADERBOARDS/COLLAPSE_ALL')
 
 
-export function fetch(mapName, zoneType, index) {
+export function fetchLeaderboard(mapName, zoneType, index) {
   return (dispatch, getState) => {
     const {fetching} = getState().app.mapOverview.leaderboards
     if (fetching) {
@@ -59,5 +60,10 @@ export function fetchMore(playerClass) {
 
 
 export function toggleExpand(playerClass, runID) {
-  return TOGGLE_EXPAND({playerClass, runID})
+  return TOGGLE_EXPAND({ playerClass, runID })
+}
+
+
+export function collapseAll(playerClass) {
+  return COLLAPSE_ALL({ playerClass })
 }

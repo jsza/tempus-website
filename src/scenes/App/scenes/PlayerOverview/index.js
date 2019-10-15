@@ -121,23 +121,23 @@ export class PlayerOverview extends React.Component {
             ? <Redirect to={redirectURL} />
             : null
           }
-          <div className="player-overview-header clearfix">
-            <div className="player-overview-avatar">
-              <SteamAvatar steamID={pi.steamid} size="mediumlarge" />
+          <div className="player-overview-header-container">
+            <div className="player-overview-header clearfix">
+              <div className="player-overview-avatar">
+                <SteamAvatar steamID={pi.steamid} size="mediumlarge" />
+              </div>
+              <span className="last-seen">
+                Online <TimeAgo date={pi.last_seen * 1000} />
+                <br />
+                Joined {getFormattedDate(firstSeenDate)}
+              </span>
+              <div className="player-overview-header-content">
+                <h2 className="page-title" title={pi.steamid}>
+                  [{this.renderChatRank()}] <strong>{pi.name}</strong>
+                </h2>
+              </div>
+              {}
             </div>
-            <span className="last-seen">
-              Online <TimeAgo date={pi.last_seen * 1000} />
-              <br />
-              Joined {getFormattedDate(firstSeenDate)}
-            </span>
-            <div className="player-overview-header-content">
-              <h2 className="page-title" title={pi.steamid}>
-                <strong>
-                  [{this.renderChatRank()}]
-                </strong> {pi.name}
-              </h2>
-            </div>
-            {}
           </div>
           <div className="player-overview-class-selection">
             <NavLink to={`${this.props.match.url}/soldier`}>

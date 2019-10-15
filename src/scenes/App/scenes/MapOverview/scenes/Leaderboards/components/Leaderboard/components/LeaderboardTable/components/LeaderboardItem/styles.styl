@@ -1,11 +1,16 @@
+addAlpha(color, amount) {
+    alpha(color, alpha(color) + amount)
+}
+
+
 row-box-shadow-color = black
 
-row-bg-color = rgba(255, 255, 255, 0.05)
-row-bg-color-hover = rgba(255, 255, 255, 0.1)
-row-bg-color-expanded = rgba(255, 255, 255, 0.15)
-row-bg-color-expanded-hover = rgba(255, 255, 255, 0.20)
+row-bg-color = rgba(255, 255, 255, 0.1)
+row-bg-color-hover = addAlpha(row-bg-color, 0.05)
+row-bg-color-expanded = addAlpha(row-bg-color-hover, 0.05)
+row-bg-color-expanded-hover = addAlpha(row-bg-color-expanded, 0.05)
 
-row-border-color = rgba(255, 255, 255, 0.10)
+row-border-color = rgba(255, 255, 255, 0.2)
 row-border-color-hover = alpha(row-border-color, alpha(row-border-color) + 0.05)
 row-border-color-expanded = row-border-color-hover
 row-border-color-hover = alpha(row-border-color-expanded, alpha(row-border-color-expanded) + 0.05)
@@ -44,6 +49,7 @@ row-box-shadow(top=false, bottom=false)
 
 .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
     cursor pointer
+    user-select none
 
     &:hover
         row-box-shadow(top: true, bottom: true)
@@ -57,7 +63,7 @@ row-box-shadow(top=false, bottom=false)
 
         & + .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
             td
-                border-top 0
+                border-top-width 0
 
             &.expanded
                 box-shadow none
@@ -66,12 +72,12 @@ row-box-shadow(top=false, bottom=false)
         row-border()
         border-top-width 1px
         background-color row-bg-color
-        padding 5px 6px
+        padding 6px 6px
         vertical-align middle
         background-clip border-box
 
-        &:first-child
-            padding-left 15px
+        // &:first-child
+        //     padding-left 15px
 
         &:last-child
             padding-right 15px
@@ -83,7 +89,8 @@ row-box-shadow(top=false, bottom=false)
         border-bottom-width 1px
 
     &.expanded
-        box-shadow 0 -3px 2px -2px black
+        // box-shadow 0 -3px 2px -2px black
+        row-box-shadow(top: true)
         td
             border-bottom-width 1px
             border-color row-border-color-expanded
@@ -95,6 +102,20 @@ row-box-shadow(top=false, bottom=false)
                 background-color row-bg-color-expanded-hover
                 border-color row-border-color-expanded-hover
                 border-bottom-color row-border-color-expanded-hover
+
+    .toggle-expand
+        padding-right 0
+        padding-left 5px
+        i
+            width 15px
+            text-align center
+            opacity 0
+            // color rgb(170, 170, 170)
+            transition opacity 0.1s ease-out, transform 0.1s ease-out
+
+
+    &:hover .toggle-expand i
+        opacity 0.8
 
     .rank
         color rgb(200, 200, 200)
@@ -119,7 +140,7 @@ row-box-shadow(top=false, bottom=false)
             border-radius 50%
             border-width 2px
             margin-right 4px
-            box-shadow 1px 0 4px black
+            box-shadow 0 0 2px 1px rgba(0, 0, 0, 0.7)
 
 
     .duration
@@ -170,7 +191,7 @@ row-box-shadow(top=false, bottom=false)
             border-top-left-radius 36px
             border-bottom-left-radius 36px
 
-            filter drop-shadow(1px 0 1px black)
+            filter drop-shadow(1px 1px 1px black)
 
             &:after
                 content ''
@@ -230,11 +251,6 @@ row-box-shadow(top=false, bottom=false)
                         a
                             font-weight bold
 
-    & + .MapOverview-LeaderboardContainer-Leaderboard-LeaderboardItem
-        td
-            border-top-color transparent
-
-        &:hover
-            row-box-shadow(top: false, bottom: true)
-            td
-                border-top-color transparent
+.LeaderboardItemPanel-spacer
+    td
+        height 8px

@@ -45,6 +45,7 @@ function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar })
   const avatarURL = getAvatarURL(steamInfo, size)
 
   const [imgLoaded, setImgLoaded] = useState(false)
+  const [imgError, setImgError] = useState(false)
 
   useEffect(() => {
     queueAvatar(sid)
@@ -52,12 +53,10 @@ function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar })
 
   useEffect(() => {
     let unmounted = false
-    if (steamInfo) {
+    if (steamInfo && !imgLoaded && !imgError) {
       const image = new Image()
-      image.onload = () => {
-        if (!unmounted)
-          setImgLoaded(true)
-      }
+      image.onload = () => { if (!unmounted) setImgLoaded(true) }
+      image.onerror = () => { if (!unmounted) setImgError(true) }
       image.src = getAvatarURL(steamInfo, size)
     }
     return () => unmounted = true
@@ -78,7 +77,12 @@ function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar })
   )
   if (!noLink)
     return (
-      <a href={`http://steamcommunity.com/profiles/${sid}`} onClick={(e) => e.stopPropagation()} target="_blank">
+      <a
+        href={`http://steamcommunity.com/profiles/${sid}`}
+        onClick={(e) => e.stopPropagation()}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {body}
       </a>
     )

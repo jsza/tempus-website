@@ -5,7 +5,6 @@ import './styles.styl'
 
 
 export default function TFIcon({tfClass, size, ...props}) {
-  console.log(tfClass)
   const classes = classnames({
     'tf-icon': true,
     'soldier': ['soldier', 3].includes(tfClass),

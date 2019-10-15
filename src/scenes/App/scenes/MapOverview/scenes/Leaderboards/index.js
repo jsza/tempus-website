@@ -6,9 +6,9 @@ import {Switch, Route, Redirect, useParams} from 'react-router'
 import {connect} from 'react-redux'
 
 import {
-  fetch,
   fetchMore,
-  toggleExpand
+  toggleExpand,
+  collapseAll
 } from './actions'
 
 import Row from 'react-bootstrap/lib/Row'
@@ -19,12 +19,8 @@ import Leaderboard from './components/Leaderboard'
 import './styles.styl'
 
 
-function Leaderboards({ data, leaderboards, fetch, fetchMore, toggleExpand }) {
+function Leaderboards({ data, leaderboards, fetch, fetchMore, toggleExpand, collapseAll }) {
   const {zoneType, zoneIndex} = useParams()
-
-  useEffect(() => {
-    fetch(zoneType, zoneIndex)
-  }, [zoneType, zoneIndex])
 
   if (leaderboards.error) {
     return (
@@ -44,11 +40,10 @@ function Leaderboards({ data, leaderboards, fetch, fetchMore, toggleExpand }) {
       </div>
     )
   }
-  console.log('hmm', leaderboards.data)
   return (
-    <div>
+    <>
       {[3, 4].map((playerClass, idx) =>
-        <Col md={5} key={idx}>
+        <div className="col" key={idx}>
           <Leaderboard
             fetching={leaderboards.fetching}
             data={leaderboards.data.getIn(
@@ -60,21 +55,18 @@ function Leaderboards({ data, leaderboards, fetch, fetchMore, toggleExpand }) {
             mapData={data}
             fetchMore={fetchMore}
             toggleExpand={toggleExpand}
-            expandedRun={leaderboards.getIn(['expandedRun', playerClass])} />
-        </Col>
+            collapseAll={collapseAll}
+            expandedRuns={leaderboards.getIn(['expandedRuns', playerClass])} />
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
 
-function LeaderboardContainer({ data, leaderboards, fetch, fetchMore, toggleExpand, match }){
-  function onFetchLeaderboard(zoneType, zoneIndex) {
-    fetch(data.getIn(['map_info', 'name']), zoneType, zoneIndex)
-  }
-
+function LeaderboardContainer({ data, leaderboards, fetchMore, toggleExpand, collapseAll, match }){
   return (
-    <div className="MapOverview-LeaderboardContainer">
+    <div className="MapOverview-LeaderboardContainer col flex-row" style={{paddingLeft: 0, paddingRight: 0}}>
       <Switch>
         <Route exact path={`${match.path}`}>
           <Redirect to={`${match.path}/map/1`} />
@@ -83,9 +75,9 @@ function LeaderboardContainer({ data, leaderboards, fetch, fetchMore, toggleExpa
           <Leaderboards
             data={data}
             leaderboards={leaderboards}
-            fetch={onFetchLeaderboard}
             fetchMore={fetchMore}
             toggleExpand={toggleExpand}
+            collapseAll={collapseAll}
           />
         </Route>
       </Switch>
@@ -101,5 +93,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetch, fetchMore, toggleExpand }
+  { fetchMore, toggleExpand, collapseAll }
 )(LeaderboardContainer)

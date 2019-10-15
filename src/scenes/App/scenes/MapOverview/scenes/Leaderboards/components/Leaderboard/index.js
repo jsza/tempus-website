@@ -26,7 +26,7 @@ import {PERMISSIONS} from 'root/utils/loginData'
 import './styles.styl'
 
 
-function Leaderboard({ data, fetching, playerClass, tier, zoneInfo, mapInfo, fetchMore, toggleExpand, expandedRun, push, match }) {
+function Leaderboard({ data, fetching, playerClass, tier, zoneInfo, mapInfo, fetchMore, toggleExpand, collapseAll, expandedRuns, push, match }) {
   const tfClass = CLASSINDEX_TO_NAME[playerClass]
   const tfClassLower = tfClass.toLowerCase()
   const zoneName = prettyZoneName(zoneInfo.get('type'), zoneInfo.get('zoneindex'))
@@ -71,7 +71,8 @@ function Leaderboard({ data, fetching, playerClass, tier, zoneInfo, mapInfo, fet
             playerClass={playerClass}
             fetchMore={() => fetchMore(playerClass)}
             toggleExpand={toggleExpand}
-            expandedRun={expandedRun}
+            collapseAll={collapseAll}
+            expandedRuns={expandedRuns}
           />
         </div>
       </div>

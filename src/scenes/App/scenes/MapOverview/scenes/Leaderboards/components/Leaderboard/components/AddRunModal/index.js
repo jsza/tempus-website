@@ -11,6 +11,7 @@ import {Link} from 'react-router-dom'
 import SteamAvatar from 'root/components/SteamAvatar'
 import TFIcon from 'root/components/TFIcon'
 import Input from './components/Input'
+import DemoInput from './components/DemoInput'
 import {Form} from 'react-advanced-form'
 
 import {prettyZoneName} from 'root/utils/TempusUtils'
@@ -22,6 +23,21 @@ import './styles.styl'
 // function Input(props) {
 //   return <input className="form-control" {...props} />
 // }
+
+
+const sampleDemo = {
+  expired: false,
+  mapname: 'jump_neptune_rc1',
+  filename: 'auto-20180511-035332-jump_neptune_rc1',
+  uploader_id: null,
+  requested: false,
+  date: 1526010812.63222,
+  url: null,
+  recording: true,
+  server_id: 10,
+  deleted: false,
+  id: 646202
+}
 
 
 function FormGroup({ label, children }) {
@@ -88,12 +104,13 @@ function AddRunForm({ zoneInfo, mapInfo, playerClass }) {
       </FormGroup>*/}
       <div className="form-row">
         <div className="col">
-          <Input
+          <DemoInput selectedDemo={sampleDemo} />
+          {/*<Input
             name="durationInput"
             type="text"
             label="Demo"
             placeholder="Demo ID" required
-            rule={/^\d+/} />
+            rule={/^\d+/} />*/}
         </div>
 
       </div>

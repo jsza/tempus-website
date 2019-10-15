@@ -27,9 +27,10 @@ $tier-6-color := rgb(255, 125, 125)
 
 .MapOverview-LeaderboardContainer-Leaderboard
     position relative
+    // min-width 200px
 
     > .loading-overlay
-        z-index 2
+        z-index 3
         position absolute
         height 100%
         width 100%
@@ -39,90 +40,28 @@ $tier-6-color := rgb(255, 125, 125)
 
     > .panel-heading
         position sticky
-        top 41px
+        top 34px
         z-index 2
 
     // .panel-body
     //     position relative
 
-    .table-mapoverview
-        position relative
-        width calc(100% + 30px)
-        max-width calc(100% + 30px)
-        margin-top -15px
-        margin-left -15px
-        margin-right -15px
-        margin-bottom 15px
-        border-collapse: separate
-        border-top 0
-
-        & > thead > tr > th
-            position sticky
-            top 102px
-            padding 5px
-            border-bottom-color rgba(255, 255, 255, 0.2)
-            border-bottom-width 2px
-            border-bottom 2px solid rgb(90, 90, 90)
-            font-weight normal
-            background rgba(255, 255, 255, 0.1)
-            background rgba(0, 0, 0, 0.7)
-            // border 1px solid rgba(80, 80, 80, 1.0) !important
-            user-select none
-            color rgb(210, 210, 210)
-            z-index 1
-
-
-            &:first-child
-                padding-left 15px
-
-            &:last-child
-                padding-right 15px
-
-            &.rank, &.date
-                text-align right
-
-            &.duration
-                padding 5px 14px
-
-            &.sortable
-                &:hover
-                    // text-decoration underline
-                    color rgb(240, 240, 240)
-                    background rgba(100, 100, 100, 0.8)
-
-                cursor pointer
-
-            &.selected
-                border-bottom-color rgb(160, 160, 160)
-
-        & > tbody > tr > td
-            // border-top none
-            // border-bottom 1px solid rgb(70, 70, 70)
-            // border-color rgba(255, 255, 255, 0.1)
-
-        // tr:nth-of-type(odd)
-        //     background rgba(60, 60, 60, 0.5)
-
-        // tr:nth-of-type(even)
-        //     background rgba(100, 100, 100, 0.5)
-
-    //     padding-left 15px
-    //     padding-right 15px
-
     .load-more-button
         display block
         width 100%
         padding 4px
-        border none
+        border-color transparent
         // background linear-gradient(135deg, rgba(41,63,86,0.5), rgba(51,98,104,0.5), rgba(28,108,117,0.5))
         // box-shadow 0 1px 2px rgba(0, 0, 0, 0.8)
         border-radius 4px
+        border-width 1px
         background none
 
         &:hover
-            // box-shadow 0 0 2px black
+            box-shadow none
             background linear-gradient(135deg, rgba(41,63,86,0.6), rgba(51,98,104,0.6), rgba(28,108,117,0.6))
-            text-decoration underline
+            border-color rgba(0, 0, 0, 0.6)
+            text-decoration none
 
         &:active
             background linear-gradient(180deg, rgba(41,63,86,0.6), rgba(51,98,104,0.6), rgba(28,108,117,0.6))

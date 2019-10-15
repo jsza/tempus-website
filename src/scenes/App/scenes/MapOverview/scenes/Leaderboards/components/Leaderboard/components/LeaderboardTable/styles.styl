@@ -1,0 +1,73 @@
+.MapOverview-LeaderboardTable
+    position relative
+    width calc(100% + 30px)
+    max-width calc(100% + 30px)
+    margin-top -15px
+    margin-left -15px
+    margin-right -15px
+    margin-bottom 15px
+    border-collapse: separate
+    border-top 0
+
+    & > thead > tr > th
+        position sticky
+        top 95px
+        padding 5px
+        border-bottom-color rgba(255, 255, 255, 0.2)
+        border-bottom-width 2px
+        border-bottom 2px solid rgb(90, 90, 90)
+        font-weight normal
+        background rgba(255, 255, 255, 0.1)
+        background rgba(20, 20, 20, 0.8)
+        // border 1px solid rgba(80, 80, 80, 1.0) !important
+        user-select none
+        color rgb(210, 210, 210)
+        font-weight bold
+        z-index 1
+        box-shadow 0 0 4px black
+        clip-path polygon(
+            0 0,
+            100% 0,
+            100% 200%,
+            0% 200%
+        )
+
+
+        &:first-child
+            padding-left 15px
+
+        &:last-child
+            padding-right 15px
+
+        &.rank, &.date
+            text-align right
+
+        &.duration
+            padding 5px 14px
+
+        &.sortable
+            &:hover
+                // text-decoration underline
+                color rgb(240, 240, 240)
+                background rgba(100, 100, 100, 0.8)
+
+            cursor pointer
+
+        &.selected
+            border-bottom-color rgb(160, 160, 160)
+
+.MapOverview-LeaderboardTable-container
+    .leaderboard-buttons
+        position sticky
+        bottom -1px
+        margin-left -15px
+        margin-right -15px
+        margin-bottom 15px
+        padding 2px 15px
+        background-color rgba(0, 0, 0, 0.7)
+        background-clip padding-box
+        border-top 1px solid rgba(255, 255, 255, 0.25)
+        border-bottom 1px solid rgba(255, 255, 255, 0.25)
+        box-shadow 0 -3px 3px -3px black, 0 3px 3px -3px black
+        text-align right
+
