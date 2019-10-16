@@ -39,7 +39,7 @@ function getAvatarURL(steamInfo, size) {
 }
 
 
-function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar }) {
+function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar, style }) {
   const sid = steamID64 ? steamID64 : Steam.convertTo64(steamID)
   const steamInfo = avatars ? avatars[sid] : undefined
   const avatarURL = getAvatarURL(steamInfo, size)
@@ -70,7 +70,7 @@ function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar })
     , 'steamavatar-default': true
     })
   const body = (
-    <span className="steamavatar-image-container">
+    <span className="steamavatar-image-container" style={style}>
       <img className={classes} src={defaultAvatars[size]} style={{opacity: imgLoaded ? 0 : 100}} />
       <img className={`steamavatar steamavatar-image ${size} ${steamStatus}`} src={imgLoaded ? avatarURL : null} style={{opacity: imgLoaded ? 100 : 0}} />
     </span>

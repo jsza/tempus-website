@@ -67,14 +67,21 @@ function MapOverviewNav({ data, fetchLeaderboard, match }) {
   return (
     <div className="MapOverview-MapOverviewNav">
       <ul className="nav nav-pills nav-stacked nav-dark">
+        <li>
+          <NavLink to={`${match.url}/overview`}>
+            <i className="fas fa-fw fa-home" /> Overview
+          </NavLink>
+        </li>
         <li role="presentation">
           <a href="#">
-            <i className="fa fa-fw fa-trophy" /> Leaderboards <i className="fa fa-caret-down" />
+            <i className="fas fa-fw fa-trophy" /> Leaderboards <i className="fa fa-caret-down" />
           </a>
           <MapOverviewLeaderboardNav zones={zones} mapName={name} baseURL={match.url} />
         </li>
         <li>
-          <NavLink to={`${match.url}/authors`}><i className="fa fa-fw fa-paint-brush" /> Authors <span className="badge">{`${data.get('authors').size}`}</span></NavLink>
+          <NavLink to={`${match.url}/authors`}>
+            <i className="fas fa-fw fa-paint-brush" /> Authors <span className="badge">{`${data.get('authors').size}`}</span>
+          </NavLink>
         </li>
       </ul>
     </div>
