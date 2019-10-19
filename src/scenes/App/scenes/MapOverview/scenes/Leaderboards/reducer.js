@@ -28,6 +28,7 @@ export default handleActions(
     state.merge(
       { fetching: true
       , error: null
+      , data: null
       , zoneType: action.zoneType
       , index: action.index
       , expandedRuns: initialState.expandedRuns

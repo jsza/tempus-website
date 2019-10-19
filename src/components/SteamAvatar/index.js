@@ -31,6 +31,9 @@ function getAvatarURL(steamInfo, size) {
     else if (size === 'mediumlarge') {
       return steamInfo.avatar['large']
     }
+    else if (size === 'small') {
+      return steamInfo.avatar['medium']
+    }
     return steamInfo.avatar[size]
   }
   else {

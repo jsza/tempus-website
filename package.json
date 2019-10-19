@@ -22,6 +22,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
+    "atomic-layout": "^0.9.8",
     "autobahn": "^17.5.2",
     "autoprefixer": "^6.3.6",
     "autoprefixer-stylus": "^0.8.0",

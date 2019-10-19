@@ -8,7 +8,6 @@ import './styles.styl'
 
 
 function Authors(props) {
-  console.log('render', props)
   const {authors} = props
   return (
     <div className="col-md-10 MapOverview-Authors">
@@ -27,8 +26,11 @@ function Authors(props) {
               return (
                 <li key={authorID} style={{position: 'relative'}}>
                   <SteamAvatar steamID={steamid} size="small" style={{position: 'absolute', left: 0, top: 0}} />
-                  <NavLink className="author-link" to={`/authors/${authorID}`} style={{height: '38px'}}>
+                  <NavLink className="author-link" to={`/authors/${authorID}`}>
                     {name} <span className="currentname">({name})</span>
+                    <span className="map-count">
+                      {author.get('map_count')} map(s)
+                    </span>
                   </NavLink>
                 </li>
               )

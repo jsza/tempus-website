@@ -5,9 +5,10 @@ export default function Label({ valid, invalid, required, children, ...props}) {
   const {} = props
   return (
     <label
-      className="col-sm-2 control-label"
-      {...props} >
-      {children}{required && '*'}
+      className="control-label col-sm-2"
+      {...props}
+    >
+      {children}{required && <sup>*</sup>}
     </label>
   )
 }

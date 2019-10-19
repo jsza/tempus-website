@@ -19,7 +19,7 @@ const Input = ({
 }
 
 
-const InputField = (props) => {
+export const InputField = (props) => {
   const { name, label, hint, disabled, fieldProps, fieldState } = props
   const { required } = fieldProps
   const { validating, validatedAsync, valid, invalid, errors } = fieldState
@@ -29,6 +29,7 @@ const InputField = (props) => {
     'has-success': valid,
     'has-error': invalid
   })
+  console.log(errors)
   return (
     <div className={classes}>
       { label && (
@@ -45,6 +46,14 @@ const InputField = (props) => {
           { ...fieldProps }
           fieldState={ fieldState }
           disabled={ validating || disabled} />
+        {errors &&
+          errors.map((error, index) => (
+            <span key={index} className="help-block text-danger">
+              {error}
+            </span>
+          ))
+        }
+        {props.children}
       </div>
     </div>
   )

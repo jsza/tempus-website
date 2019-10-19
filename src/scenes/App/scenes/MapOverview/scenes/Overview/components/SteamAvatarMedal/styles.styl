@@ -1,0 +1,103 @@
+redRibbon() {
+    content: '';
+    background: black;
+    background-clip: padding-box;
+    position: absolute;
+    height: 48px;
+    bottom: -24px;
+    border-left-color: crimson;
+    border-right-color: rgb(152, 11, 37);
+    border-width: 10px;
+    border-bottom-color: transparent;
+    border-bottom-width: 6px;
+    border-style: solid;
+    filter: drop-shadow(0 1px 1px black);
+}
+
+.SteamAvatarMedal {
+    position relative
+    display inline-block
+
+    &:before {
+        redRibbon()
+        left: 20px;
+        transform: rotate(-8deg);
+    }
+
+    &:after {
+        redRibbon()
+        left: 2px;
+        transform: rotate(8deg);
+    }
+
+    > .cogs {
+        position relative
+
+        > .cog {
+            transform-origin: bottom;
+            position: absolute;
+            // width: 14px;
+            border: 6px solid goldenrod;
+            border-bottom-color: transparent;
+            border-top-color: transparent;
+            border-top-width: 1px;
+            border-bottom-width: 1px;
+            height: 27px;
+            left: 15px;
+            top: -6px;
+            filter: drop-shadow(0 0 2px black);
+            // background: goldenrod;
+            // box-shadow: 0 0 2px 1px black;
+            // border-top-left-radius: 2px 4px;
+            // border-top-right-radius: 6px 8px;
+            // border-bottom-left-radius: 6px 8px;
+            // border-bottom-right-radius: 2px 4px;
+            z-index: 2;
+        }
+    }
+
+    & .steamavatar-image-container {
+        position: relative;
+        // padding: 4px;
+        z-index: 2;
+
+        position: relative;
+        // background: rgb(240, 240, 240);
+        border-top-left-radius: 36px;
+        // border-radius: 36px;
+        // vertical-align: middle;
+
+        // filter: drop-shadow(1px 1px 1px black);
+        // box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5);
+
+        > .steamavatar {
+            &.small {
+                height 42px
+                width 42px
+            }
+        }
+
+        > .steamavatar.steamavatar-image {
+            border-radius: 50%;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
+            &.small {
+                border-width: 3px;
+            }
+        }
+    }
+
+    & .tf-icon-container {
+        display inline-block
+        position: relative;
+        z-index: 2;
+        padding: 6px;
+        border-radius: 50%;
+        background: rgb(200, 200, 200);
+        box-shadow: 0 0 3px black inset;
+
+        .tf-icon {
+            height: 30px;
+            width: 30px;
+        }
+    }
+}

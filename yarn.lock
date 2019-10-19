@@ -1262,6 +1262,11 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+atomic-layout@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/atomic-layout/-/atomic-layout-0.9.8.tgz#1644f23d31ab3da814f6426dae9e6afeb32e19db"
+  integrity sha512-T9UvwzSPiEejLHv+355LPk+8TNKsXihTXumDw9tCuw715BBCIi0Cg9l025XQYQFd5O40E29mI0VhYC1SlvCfcQ==
+
 autobahn@^17.5.2:
   version "17.5.2"
   resolved "https://registry.yarnpkg.com/autobahn/-/autobahn-17.5.2.tgz#e448345d87b4d945bd6feb97bd53ba927a7569ad"

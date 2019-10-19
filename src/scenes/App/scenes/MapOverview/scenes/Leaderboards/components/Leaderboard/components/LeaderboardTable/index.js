@@ -18,43 +18,45 @@ export default function LeaderboardTable(
   const firstPlace = data.get(0)
   return (
     <div className="MapOverview-LeaderboardTable-container">
-      <table className="MapOverview-LeaderboardTable">
-        <thead>
-          <tr>
-            <th className="rank sortable selected shrink" colSpan="2">
-              # <i className="fa fa-sort-down" />
-            </th>
-            <th className="duration sortable shrink text-right selected">
-              duration
-            </th>
-            <th className="comparison shrink hidden"></th>
-            <th className="player expand unsortable">player</th>
-            <th className="date sortable shrink hidden-xs">
-              date
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data ? data.map((data, idx) => {
-            const runID = data.get('id')
-            return (
-              <LeaderboardItem
-                key={idx}
-                data={data}
-                firstPlace={firstPlace}
-                onClick={() => toggleExpand(playerClass, runID)}
-                expanded={expandedRuns.includes(runID)}
-              />
-            )
-          }) : 'nothing'}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <div className="shadow-container">
+          <div className="header-shadow" />
+        </div>
+        <table className="MapOverview-LeaderboardTable">
+          <thead>
+            <tr>
+              <th className="rank sortable selected shrink" colSpan="2">
+                # <i className="fa fa-sort-down" />
+              </th>
+              <th className="duration sortable shrink text-right selected">
+                duration
+              </th>
+              <th className="comparison shrink hidden"></th>
+              <th className="player expand unsortable">player</th>
+              <th className="date sortable shrink hidden-xs">
+                date
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data ? data.map((data, idx) => {
+              const runID = data.get('id')
+              return (
+                <LeaderboardItem
+                  key={idx}
+                  data={data}
+                  firstPlace={firstPlace}
+                  onClick={() => toggleExpand(playerClass, runID)}
+                  expanded={expandedRuns.includes(runID)}
+                />
+              )
+            }) : 'nothing'}
+          </tbody>
+        </table>
+      </div>
       {expandedRuns.size > 0 &&
         <div className="leaderboard-buttons">
           <div className="btn-group">
-            <button className="btn btn-primary btn-dark" onClick={() => collapseAll(playerClass)}>
-              <i className="fas fa-chevron-up" /> <i className="fa-secret" /> Admin
-            </button>
             <button className="btn btn-primary btn-dark" onClick={() => collapseAll(playerClass)}>
               <i className="fas fa-chevron-up" /> Collapse runs
             </button>

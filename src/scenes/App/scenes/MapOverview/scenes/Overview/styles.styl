@@ -1,0 +1,48 @@
+wrIcon() {
+    margin-bottom: -15px;
+    margin-top: -15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 8px;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.MapOverview-Overview
+    .panel-body
+        overflow hidden
+        border-bottom-left-radius 0
+        border-bottom-right-radius 0
+        border-radius 7px 7px 0 0 !important
+
+        .wr-icon-left
+            wrIcon()
+            margin-left: -15px;
+            // border-top-left-radius: 6px;
+            // border-bottom-left-radius: 6px;
+
+        .wr-icon-right
+            wrIcon()
+            margin-right: -15px;
+            // border-top-right-radius: 6px;
+            // border-bottom-right-radius: 6px;
+
+    .panel-footer
+        background rgba(20, 30, 40, 0.9)
+        padding 0
+        border-bottom-left-radius 7px
+        border-bottom-right-radius 7px
+        overflow hidden
+
+        .leaderboard-link
+            display block
+            padding 8px
+            background rgba(40, 60, 80, 0.5)
+            color rgb(240, 240, 240)
+            text-align center
+            text-shadow 0 1px black
+            border none
+
+            &:hover
+                background linear-gradient(135deg, rgba(41,63,86,0.6), rgba(51,98,104,0.6), rgba(28,108,117,0.6))

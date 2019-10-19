@@ -43,7 +43,6 @@ export function fetchMore(playerClass) {
     const zoneID = data.getIn(['zone_info', 'id'])
     const runsKey = {3: 'soldier', 4: 'demoman'}[playerClass]
     const lastRank = data.getIn(['results', runsKey]).last().get('rank')
-    console.log('class', playerClass)
     return dispatch(
       { [CALL_API]:
         { method: GET

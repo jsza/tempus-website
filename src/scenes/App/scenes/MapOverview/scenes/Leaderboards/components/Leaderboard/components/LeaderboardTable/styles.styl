@@ -24,13 +24,13 @@
         color rgb(210, 210, 210)
         font-weight bold
         z-index 1
-        box-shadow 0 0 4px black
-        clip-path polygon(
-            0 0,
-            100% 0,
-            100% 200%,
-            0% 200%
-        )
+        // box-shadow 0 0 4px black
+        // clip-path polygon(
+        //     0 0,
+        //     100% 0,
+        //     100% 200%,
+        //     0% 200%
+        // )
 
 
         &:first-child
@@ -57,6 +57,28 @@
             border-bottom-color rgb(160, 160, 160)
 
 .MapOverview-LeaderboardTable-container
+    position relative
+
+    // Sticky table header shadow
+    // Workaround for lack of sticky support on <tr>s in Chrome
+    .table-container
+        position relative
+
+        > .shadow-container
+            position absolute
+            top 0
+            left -15px
+            right -15px
+            height 100%
+            z-index 2
+            pointer-events none
+
+            > .header-shadow
+                position sticky
+                top 95px
+                height 32px
+                box-shadow 0 4px 4px -4px black
+
     .leaderboard-buttons
         position sticky
         bottom -1px

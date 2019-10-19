@@ -131,7 +131,18 @@ class App extends React.Component {
         </div>
 
         <footer className="App-footer">
-          &copy; 2017 Tempus Network &bull; <a href="http://steampowered.com/">Powered by Steam</a>
+          <ul className="links">
+            <li>
+              <a href="http://steampowered.com/">
+                <i className="fab fa-steam-symbol" /> Powered by Steam
+              </a>
+            </li>
+            <li>
+              <a href="https://tempus-apidocs.readthedocs.io/en/latest/">
+                API
+              </a>
+            </li>
+          </ul>
         </footer>
       </div>
     )

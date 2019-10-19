@@ -9,12 +9,7 @@ export default function Author({ authors, match }) {
   let authorItem
   if (authors.size === 0) {
     authorItem =
-      <span css={`
-        color: crimson;
-        font-style: italic;
-      `}>
-        *NOT SET*
-      </span>
+      <span>???</span>
   } else if (authors.size === 1) {
     const a = authors.get(0)
     authorItem = (

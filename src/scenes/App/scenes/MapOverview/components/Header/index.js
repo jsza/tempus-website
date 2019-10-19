@@ -25,16 +25,16 @@ const Header = ({ data, match }) =>
           </h1>
           <div className="map-info-list-container">
             <ul className="map-info-list">
+              {/* TODO: Enable when we have data for this */}
+              {/* <li className=""> */}
+              {/*   <i className="tf-icon soldier auto" />{'+'} */}
+              {/*   <i className="tf-icon demoman auto" /> */}
+              {/* </li> */}
               {['course', 'bonus'].map((type, idx) =>
                 <li key={`zone-counts-${idx}`}>
                   <ZoneIcon type={type} /> {data.getIn(['zone_counts', type], type === 'course' ? 1 : 0)}
                 </li>
               )}
-              {/* TODO: Enable when we have data for this */}
-              <li className="hidden">
-                Made for <i className="tf-icon soldier mini" />{' '}
-                <i className="tf-icon demoman mini" />
-              </li>
               {['soldier', 'demoman'].map((cls, idx) =>
                 <li key={`map-tiers-${idx}`}>
                   <TFIcon tfClass={cls} size="auto" /> {`T${data.getIn(['tier_info', cls])}`}
