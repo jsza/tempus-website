@@ -1,119 +1,97 @@
 .Overview-WorldRecord
-    display inline-block
-    // width 300px
-    text-align center
-    // font-size 1.05em
-
     .worldrecord-container
-        // display flex
         position relative
-        padding 6px
         padding-bottom 18px
         margin 0 15px
-        border-radius 40px 16px 16px 40px
-        background linear-gradient(
-            to right,
-            rgba(100, 100, 100, 0.3),
-            rgba(200, 200, 200, 0.3) 10%,
-            rgba(200, 200, 200, 0.3) 90%,
-            rgba(100, 100, 100, 0.3)
-        )
-        background rgba(255, 255, 255, 0.3)
-        border 2px solid rgba(255, 255, 255, 0.2)
-        // text-shadow 2px 2px 1px rgba(0, 0, 0, 0.8),
-        //             2px 2px 3px rgba(0, 0, 0, 0.8)
-        // text-shadow none
-        // box-shadow 2px 2px 1px 1px rgba(0, 0, 0, 0.4) inset
+        // border-radius 16px 40px 16px 16px
+        // background rgba(255, 255, 255, 0.3)
+        // border 2px solid rgba(255, 255, 255, 0.2)
 
         .SteamAvatarMedal {
-            margin-right 16px
+            margin-left 16px
             display inline-block
             flex 0 0 auto
         }
 
-        .steamavatar-image-container .steamavatar.tiny {
-            // height: 43px;
-            // width: 43px;
-            margin-right: 4px;
+        .steamavatar-image-container .steamavatar.small {
+            height: 44px;
+            width: 44px;
             border-radius: 50%;
-            border-width 2px
-            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
+            border-width: 3px;
+            box-shadow: 0 0 0 1px rgb(30, 30, 30),
+                        1px 1px 3px 1px rgb(30, 30, 30);
+            // box-shadow: 1px 1px 0 0 #656565,
+            //             2px 2px 0 0 #4c4c4c,
+            //             3px 3px 0 0 #333333,
+            //             3px 3px 8px 0 black
         }
 
         .info-container
             display flex
             flex 1 0 auto
+            align-items flex-start
             min-width 140px
-            padding 6px 16px 6px 6px
-            background linear-gradient(
-                to right,
-                transparent,
-                rgba(255, 255, 255, 0.1) 30%,
-                rgba(255, 255, 255, 0.1) 70%,
-                transparent
-            )
+            padding 6px
+            background rgba(105, 105, 105, 0.4)
+            // border-radius 12px 30px 12px 12px
+            border-radius 30px
+            border 2px solid rgba(0, 0, 0, 0.62)
+            border-bottom-width 1px;
+            border-right-width 1px;
+            box-shadow 1px 1px 3px 0px #1f1f1f inset,
+                       0px 0px 4px #d4d4d4
 
-            background rgba(0, 0, 0, 0.4)
-            border-radius 36px 12px 12px 36px
-            border 1px solid rgba(0, 0, 0, 0.4)
-            text-align left
-            box-shadow 1px 1px 3px 0px #1f1f1f inset
+            .avatar-link-container
+                &:hover + .player-link-container .player-link
+                    color #00f0ff
+                    text-decoration underline
+
+            .player-link-container
+                margin-left: 6px;
 
             .player-link
-                position relative
                 display block
-                z-index 3
                 font-weight bold
                 font-size 1.2em
-                // text-shadow 2px 2px 0 rgba(0, 0, 0, 0.8),
-                //             1px 1px 4px rgba(0, 0, 0, 0.8),
-                //             0 0 2px rgba(0, 0, 0, 0.8)
-                text-align left
-
-                &:hover
-                    text-decoration none
 
             .run-info-item
-                // > .icon
-                &:before
-                    display inline-block
-                    font-style normal
-                    font-variant normal
-                    text-rendering auto
-                    line-height 1
-                    font-weight 900
-                    content '\f105'
-                    font-family "Font Awesome 5 Pro"
-                    width 24px
+                > .icon
+                    // &:before
+                    // display inline-block
+                    // content ''
+                    // width 2px
+                    // height 1em
+                    // vertical-align middle
+                    // background rgb(160, 160, 160)
+                    // margin-right 4px
+                    // margin-left 30px
+                    // box-shadow 1px 1px 0 black
+                    width 28px
                     // height 24px
                     // font-size 14px
                     // padding 5px
-                    margin-right 4px
+                    margin-right 6px
                     text-align right
                     color rgb(160, 160, 160)
                     // font-size 0.9em
-                    vertical-align: middle
-                    font-size 16px
+                    // vertical-align: middle
+                    // font-size 16px
+
 
             .run-duration
                 font-weight bold
                 font-family Droid Sans Mono, monospace
+                font-size 15px
                 a
                     color inherit
                     &:hover
                         color rgb(255, 255, 255)
-                        text-decoration none
 
             .run-date
                 position absolute
-                // width 100%
-                left 40px
-                right 16px
-                text-align center
-                bottom 2px
-                // display none
-                font-size 0.9em
+                left 8px
+                bottom 0
+                font-size 0.8em
                 text-shadow 0 1px 2px black
-                // font-size 10px
-                // font-weight bold
-                color rgb(180, 180, 180)
+                color rgb(192, 192, 192)
+                user-select none

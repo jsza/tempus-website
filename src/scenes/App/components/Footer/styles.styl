@@ -1,0 +1,29 @@
+.App-footer
+    background-color rgba(2, 2, 2, 0.6)
+    // background-color rgb(60, 60, 60)
+    border-top 1px solid rgb(20, 20, 20)
+    border-bottom 0
+    padding 10px 15px
+    text-align center
+    &, a
+        // color rgb(150, 150, 150)
+        color rgba(255, 255, 255, 0.7)
+
+    > ul.links
+        list-style none
+        padding-left 0
+        margin-bottom 0
+
+        li
+            display inline-block
+            &:not(:first-child):before
+                content '•'
+                display inline
+                padding-left 0.5em
+                padding-right 0.5em
+    // font-size 12px
+    // background-color: #ededed
+    // min-height 300px
+    // background-image url('https://raw.githubusercontent.com/ddormer/bdm/master/bdm/static/images/cover.png')
+    // background-repeat no-repeat
+    // background-position center top

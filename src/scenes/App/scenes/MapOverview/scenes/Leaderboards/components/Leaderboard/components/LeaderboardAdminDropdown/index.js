@@ -20,8 +20,8 @@ function LeaderboardAdminDropdown({ zoneInfo, playerClass, location, match }) {
       <DropdownButton
         id="LeaderboardAdminDropdown"
         pullRight
-        title={<span><i className="fas fa-user-secret" /> Admin <i className="fa fa-caret-down" /></span>}
-        bsStyle="primary"
+        title={<span className="icon-container"><i className="fas fa-user-secret" /></span>}
+        bsStyle="default"
         noCaret className="btn-dark">
         <LinkContainer to={addRunURL}>
           <MenuItem>

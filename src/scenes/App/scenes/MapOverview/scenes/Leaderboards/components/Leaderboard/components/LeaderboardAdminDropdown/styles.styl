@@ -2,5 +2,33 @@
     display contents
     z-index 99
 
+    .icon-container
+        display inline-block
+        width 28px
+
+    .btn.btn-dark
+        background rgba(0, 0, 0, 0.2)
+        padding 5px
+        border-radius 7px
+        font-size 20px
+        border 1px solid rgba(0, 0, 0, 0.8)
+
+        &:hover, &:focus
+            box-shadow inset 0 1px 0 rgba(255, 255, 255, .15)
+            color inherit
+            background rgba(255, 255, 255, 0.05)
+            border-color rgba(20, 20, 20, 0.6)
+
+        &:active, &:active:focus, &.active
+            background rgba(0, 0, 0, 0.3)
+            border-color rgba(0, 0, 0, 0.9)
+            box-shadow none
+
+    .dropdown.open > .btn.btn-dark
+        color inherit
+        background rgba(0, 0, 0, 0.3)
+        border-color rgba(0, 0, 0, 0.9)
+        box-shadow none
+
     .dropdown-menu
         text-shadow none

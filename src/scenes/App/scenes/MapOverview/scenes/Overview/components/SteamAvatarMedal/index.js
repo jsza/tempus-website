@@ -8,6 +8,7 @@ import './styles.styl'
 export default function SteamAvatarMedal({ children }) {
   return (
     <div className="SteamAvatarMedal">
+      <div className="ribbons" />
       <div className="cogs">
         {Range(0, 16).map((num) =>
           <div

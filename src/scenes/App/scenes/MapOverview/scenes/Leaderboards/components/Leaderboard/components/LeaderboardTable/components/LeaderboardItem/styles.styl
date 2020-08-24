@@ -133,6 +133,9 @@ row-box-shadow(top=false, bottom=false)
         .name-inner
             display block
             white-space nowrap
+            a
+                display inline-block
+                // line-height 22px
 
         .steamavatar
             height 24px
@@ -154,6 +157,8 @@ row-box-shadow(top=false, bottom=false)
             // background rgba(255, 255, 255, 0.1)
             padding 2px 8px
             border-radius 8px
+            &:hover
+                color white
 
         .comparison
             color rgb(200, 200, 200)
@@ -186,7 +191,10 @@ row-box-shadow(top=false, bottom=false)
         .name-inner
             padding-right 8px
             position relative
-            background linear-gradient(to right, #736100 0%, #564904 100%)
+            background linear-gradient(
+                to right,
+                rgb(153, 130, 0),
+                rgb(86, 73, 4))
             margin-right 16px
             border-top-left-radius 36px
             border-bottom-left-radius 36px
@@ -196,11 +204,11 @@ row-box-shadow(top=false, bottom=false)
             &:after
                 content ''
                 position absolute
-                right -18px
+                right -8px
                 top 0
                 border-top 12px solid #564904
                 border-bottom 12px solid #564904
-                border-right 18px solid transparent
+                border-right 8px solid transparent
 
             a.player-link
                 overflow hidden
@@ -237,9 +245,7 @@ row-box-shadow(top=false, bottom=false)
             .run-info-panel
                 flex 0 0 auto
                 background row-bg-color-expanded
-                border 1px solid row-border-color-expanded
                 padding 3px 6px
-                border-radius 2px
 
                 > .run-info-table
                     tr > td

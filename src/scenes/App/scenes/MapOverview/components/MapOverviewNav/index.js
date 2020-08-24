@@ -65,10 +65,10 @@ function MapOverviewNav({ data, fetchLeaderboard, match }) {
 
   const zones = data.get('zones')
   return (
-    <div className="MapOverview-MapOverviewNav">
+    <div className="MapOverview-MapOverviewNav nav na vertical">
       <ul className="nav nav-pills nav-stacked nav-dark">
         <li>
-          <NavLink to={`${match.url}/overview`}>
+          <NavLink to={`${match.url}`} exact>
             <i className="fas fa-fw fa-home" /> Overview
           </NavLink>
         </li>

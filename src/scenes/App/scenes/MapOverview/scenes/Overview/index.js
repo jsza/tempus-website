@@ -7,42 +7,13 @@ import {Link} from 'react-router-dom'
 
 import SteamAvatar from 'root/components/SteamAvatar'
 import TFIcon from 'root/components/TFIcon'
+import ZoneIcon from 'root/components/ZoneIcon'
 import SteamAvatarMedal from './components/SteamAvatarMedal'
 import WorldRecord from './components/WorldRecord'
+import LeaderboardIconCol from './components/LeaderboardIconCol'
+import Authors from '../Authors'
 
 import './styles.styl'
-
-
-const StyledPedestal = styled.span`
-  width: 220px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.5);
-  display: inline-block;
-`
-
-
-function Pedestal({ children, height, ...props }) {
-  return (
-    <div css={`display: inline-block; margin-left: 4px;`}>
-      <div className="text-center">
-        <div css={`
-          display: inline-block;
-          padding: 0 20px 0px 0px;
-          margin-bottom: 4px;
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 32px;
-          box-shadow 0 2px 4px black;
-        `}>
-          {children}
-        </div>
-      </div>
-      <StyledPedestal css={`
-        height: ${height};
-        box-shadow 0 2px 4px black;
-      `} />
-    </div>
-  )
-}
 
 
 const Overview = ({ data }) => {
@@ -60,33 +31,38 @@ const Overview = ({ data }) => {
     }
   return (
     <>
-    <div className="MapOverview-Overview panel panel-default panel-dark">
-      <div className="panel-body">
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-          <div className="wr-icon-left">
-            <i className="fas fa-trophy" />
-          </div>
-          <WorldRecord
-            tfClass="soldier"
-            runInfo={s.rank1}
-          />
-          <WorldRecord
-            tfClass="demoman"
-            runInfo={d.rank1}
-          />
-          <div className="wr-icon-right">
-            <i className="fas fa-trophy" />
+    <div className="container flex-row">
+
+      <div className="MapOverview-Overview panel panel-default panel-dark">
+        <div className="panel-heading">
+          <span>
+            <i className="fas fa-trophy" style={{color: 'gold'}} />
+          </span> <strong>World Records</strong>
+        </div>
+        <div className="panel-body">
+          <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div className="inner-body">
+              <WorldRecord
+                tfClass="soldier"
+                runInfo={s.rank1}
+              />
+              <WorldRecord
+                tfClass="demoman"
+                runInfo={d.rank1}
+              />
+            </div>
           </div>
         </div>
+        <div className="panel-footer">
+          <Link
+            className="leaderboard-link"
+            to={`/maps/${mapName}/leaderboards`}
+          >
+            View all
+          </Link>
+        </div>
       </div>
-      <div className="panel-footer">
-        <Link
-          className="leaderboard-link"
-          to={`/maps/${mapName}/leaderboards`}
-        >
-          View all
-        </Link>
-      </div>
+      <Authors authors={data.get('authors')} />
     </div>
     </>
   )

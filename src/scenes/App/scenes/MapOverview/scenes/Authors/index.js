@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 
 import SteamAvatar from 'root/components/SteamAvatar'
 
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import './styles.styl'
 
@@ -10,7 +10,7 @@ import './styles.styl'
 function Authors(props) {
   const {authors} = props
   return (
-    <div className="col-md-10 MapOverview-Authors">
+    <div className="MapOverview-Authors">
       <div className="panel panel-dark">
         <div className="panel-heading">
           <i className="fas fa-paint-brush" /> <strong>Map Authors</strong>
@@ -25,13 +25,13 @@ function Authors(props) {
 
               return (
                 <li key={authorID} style={{position: 'relative'}}>
-                  <SteamAvatar steamID={steamid} size="small" style={{position: 'absolute', left: 0, top: 0}} />
-                  <NavLink className="author-link" to={`/authors/${authorID}`}>
-                    {name} <span className="currentname">({name})</span>
+                  <Link className="author-link" to={`/authors/${authorID}`}>
+                    <SteamAvatar noLink steamID={steamid} size="small" />
+                    {` ${name}`} <span className="currentname">({name})</span>
                     <span className="map-count">
                       {author.get('map_count')} map(s)
                     </span>
-                  </NavLink>
+                  </Link>
                 </li>
               )
             })}

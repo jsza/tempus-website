@@ -1,0 +1,33 @@
+.LeaderboardIconCol {
+    display: flex;
+    padding: 15px 8px;
+    flex-direction: column;
+    justify-content: top;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+
+    &.left {
+        box-shadow: 5px 0 4px -4px #000;
+    }
+
+    &.right {
+        box-shadow: -5px 0 4px -4px #000;
+    }
+
+    .icon-container {
+        font-size: 1.2em;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.4);
+        height: 31px;
+        width: 31px;
+        text-align: center;
+        padding: 4px;
+        box-shadow: 1px 1px 3px black inset;
+        &:not(:last-child) {
+            margin-bottom: 6px;
+        }
+    }
+}

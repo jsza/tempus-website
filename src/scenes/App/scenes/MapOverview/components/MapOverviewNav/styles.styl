@@ -1,21 +1,24 @@
-.MapOverview-MapOverviewNav
+.MapOverview-MapOverviewNav.vertical
     position relative
-    border-radius 8px
     font-weight bold
     width 270px
     margin-bottom 15px
     background linear-gradient(135deg,
                                rgba(41, 63, 86, 0.9),
                                rgba(51, 98, 104, 0.9),
-                               rgba(28, 108, 117, 0.9)
+                               rgba(41, 63, 86, 0.9)
                                )
+    background linear-gradient(
+        135deg,
+        rgba(70, 100, 125, 0.9),
+        rgba(50, 60, 70, 0.9)
+    )
     background-clip padding-box
-    padding 15px 1px
+    padding 15px 0
 
-    box-shadow 1px 1px 8px black,
-               0 0 0 1px rgba(0, 0, 0, 0.4) inset
+    box-shadow 1px 1px 4px rgba(0, 0, 0, 0.65)
     text-shadow 1px 1px 0 black
-    border 1px solid rgba(255,255,255,0.2)
+    border 2px solid rgba(255,255,255,0.2)
 
     &:before
         content ''
@@ -107,3 +110,65 @@
             //     margin-bottom 2px
             //     margin-top 2px
 
+.MapOverview-MapOverviewNav.horizontal
+    position relative
+    // margin-top -15px
+    margin-bottom 15px
+
+    background-color rgba(70, 100, 125, 0.9)
+    background-image linear-gradient(
+        to right,
+        rgba(50, 50, 50, 0.9),
+        rgba(60, 70, 90, 0.9) 30%,
+        rgba(70, 100, 125, 0.9) 40%,
+        rgba(70, 100, 125, 0.9) 60%,
+        rgba(60, 70, 90, 0.9) 70%,
+        rgba(50, 50, 50, 0.9) 100%
+    )
+    // background-image linear-gradient(
+    //     to right,
+    //     rgba(0, 0, 0, 0.5),
+    //     transparent 40%,
+    //     transparent 60%,
+    //     rgba(0, 0, 0, 0.5)
+    // )
+    background-clip padding-box
+    // padding 15px 1px
+
+    box-shadow 0 0 4px  black
+    border 1px solid rgba(255, 255, 255, 0.2)
+    border-left 0
+    border-right 0
+
+    // font-weight bold
+    text-shadow 1px 1px 0 black
+
+    ul
+        display flex
+        list-style none
+        padding-left 0
+        margin-bottom 0
+
+        justify-content center
+
+        li > a
+            display block
+            padding 6px 15px
+            color rgb(230, 230, 230)
+
+            &:hover
+                background rgba(255, 255, 255, 0.1)
+
+            &.active
+                // padding-top 6px
+                // padding-bottom 8px
+                background rgba(50, 60, 70, 0.6)
+                // box-shadow 1px 1px 3px rgba(0, 0, 0, 0.5)
+
+                box-shadow 3px 0 4px -4px black inset,
+                           -3px 0 4px -4px black inset
+                // border-top 2px solid orange
+                color rgb(240, 240, 240)
+
+            .badge
+                display none !important

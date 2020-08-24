@@ -18,28 +18,6 @@ const LeaderboardItemPanel = ({ data }) =>
           <table className="run-info-table">
             <tbody>
               <tr>
-                <td>CP1</td>
-                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(230, 100, 100)'}}>+00:00.15</td>
-              </tr>
-              <tr>
-                <td>CP2</td>
-                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(100, 230, 100)'}}>-00:20.15</td>
-              </tr>
-              <tr>
-                <td>CP3</td>
-                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(230, 100, 100)'}}>+00:10.49</td>
-              </tr>
-              <tr>
-                <td>Map run</td>
-                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold'}}><span style={{ color: 'rgb(230, 100, 100)'}}>+00:33.75</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="run-info-panel">
-          <table className="run-info-table">
-            <tbody>
-              <tr>
                 <td>Date</td>
                 <td>
                   2014-10-09 09:40
@@ -66,6 +44,28 @@ const LeaderboardItemPanel = ({ data }) =>
                     Jump Academy (Chicago) Beginners
                   </Link>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="run-info-panel">
+          <table className="run-info-table">
+            <tbody>
+              <tr>
+                <td>CP1</td>
+                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(230, 100, 100)'}}>+00:00.15</td>
+              </tr>
+              <tr>
+                <td>CP2</td>
+                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(100, 230, 100)'}}>-00:20.15</td>
+              </tr>
+              <tr>
+                <td>CP3</td>
+                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold', color: 'rgb(230, 100, 100)'}}>+00:10.49</td>
+              </tr>
+              <tr>
+                <td>Map run</td>
+                <td style={{fontFamily: 'Droid Sans Mono', fontWeight: 'bold'}}><span style={{ color: 'rgb(230, 100, 100)'}}>+00:33.75</span></td>
               </tr>
             </tbody>
           </table>
@@ -115,8 +115,8 @@ function LeaderboardItem({ data, firstPlace, expanded, onClick }) {
         </td>*/}
         <td className="name expand">
           <span className="name-inner">
-            <SteamAvatar steamID={pi.get('steamid')} size="tiny" />
             <Link to={`/players/${pi.get('id')}`}>
+              <SteamAvatar noLink steamID={pi.get('steamid')} size="tiny" />
               {pi.get('name')}
             </Link>
           </span>

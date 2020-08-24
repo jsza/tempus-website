@@ -54,7 +54,7 @@ function Leaderboard({ data, fetching, playerClass, tier, zoneInfo, mapInfo, fet
       <div className="MapOverview-LeaderboardContainer-Leaderboard panel panel-dark">
         {fetching ? <div className="loading-overlay" /> : null}
         <div className="panel-heading">
-          {PERMISSIONS.includes('superuser') ?
+          {PERMISSIONS.includes('___superuser') ?
             <div className="pull-right">
               <LeaderboardAdminDropdown zoneInfo={zoneInfo} playerClass={playerClass} />
             </div>

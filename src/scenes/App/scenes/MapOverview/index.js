@@ -37,28 +37,30 @@ function MapOverview({ data, fetching, leaderboard, match }) {
       <section className="MapOverview">
         <Background mapName={mapName} />
         <Header data={data} match={match} />
-        <div className="MapOverview-body flex-row">
+        <div className="MapOverview-body flex-row" style={{justifyContent: 'center'}}>
           <div className="col" style={{flex: '0 0 270px'}}>
             <MapOverviewNav data={data} />
           </div>
-          <Switch>
-            <Route
-              path={`${match.url}/overview`}
-              component={Overview} />
-            <Route
-              path={`${match.url}/leaderboards`}
-              component={Leaderboards} />
-            <Route
-              path={`${match.url}/authors`}>
-              <Authors authors={data.get('authors')} />
-            </Route>
-            <Route exact path={`${match.url}`}>
-              <Redirect to={`${match.url}/leaderboards`} />
-            </Route>
-            <Route>
-              No such resource.
-            </Route>
-          </Switch>
+          <div className="col" style={{flex: '0 0 1170px'}}>
+            <Switch>
+              <Redirect from={`${match.url}`} to={`${match.url}/leaderboards`} exact={true} />
+              <Route
+                path={`${match.url}/leaderboards`}
+                component={Leaderboards} />
+              <Route
+                path={`${match.url}/authors`}>
+                <Authors authors={data.get('authors')} />
+              </Route>
+              <Route
+                exact path={`${match.url}`}
+                component={Overview}>
+              </Route>
+              <Route>
+                No such resource.
+              </Route>
+            </Switch>
+          </div>
+          <div className="col" style={{flex: '0 0 300px', display: 'block'}} />
         </div>
       </section>
     </DocumentTitle>

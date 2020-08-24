@@ -47,13 +47,10 @@ const rules =
 
 
 const messages =
-  { general:
-    { missing: 'Please provide the required field.'
-    }
-  , name:
+  { name:
     { startTick:
       { missing: 'Yep'
-      , invalid: 'Please enter a number.'
+      , invalid: 'Must be a number.'
       }
     }
   }

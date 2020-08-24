@@ -6,11 +6,22 @@
     z-index 100
     text-align center
     // soft gradient
+    background-color rgb(32, 48, 64)
+    background-image linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    )
     background linear-gradient(135deg,
                                rgb(32, 50, 68),
                                rgb(46, 89, 94),
-                               rgb(22, 86, 94)
+                               rgb(32, 50, 68)
                                )
+    background linear-gradient(
+        to bottom,
+        rgba(70, 100, 125, 1.0),
+        rgba(50, 60, 70, 1.0)
+    )
     background-clip padding-box
 
     &:before
@@ -23,21 +34,53 @@
         bottom 0
         background-image linear-gradient(
                 90deg,
-                rgba(0, 0, 0, 0.4) 20%,
-                rgba(255, 255, 255, 0.05) 50%,
-                rgba(0, 0, 0, 0.4) 80%)
+                rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.5) calc(50% - 400px),
+                rgba(255, 255, 255, 0) calc(50% - 80px),
+                rgba(255, 255, 255, 0) calc(50% + 80px),
+                rgba(0, 0, 0, 0.5) calc(50% + 400px),
+                rgba(0, 0, 0, 0.6) 100%)
 
     .header-title
         // stripe overlay
-        background-image: repeating-linear-gradient(
-            -45deg,
-            transparent,
+        background: repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            transparent 2px,
             transparent 60px,
-            rgba(0, 0, 0, 0.25) 60px,
-            rgba(0, 0, 0, 0.2) 90px,
-            rgba(0, 0, 0, 0.25) 120px
-        );
-        border-bottom 2px solid rgb(86, 104, 118)
+            rgba(0, 0, 0, 0.4) 60px,
+            rgba(0, 0, 0, 0.25) 64px,
+            rgba(0, 0, 0, 0.15) 116px,
+            rgba(0, 0, 0, 0.15) 120px
+        )
+        background: repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            transparent 2px,
+            transparent 90px,
+            rgba(0, 0, 0, 0.30) 90px,
+            rgba(0, 0, 0, 0.12) 92px,
+            rgba(0, 0, 0, 0.06) 96px,
+            rgba(0, 0, 0, 0.06) 100px
+        )
+        background-position center
+        background-size cover
+        // background: repeating-linear-gradient(
+        //     150deg,
+        //     transparent,
+        //     transparent 30px,
+        //     rgba(0, 0, 0, 0.2) 30px,
+        //     rgba(0, 0, 0, 0.2) 60px
+        // ) left, repeating-linear-gradient(
+        //     -150deg,
+        //     transparent,
+        //     transparent 30px,
+        //     rgba(0, 0, 0, 0.2) 30px,
+        //     rgba(0, 0, 0, 0.2) 60px
+        // ) right
+        // background-size 50% 100%
+        // background-repeat no-repeat
+        border-bottom 1px solid rgb(66, 81, 92)
 
         .header-title-inner
             // horizontal fade-in-out overlay
@@ -94,11 +137,16 @@
                                    rgb(80, 80, 80),
                                    rgb(90, 90, 90)
                                    )
+        background linear-gradient(
+            to bottom,
+            rgb(64, 64, 64),
+            rgb(90, 90, 90)
+        )
         box-shadow 1px 1px 4px inset rgba(0, 0, 0, 0.7)
-        border 2px solid rgb(86, 104, 118)
+        border 1px solid rgb(66, 81, 92)
         border-bottom-color rgba(255, 255, 255, 0.05)
         margin-top 8px
-        margin-bottom -2px
+        margin-bottom -1px
         border-radius 8px 8px 0 0
         border-bottom 0
 
@@ -107,10 +155,10 @@
         list-style none
         margin-bottom 0
         border-radius 8px 8px 0 0
-        background radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%) 0 0,
-                   radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%) 8px 8px,
-                   radial-gradient(rgba(255, 255, 255, 0.05) 15%, transparent 20%) 0 1px,
-                   radial-gradient(rgba(255,255,255,.05) 15%, transparent 20%) 8px 9px
+        // background radial-gradient(rgba(0, 0, 0, 0.25) 15%, transparent 16%) 0 0,
+        //            radial-gradient(rgba(0, 0, 0, 0.25) 15%, transparent 16%) 8px 8px,
+        //            radial-gradient(rgba(255, 255, 255, 0.09) 15%, transparent 20%) 0 1px,
+        //            radial-gradient(rgba(255, 255, 255, 0.09) 15%, transparent 20%) 8px 9px
         background-size 16px 16px
 
         li

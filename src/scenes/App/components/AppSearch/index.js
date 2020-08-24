@@ -58,7 +58,7 @@ class AppSearch extends React.Component {
             className="app-search-container hidden-xs hidden-sm"
             onFocus={this.onFocus.bind(this)}
           >
-          <AppSearchInput ref="searchInput" onChange={(val) => this.props.search(val)} />
+          <AppSearchInput ref="searchInput" onChange={(val) => this.props.searchPlayersAndMaps(val)} />
           <AppSearchResults data={data}
                             fetching={fetching}
                             error={error}

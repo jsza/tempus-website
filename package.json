@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack-dev-server --config webpack/dev.config.babel.js",
-    "build": "NODE_ENV=production BUILD_DEV=0 webpack --progress --colors --display-error-details --config webpack/prod.config.babel.js"
+    "build": "NODE_ENV=production BUILD_DEV=0 webpack --progress --colors --display-error-details --config webpack/prod.config.babel.js",
+    "storybook": "start-storybook --port 9003 -c src/stories"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,9 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/register": "^7.6.2",
+    "@storybook/addon-knobs": "^5.2.4",
+    "@storybook/addon-options": "^5.2.4",
+    "@storybook/react": "^5.2.4",
     "atomic-layout": "^0.9.8",
     "autobahn": "^17.5.2",
     "autoprefixer": "^6.3.6",

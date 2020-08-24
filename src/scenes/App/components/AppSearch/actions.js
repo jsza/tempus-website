@@ -21,7 +21,7 @@ function fetch(s) {
 
 export function searchPlayersAndMaps(s) {
   return (dispatch, getState) => {
-    const fetching = getState().search.fetching
+    const fetching = getState().app.search.fetching
     if (fetching) {
       return null
     }

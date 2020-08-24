@@ -5,11 +5,7 @@ import {Switch, Route, Redirect, useParams} from 'react-router'
 
 import {connect} from 'react-redux'
 
-import {
-  fetchMore,
-  toggleExpand,
-  collapseAll
-} from './actions'
+import {fetchMore, toggleExpand, collapseAll} from './actions'
 
 import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'

@@ -42,7 +42,7 @@ function getAvatarURL(steamInfo, size) {
 }
 
 
-function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar, style }) {
+function SteamAvatar({ steamID, steamID64, size, noLink, innerBorder=false, avatars, queueAvatar, style }) {
   const sid = steamID64 ? steamID64 : Steam.convertTo64(steamID)
   const steamInfo = avatars ? avatars[sid] : undefined
   const avatarURL = getAvatarURL(steamInfo, size)
@@ -71,11 +71,12 @@ function SteamAvatar({ steamID, steamID64, size, noLink, avatars, queueAvatar, s
     { 'steamavatar': true
     , [steamStatus]: true
     , 'steamavatar-default': true
+    , 'inner-border': innerBorder
     })
   const body = (
     <span className="steamavatar-image-container" style={style}>
-      <img className={classes} src={defaultAvatars[size]} style={{opacity: imgLoaded ? 0 : 100}} />
-      <img className={`steamavatar steamavatar-image ${size} ${steamStatus}`} src={imgLoaded ? avatarURL : null} style={{opacity: imgLoaded ? 100 : 0}} />
+      <img className={classes + ' steamavatar-default'} src={defaultAvatars[size]} style={{opacity: imgLoaded ? 0 : 100}} />
+      <img className={classes + ' steamavatar-image'} src={imgLoaded ? avatarURL : null} style={{opacity: imgLoaded ? 100 : 0}} />
     </span>
   )
   if (!noLink)
@@ -98,6 +99,7 @@ SteamAvatar.propTypes =
 , steamID64: P.string
 , size: P.oneOf(['tiny', 'mini', 'small', 'medium', 'mediumlarge', 'large'])
 , queueAvatar: P.func.isRequired
+, innerBorder: P.bool
 }
 
 
