@@ -22,7 +22,7 @@ function fetch(mapName) {
       , started: [LOAD_REQUEST]
       , success: [LOAD_SUCCESS]
       , failure: [LOAD_FAILURE]
-      , endpoint: `maps/name/${mapName}/fullOverview`
+      , endpoint: `maps/name/${mapName}/fullOverview2`
       }
     , mapName
     })
